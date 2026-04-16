@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foot Pedal & Spring Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Washer",
+phonetic:"/ˈwɑːʃər/",
+cn:"垫圈",
+desc:"用于分散压力的紧固件"
+},
+
+{
+text:"Nut",
+phonetic:"/nʌt/",
+cn:"螺母",
+desc:"与螺栓配合使用的紧固件"
+},
+
+{
+text:"Spring Seat",
+phonetic:"/sprɪŋ siːt/",
+cn:"弹簧座",
+desc:"用于支撑弹簧的安装座",
+words:[
+{ w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/" },
+{ w:"Seat", cn:"座", phonetic:"/siːt/" }
+]
+},
+
+{
+text:"Spring Pin",
+phonetic:"/sprɪŋ pɪn/",
+cn:"弹簧销",
+desc:"用于定位或连接的弹性销",
+words:[
+{ w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Foot Pedal",
+phonetic:"/fʊt ˈpedl/",
+cn:"脚踏",
+desc:"通过脚部操作的控制部件",
+words:[
+{ w:"Foot", cn:"脚", phonetic:"/fʊt/" },
+{ w:"Pedal", cn:"踏板", phonetic:"/ˈpedl/" }
+]
+},
+
+{
+text:"Mounting Base Plate",
+phonetic:"/ˈmaʊntɪŋ beɪs pleɪt/",
+cn:"安装座板",
+desc:"用于固定零部件的基础板",
+words:[
+{ w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/" },
+{ w:"Base", cn:"基座", phonetic:"/beɪs/" },
+{ w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+]
+},
+
+{
+text:"Spring",
+phonetic:"/sprɪŋ/",
+cn:"弹簧",
+desc:"提供弹性力的机械零件"
+},
+
+{
+text:"Bolt",
+phonetic:"/boʊlt/",
+cn:"螺栓",
+desc:"用于连接零件的紧固件"
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
