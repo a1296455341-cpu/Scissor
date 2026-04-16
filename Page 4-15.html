@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steering System Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Left Steering Yoke",
+phonetic:"/left ˈstɪrɪŋ joʊk/",
+cn:"左转向节",
+desc:"用于左侧转向连接与铰接的结构件",
+words:[
+{ w:"Left", cn:"左", phonetic:"/left/" },
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Yoke", cn:"节叉", phonetic:"/joʊk/" }
+]
+},
+
+{
+text:"Right Steering Yoke",
+phonetic:"/raɪt ˈstɪrɪŋ joʊk/",
+cn:"右转向节",
+desc:"用于右侧转向连接与铰接的结构件",
+words:[
+{ w:"Right", cn:"右", phonetic:"/raɪt/" },
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Yoke", cn:"节叉", phonetic:"/joʊk/" }
+]
+},
+
+{
+text:"Steering Tie Rod",
+phonetic:"/ˈstɪrɪŋ taɪ rɑːd/",
+cn:"转向拉杆",
+desc:"用于传递转向力的连杆机构",
+words:[
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Tie", cn:"拉", phonetic:"/taɪ/" },
+{ w:"Rod", cn:"杆", phonetic:"/rɑːd/" }
+]
+},
+
+{
+text:"Steering Cylinder Pivot Pin",
+phonetic:"/ˈstɪrɪŋ ˈsɪlɪndər ˈpɪvət pɪn/",
+cn:"转向油缸销轴",
+desc:"用于转向油缸铰接的销轴",
+words:[
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+{ w:"Pivot", cn:"铰接", phonetic:"/ˈpɪvət/" },
+{ w:"Pin", cn:"销轴", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Bushing",
+phonetic:"/ˈbʊʃɪŋ/",
+cn:"轴套",
+desc:"用于轴孔间减磨与支撑"
+},
+
+{
+text:"Shim",
+phonetic:"/ʃɪm/",
+cn:"垫片",
+desc:"用于间隙调整"
+},
+
+{
+text:"Washer",
+phonetic:"/ˈwɑːʃər/",
+cn:"垫圈",
+desc:"用于分散载荷或防松"
+},
+
+{
+text:"Bolt",
+phonetic:"/boʊlt/",
+cn:"螺栓",
+desc:"标准结构紧固件"
+},
+
+{
+text:"Right Protective Board",
+phonetic:"/raɪt prəˈtɛktɪv bɔːrd/",
+cn:"右护板",
+desc:"用于右侧结构防护",
+words:[
+{ w:"Right", cn:"右", phonetic:"/raɪt/" },
+{ w:"Protective", cn:"防护", phonetic:"/prəˈtɛktɪv/" },
+{ w:"Board", cn:"板", phonetic:"/bɔːrd/" }
+]
+},
+
+{
+text:"Left Protective Board",
+phonetic:"/left prəˈtɛktɪv bɔːrd/",
+cn:"左护板",
+desc:"用于左侧结构防护",
+words:[
+{ w:"Left", cn:"左", phonetic:"/left/" },
+{ w:"Protective", cn:"防护", phonetic:"/prəˈtɛktɪv/" },
+{ w:"Board", cn:"板", phonetic:"/bɔːrd/" }
+]
+},
+
+{
+text:"Retainer Ring",
+phonetic:"/rɪˈteɪnər rɪŋ/",
+cn:"挡圈",
+desc:"用于轴向固定零件",
+words:[
+{ w:"Retainer", cn:"固定", phonetic:"/rɪˈteɪnər/" },
+{ w:"Ring", cn:"环", phonetic:"/rɪŋ/" }
+]
+},
+
+{
+text:"Steering Copper Washer",
+phonetic:"/ˈstɪrɪŋ ˈkɑːpər ˈwɑːʃər/",
+cn:"转向铜垫",
+desc:"用于转向结构密封与耐磨",
+words:[
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Copper", cn:"铜", phonetic:"/ˈkɑːpər/" },
+{ w:"Washer", cn:"垫圈", phonetic:"/ˈwɑːʃər/" }
+]
+},
+
+{
+text:"Steering Cylinder",
+phonetic:"/ˈstɪrɪŋ ˈsɪlɪndər/",
+cn:"转向油缸",
+desc:"用于实现转向动作的液压执行元件",
+words:[
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
