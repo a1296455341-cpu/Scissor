@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High Voltage & Harness System (Split Words)</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Angle Sensor",
+phonetic:"/ˈæŋɡəl ˈsɛnsər/",
+cn:"角度传感器",
+desc:"用于检测旋转角度并反馈控制系统信号",
+words:[
+{ w:"Angle", cn:"角度", phonetic:"/ˈæŋɡəl/" },
+{ w:"Sensor", cn:"传感器", phonetic:"/ˈsɛnsər/" }
+]
+},
+
+{
+text:"Pressure Sensor",
+phonetic:"/ˈprɛʃər ˈsɛnsər/",
+cn:"压力传感器",
+desc:"用于检测液压或气压变化",
+words:[
+{ w:"Pressure", cn:"压力", phonetic:"/ˈprɛʃər/" },
+{ w:"Sensor", cn:"传感器", phonetic:"/ˈsɛnsər/" }
+]
+},
+
+{
+text:"Battery Positive to Main Fuse",
+phonetic:"/ˈbætəri ˈpɒzətɪv tuː meɪn fjuːz/",
+cn:"电池正极至主保险",
+desc:"高压路径分段连接",
+words:[
+{ w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+{ w:"Positive", cn:"正极", phonetic:"/ˈpɒzətɪv/" },
+{ w:"Main", cn:"主", phonetic:"/meɪn/" },
+{ w:"Fuse", cn:"保险丝", phonetic:"/fjuːz/" }
+]
+},
+
+{
+text:"Main Fuse to Main Power Switch",
+phonetic:"/meɪn fjuːz tuː meɪn ˈpaʊər swɪtʃ/",
+cn:"主保险至总电源开关",
+desc:"电源控制路径",
+words:[
+{ w:"Main", cn:"主", phonetic:"/meɪn/" },
+{ w:"Fuse", cn:"保险丝", phonetic:"/fjuːz/" },
+{ w:"Power", cn:"电源", phonetic:"/ˈpaʊər/" },
+{ w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+]
+},
+
+{
+text:"Power Switch to Contactor",
+phonetic:"/ˈpaʊər swɪtʃ tuː kənˈtæktər/",
+cn:"电源开关至接触器",
+desc:"主控制开关链路",
+words:[
+{ w:"Power", cn:"电源", phonetic:"/ˈpaʊər/" },
+{ w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" },
+{ w:"Contactor", cn:"接触器", phonetic:"/kənˈtæktər/" }
+]
+},
+
+{
+text:"Contactor to Motor Controller B+",
+phonetic:"/kənˈtæktər tuː ˈmoʊtər kənˈtroʊlər biː plʌs/",
+cn:"接触器至电机控制器B+",
+desc:"高压正极输出路径",
+words:[
+{ w:"Contactor", cn:"接触器", phonetic:"/kənˈtæktər/" },
+{ w:"Motor", cn:"电机", phonetic:"/ˈmoʊtər/" },
+{ w:"Controller", cn:"控制器", phonetic:"/kənˈtroʊlər/" },
+{ w:"B+", cn:"正极", phonetic:"/biː plʌs/" }
+]
+},
+
+{
+text:"Motor Controller B- to Battery Negative",
+phonetic:"/ˈmoʊtər kənˈtroʊlər biː mɪnəs tuː ˈbætəri ˈnɛɡətɪv/",
+cn:"电机控制器B-至电池负极",
+desc:"高压回路负极路径",
+words:[
+{ w:"Motor", cn:"电机", phonetic:"/ˈmoʊtər/" },
+{ w:"Controller", cn:"控制器", phonetic:"/kənˈtroʊlər/" },
+{ w:"B-", cn:"负极", phonetic:"/biː mɪnəs/" },
+{ w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+{ w:"Negative", cn:"负极", phonetic:"/ˈnɛɡətɪv/" }
+]
+},
+
+{
+text:"Main Harness",
+phonetic:"/meɪn ˈhɑːrnɪs/",
+cn:"主机线束",
+desc:"主电气信号与供电线束系统",
+words:[
+{ w:"Main", cn:"主", phonetic:"/meɪn/" },
+{ w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+]
+},
+
+{
+text:"Linkage Cylinder Harness",
+phonetic:"/ˈlɪŋkɪdʒ ˈsɪlɪndər ˈhɑːrnɪs/",
+cn:"叉架油缸线束",
+desc:"连接执行油缸的线束系统",
+words:[
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+{ w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+]
+},
+
+{
+text:"Upper Lower Communication Harness",
+phonetic:"/ˈʌpər ˈloʊər kəˌmjuːnɪˈkeɪʃən ˈhɑːrnɪs/",
+cn:"上下通讯线束",
+desc:"上下控制系统通信线路",
+words:[
+{ w:"Upper", cn:"上", phonetic:"/ˈʌpər/" },
+{ w:"Lower", cn:"下", phonetic:"/ˈloʊər/" },
+{ w:"Communication", cn:"通信", phonetic:"/kəˌmjuːnɪˈkeɪʃən/" },
+{ w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+]
+},
+
+{
+text:"Anti Collision Linkage Harness",
+phonetic:"/ˈænti kəˈlɪʒən ˈlɪŋkɪdʒ ˈhɑːrnɪs/",
+cn:"防撞叉架线束",
+desc:"防碰撞安全控制线束",
+words:[
+{ w:"Anti", cn:"防", phonetic:"/ˈænti/" },
+{ w:"Collision", cn:"碰撞", phonetic:"/kəˈlɪʒən/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
