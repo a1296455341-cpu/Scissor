@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic Valves & Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Valve",
+phonetic:"/vælv/",
+cn:"阀体",
+desc:"用于控制流体流动方向、压力或流量的元件"
+},
+
+{
+text:"Check Valve",
+phonetic:"/tʃɛk vælv/",
+cn:"单向阀",
+desc:"只允许流体单方向流动的阀",
+words:[
+{ w:"Check", cn:"单向", phonetic:"/tʃɛk/" },
+{ w:"Valve", cn:"阀", phonetic:"/vælv/" }
+]
+},
+
+{
+text:"Relief Valve",
+phonetic:"/rɪˈliːf vælv/",
+cn:"溢流阀",
+desc:"用于限制系统压力的安全阀",
+words:[
+{ w:"Relief", cn:"卸压/溢流", phonetic:"/rɪˈliːf/" },
+{ w:"Valve", cn:"阀", phonetic:"/vælv/" }
+]
+},
+
+{
+text:"Proportional Relief Valve",
+phonetic:"/prəˈpɔːrʃənl rɪˈliːf vælv/",
+cn:"比例溢流阀",
+desc:"可按比例调节压力的溢流阀",
+words:[
+{ w:"Proportional", cn:"比例的", phonetic:"/prəˈpɔːrʃənl/" },
+{ w:"Relief", cn:"溢流", phonetic:"/rɪˈliːf/" },
+{ w:"Valve", cn:"阀", phonetic:"/vælv/" }
+]
+},
+
+{
+text:"Damper",
+phonetic:"/ˈdæmpər/",
+cn:"阻尼",
+desc:"用于减缓冲击或振动的元件"
+},
+
+{
+text:"Plug",
+phonetic:"/plʌɡ/",
+cn:"螺塞",
+desc:"用于封堵孔口或通道的部件"
+},
+
+{
+text:"Solenoid Coil",
+phonetic:"/ˈsoʊlənɔɪd kɔɪl/",
+cn:"线圈",
+desc:"用于电磁控制阀动作的电气元件",
+words:[
+{ w:"Solenoid", cn:"电磁", phonetic:"/ˈsoʊlənɔɪd/" },
+{ w:"Coil", cn:"线圈", phonetic:"/kɔɪl/" }
+]
+},
+
+{
+text:"O-ring",
+phonetic:"/ˈoʊ rɪŋ/",
+cn:"O形圈",
+desc:"用于密封的橡胶环形件"
+},
+
+{
+text:"Emergency Mechanism",
+phonetic:"/ɪˈmɜːrdʒənsi ˈmɛkəˌnɪzəm/",
+cn:"应急机构",
+desc:"用于紧急情况下的操作或保护系统",
+words:[
+{ w:"Emergency", cn:"应急", phonetic:"/ɪˈmɜːrdʒənsi/" },
+{ w:"Mechanism", cn:"机构", phonetic:"/ˈmɛkəˌnɪzəm/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
