@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensor & Harness Electrical System</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Angle Sensor",
+phonetic:"/ˈæŋɡəl ˈsɛnsər/",
+cn:"角度传感器",
+desc:"用于检测角度位置并反馈控制系统的传感器",
+words:[
+{ w:"Angle", cn:"角度", phonetic:"/ˈæŋɡəl/" },
+{ w:"Sensor", cn:"传感器", phonetic:"/ˈsɛnsər/" }
+]
+},
+
+{
+text:"Pressure Sensor",
+phonetic:"/ˈprɛʃər ˈsɛnsər/",
+cn:"压力传感器",
+desc:"用于检测液压或气压变化的传感器",
+words:[
+{ w:"Pressure", cn:"压力", phonetic:"/ˈprɛʃər/" },
+{ w:"Sensor", cn:"传感器", phonetic:"/ˈsɛnsər/" }
+]
+},
+
+{
+text:"Battery Positive to Main Fuse",
+phonetic:"/ˈbætəri ˈpɒzətɪv tuː meɪn fjuːz/",
+cn:"电池正极至主保险",
+desc:"高压电从电池正极输送到主保险丝的路径",
+words:[
+{ w:"Battery Positive", cn:"电池正极", phonetic:"/ˈbætəri ˈpɒzətɪv/" },
+{ w:"Main Fuse", cn:"主保险丝", phonetic:"/meɪn fjuːz/" }
+]
+},
+
+{
+text:"Main Fuse to Main Power Switch",
+phonetic:"/meɪn fjuːz tuː meɪn ˈpaʊər swɪtʃ/",
+cn:"主保险至总电源开关",
+desc:"主电源路径控制开关段",
+words:[
+{ w:"Main Fuse", cn:"主保险丝", phonetic:"/meɪn fjuːz/" },
+{ w:"Power Switch", cn:"电源开关", phonetic:"/ˈpaʊər swɪtʃ/" }
+]
+},
+
+{
+text:"Power Switch to Contactor",
+phonetic:"/ˈpaʊər swɪtʃ tuː kənˈtæktər/",
+cn:"总电源开关至接触器",
+desc:"控制主电路通断的控制链路",
+words:[
+{ w:"Power Switch", cn:"电源开关", phonetic:"/ˈpaʊər swɪtʃ/" },
+{ w:"Contactor", cn:"接触器", phonetic:"/kənˈtæktər/" }
+]
+},
+
+{
+text:"Contactor to Motor Controller B+",
+phonetic:"/kənˈtæktər tuː ˈmoʊtər kənˈtroʊlər biː plʌs/",
+cn:"接触器至电机控制器B+",
+desc:"高压正极供电路径",
+words:[
+{ w:"Contactor", cn:"接触器", phonetic:"/kənˈtæktər/" },
+{ w:"Motor Controller", cn:"电机控制器", phonetic:"/ˈmoʊtər kənˈtroʊlər/" }
+]
+},
+
+{
+text:"Motor Controller B- to Battery Negative",
+phonetic:"/ˈmoʊtər kənˈtroʊlər biː mɪnəs tuː ˈbætəri ˈnɛɡətɪv/",
+cn:"电机控制器B-至电池负极",
+desc:"高压回流路径",
+words:[
+{ w:"Motor Controller", cn:"电机控制器", phonetic:"/ˈmoʊtər kənˈtroʊlər/" },
+{ w:"Battery Negative", cn:"电池负极", phonetic:"/ˈbætəri ˈnɛɡətɪv/" }
+]
+},
+
+{
+text:"Main Harness",
+phonetic:"/meɪn ˈhɑːrnɪs/",
+cn:"主机线束",
+desc:"整机主电气连接线路系统"
+},
+
+{
+text:"Linkage Cylinder Harness",
+phonetic:"/ˈlɪŋkɪdʒ ˈsɪlɪndər ˈhɑːrnɪs/",
+cn:"叉架油缸线束",
+desc:"连接叉架油缸的电气线束",
+words:[
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+{ w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+]
+},
+
+{
+text:"Upper-lower Communication Harness",
+phonetic:"/ˈʌpər ˈloʊər kəˌmjuːnɪˈkeɪʃən ˈhɑːrnɪs/",
+cn:"上下通讯线束",
+desc:"上下控制系统之间的数据通信线路",
+words:[
+{ w:"Communication", cn:"通信", phonetic:"/kəˌmjuːnɪˈkeɪʃən/" },
+{ w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+]
+},
+
+{
+text:"Anti-collision Linkage Harness",
+phonetic:"/ˈænti kəˈlɪʒən ˈlɪŋkɪdʒ ˈhɑːrnɪs/",
+cn:"防撞叉架线束",
+desc:"用于防撞检测与安全控制的线束系统",
+words:[
+{ w:"Anti-collision", cn:"防碰撞", phonetic:"/ˈænti kəˈlɪʒən/" },
+{ w:"Linkage", cn:"叉架机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
