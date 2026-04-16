@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linkage System Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Inner Linkage Weldment 1",
+phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt wʌn/",
+cn:"第一内臂焊合",
+desc:"内侧连杆结构第一节焊接件",
+words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Outer Linkage Weldment 1",
+phonetic:"/ˈaʊtər ˈlɪŋkɪdʒ ˈwɛldmənt wʌn/",
+cn:"第一外臂焊合",
+desc:"外侧连杆结构第一节焊接件",
+words:[
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Inner Linkage Weldment 2",
+phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt tuː/",
+cn:"第二内臂焊合",
+desc:"内侧连杆结构第二节焊接件",
+words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"General Outer Linkage Weldment 1",
+phonetic:"/ˈdʒɛnərəl ˈaʊtər ˈlɪŋkɪdʒ ˈwɛldmənt wʌn/",
+cn:"通用外臂焊合一",
+desc:"通用外侧连杆结构焊接件1",
+words:[
+{ w:"General", cn:"通用", phonetic:"/ˈdʒɛnərəl/" },
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"General Outer Linkage Weldment 2",
+phonetic:"/ˈdʒɛnərəl ˈaʊtər ˈlɪŋkɪdʒ ˈwɛldmənt tuː/",
+cn:"通用外臂焊合二",
+desc:"通用外侧连杆结构焊接件2",
+words:[
+{ w:"General", cn:"通用", phonetic:"/ˈdʒɛnərəl/" },
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Inner Linkage Weldment 3",
+phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt θriː/",
+cn:"第三内臂焊合",
+desc:"内侧连杆结构第三节焊接件",
+words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"General Outer Linkage Weldment 3",
+phonetic:"/ˈdʒɛnərəl ˈaʊtər ˈlɪŋkɪdʒ ˈwɛldmənt θriː/",
+cn:"通用外臂焊合三",
+desc:"通用外侧连杆结构焊接件3",
+words:[
+{ w:"General", cn:"通用", phonetic:"/ˈdʒɛnərəl/" },
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Inner Linkage Weldment 4",
+phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt fɔːr/",
+cn:"第四内臂焊合",
+desc:"内侧连杆结构第四节焊接件",
+words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Inner Linkage Weldment 5",
+phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt faɪv/",
+cn:"第五内臂焊合",
+desc:"内侧连杆结构第五节焊接件",
+words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Inner Linkage Weldment 6",
+phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt sɪks/",
+cn:"第六内臂焊合",
+desc:"内侧连杆结构第六节焊接件",
+words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Outer Linkage Weldment 6",
+phonetic:"/ˈaʊtər ˈlɪŋkɪdʒ ˈwɛldmənt sɪks/",
+cn:"第六外臂焊合",
+desc:"外侧连杆结构第六节焊接件",
+words:[
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"E-coating Hole Plug",
+phonetic:"/ˈiː koʊtɪŋ hoʊl plʌɡ/",
+cn:"电泳孔塞",
+desc:"电泳涂装工艺封孔件",
+words:[
+{ w:"E-coating", cn:"电泳", phonetic:"/ˈiː koʊtɪŋ/" },
+{ w:"Hole", cn:"孔", phonetic:"/hoʊl/" },
+{ w:"Plug", cn:"堵头", phonetic:"/plʌɡ/" }
+]
+},
+
+{
+text:"Linkage Spacer",
+phonetic:"/ˈlɪŋkɪdʒ ˈspeɪsər/",
+cn:"叉架隔垫",
+desc:"用于连杆间距调整的隔垫",
+words:[
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Spacer", cn:"隔垫", phonetic:"/ˈspeɪsər/" }
+]
+},
+
+{
+text:"Shim",
+phonetic:"/ʃɪm/",
+cn:"调整垫片",
+desc:"用于间隙调整的薄片"
+},
+
+{
+text:"Angle Sensor Protective Cover",
+phonetic:"/ˈæŋɡəl ˈsensər prəˈtɛktɪv ˈkʌvər/",
+cn:"角度传感器保护罩",
+desc:"保护角度传感器的外壳",
+words:[
+{ w:"Angle", cn:"角度", phonetic:"/ˈæŋɡəl/" },
+{ w:"Sensor", cn:"传感器", phonetic:"/ˈsensər/" },
+{ w:"Protective", cn:"保护", phonetic:"/prəˈtɛktɪv/" },
+{ w:"Cover", cn:"罩", phonetic:"/ˈkʌvər/" }
+]
+},
+
+{
+text:"Screw",
+phonetic:"/skruː/",
+cn:"螺钉",
+desc:"紧固件"
+},
+
+{
+text:"Chassis Left Wear Pad",
+phonetic:"/ˈʃæsi lɛft wer pæd/",
+cn:"底盘左滑块",
+desc:"底盘左侧耐磨件",
+words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Left", cn:"左", phonetic:"/lɛft/" },
+{ w:"Wear", cn:"耐磨", phonetic:"/wer/" },
+{ w:"Pad", cn:"滑块", phonetic:"/pæd/" }
+]
+},
+
+{
+text:"Chassis Right Wear Pad",
+phonetic:"/ˈʃæsi raɪt wer pæd/",
+cn:"底盘右滑块",
+desc:"底盘右侧耐磨件",
+words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Right", cn:"右", phonetic:"/raɪt/" },
+{ w:"Wear", cn:"耐磨", phonetic:"/wer/" },
+{ w:"Pad", cn:"滑块", phonetic:"/pæd/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
