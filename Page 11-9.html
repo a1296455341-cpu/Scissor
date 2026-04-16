@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control Panel Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Emergency Stop Switch",
+phonetic:"/ɪˈmɜːrʤənsi stɒp swɪtʃ/",
+cn:"急停开关",
+desc:"用于紧急情况下快速切断电源的安全开关",
+words:[
+{ w:"Emergency", cn:"紧急", phonetic:"/ɪˈmɜːrʤənsi/" },
+{ w:"Stop", cn:"停止", phonetic:"/stɒp/" },
+{ w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+]
+},
+
+{
+text:"Self-resetting Fuse",
+phonetic:"/sɛlf ˌriːˈsɛtɪŋ fjuːz/",
+cn:"自复位保险",
+desc:"可自动恢复的过流保护装置",
+words:[
+{ w:"Self", cn:"自", phonetic:"/sɛlf/" },
+{ w:"resetting", cn:"复位", phonetic:"/ˌriːˈsɛtɪŋ/" },
+{ w:"Fuse", cn:"保险丝", phonetic:"/fjuːz/" }
+]
+},
+
+{
+text:"Indicator Light",
+phonetic:"/ˈɪndɪˌkeɪtər laɪt/",
+cn:"指示灯",
+desc:"用于状态指示的灯光装置",
+words:[
+{ w:"Indicator", cn:"指示器", phonetic:"/ˈɪndɪˌkeɪtər/" },
+{ w:"Light", cn:"灯", phonetic:"/laɪt/" }
+]
+},
+
+{
+text:"Key",
+phonetic:"/kiː/",
+cn:"钥匙",
+desc:"用于开启或关闭钥匙开关的工具",
+words:[
+{ w:"Key", cn:"钥匙", phonetic:"/kiː/" }
+]
+},
+
+{
+text:"Key Switch",
+phonetic:"/kiː swɪtʃ/",
+cn:"钥匙开关",
+desc:"需要钥匙操作的电源开关装置",
+words:[
+{ w:"Key", cn:"钥匙", phonetic:"/kiː/" },
+{ w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+]
+},
+
+{
+text:"Ground Control Panel Overlay",
+phonetic:"/ɡraʊnd kənˈtroʊl ˈpænəl ˈoʊvərˌleɪ/",
+cn:"下控面板贴膜",
+desc:"覆盖在控制面板表面的标识与保护薄膜",
+words:[
+{ w:"Ground", cn:"地面/下控", phonetic:"/ɡraʊnd/" },
+{ w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+{ w:"Panel", cn:"面板", phonetic:"/ˈpænəl/" },
+{ w:"Overlay", cn:"贴膜/覆盖层", phonetic:"/ˈoʊvərˌleɪ/" }
+]
+},
+
+{
+text:"14-pin Rectangular Connector",
+phonetic:"/ˈfɔːrˈtiːn pɪn ˌrɛkˈtæŋɡjələr kəˈnɛktər/",
+cn:"14芯矩形插头",
+desc:"用于电气连接的14针矩形接口",
+words:[
+{ w:"Fourteen", cn:"14", phonetic:"/ˈfɔːrˈtiːn/" },
+{ w:"Pin", cn:"针脚", phonetic:"/pɪn/" },
+{ w:"Rectangular", cn:"矩形的", phonetic:"/ˌrɛkˈtæŋɡjələr/" },
+{ w:"Connector", cn:"连接器", phonetic:"/kəˈnɛktər/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
