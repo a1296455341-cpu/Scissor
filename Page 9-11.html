@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valve Block & Solenoid Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Valve Block",
+phonetic:"/vælv blɑːk/",
+cn:"阀块",
+desc:"集成多个液压阀通道的控制块",
+words:[
+{ w:"Valve", cn:"阀", phonetic:"/vælv/" },
+{ w:"Block", cn:"块", phonetic:"/blɑːk/" }
+]
+},
+
+{
+text:"Solenoid Valve",
+phonetic:"/ˈsoʊlənɔɪd vælv/",
+cn:"电磁阀",
+desc:"通过电磁线圈控制开启或关闭的阀",
+words:[
+{ w:"Solenoid", cn:"电磁", phonetic:"/ˈsoʊlənɔɪd/" },
+{ w:"Valve", cn:"阀", phonetic:"/vælv/" }
+]
+},
+
+{
+text:"Relief Valve",
+phonetic:"/rɪˈliːf vælv/",
+cn:"溢流阀",
+desc:"用于限制系统压力的安全阀",
+words:[
+{ w:"Relief", cn:"溢流/卸压", phonetic:"/rɪˈliːf/" },
+{ w:"Valve", cn:"阀", phonetic:"/vælv/" }
+]
+},
+
+{
+text:"Plug",
+phonetic:"/plʌɡ/",
+cn:"螺塞",
+desc:"用于封堵油路或孔口的部件"
+},
+
+{
+text:"O-ring",
+phonetic:"/ˈoʊ rɪŋ/",
+cn:"O形圈",
+desc:"用于密封的橡胶密封件"
+},
+
+{
+text:"Solenoid Coil",
+phonetic:"/ˈsoʊlənɔɪd kɔɪl/",
+cn:"线圈",
+desc:"用于产生磁场驱动阀芯动作",
+words:[
+{ w:"Solenoid", cn:"电磁", phonetic:"/ˈsoʊlənɔɪd/" },
+{ w:"Coil", cn:"线圈", phonetic:"/kɔɪl/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
