@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic Tank & Filtration System</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Suction Filter",
+phonetic:"/ˈsʌkʃən ˈfɪltər/",
+cn:"吸油过滤器",
+desc:"用于过滤进入泵前的液压油",
+words:[
+{ w:"Suction", cn:"吸油", phonetic:"/ˈsʌkʃən/" },
+{ w:"Filter", cn:"过滤器", phonetic:"/ˈfɪltər/" }
+]
+},
+
+{
+text:"Hydraulic Oil Suction Fitting",
+phonetic:"/haɪˈdrɔːlɪk ɔɪl ˈsʌkʃən ˈfɪtɪŋ/",
+cn:"吸油接头",
+desc:"用于油箱与吸油管路连接",
+words:[
+{ w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+{ w:"Oil", cn:"油", phonetic:"/ɔɪl/" },
+{ w:"Suction", cn:"吸油", phonetic:"/ˈsʌkʃən/" },
+{ w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+]
+},
+
+{
+text:"Gasket",
+phonetic:"/ˈɡæskɪt/",
+cn:"密封垫",
+desc:"用于密封连接面的垫片"
+},
+
+{
+text:"Hydraulic Tank Cap",
+phonetic:"/haɪˈdrɔːlɪk tæŋk kæp/",
+cn:"油箱盖",
+desc:"用于封闭油箱并防止污染",
+words:[
+{ w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+{ w:"Tank", cn:"油箱", phonetic:"/tæŋk/" },
+{ w:"Cap", cn:"盖", phonetic:"/kæp/" }
+]
+},
+
+{
+text:"Breather Cap",
+phonetic:"/ˈbriːðər kæp/",
+cn:"呼吸盖",
+desc:"用于平衡油箱内外压力并过滤空气",
+words:[
+{ w:"Breather", cn:"呼吸", phonetic:"/ˈbriːðər/" },
+{ w:"Cap", cn:"盖", phonetic:"/kæp/" }
+]
+},
+
+{
+text:"Breather Cap Washer",
+phonetic:"/ˈbriːðər kæp ˈwɑːʃər/",
+cn:"呼吸盖垫片",
+desc:"用于呼吸盖的密封垫片",
+words:[
+{ w:"Breather", cn:"呼吸", phonetic:"/ˈbriːðər/" },
+{ w:"Cap", cn:"盖", phonetic:"/kæp/" },
+{ w:"Washer", cn:"垫圈", phonetic:"/ˈwɑːʃər/" }
+]
+},
+
+{
+text:"Pneumatic Fitting",
+phonetic:"/nuːˈmætɪk ˈfɪtɪŋ/",
+cn:"气动组合接头",
+desc:"用于气动系统连接的接头",
+words:[
+{ w:"Pneumatic", cn:"气动", phonetic:"/nuːˈmætɪk/" },
+{ w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+]
+},
+
+{
+text:"Compound Gasket",
+phonetic:"/ˈkɑːmpaʊnd ˈɡæskɪt/",
+cn:"组合垫圈",
+desc:"由多种材料组成的密封垫",
+words:[
+{ w:"Compound", cn:"复合", phonetic:"/ˈkɑːmpaʊnd/" },
+{ w:"Gasket", cn:"垫片", phonetic:"/ˈɡæskɪt/" }
+]
+},
+
+{
+text:"Return Filter Cap",
+phonetic:"/rɪˈtɜːrn ˈfɪltər kæp/",
+cn:"回油滤油器盖",
+desc:"回油过滤器的封盖",
+words:[
+{ w:"Return", cn:"回油", phonetic:"/rɪˈtɜːrn/" },
+{ w:"Filter", cn:"过滤器", phonetic:"/ˈfɪltər/" },
+{ w:"Cap", cn:"盖", phonetic:"/kæp/" }
+]
+},
+
+{
+text:"O-ring",
+phonetic:"/ˈoʊ rɪŋ/",
+cn:"O型密封圈",
+desc:"用于密封的橡胶环"
+},
+
+{
+text:"Filter Element Locator",
+phonetic:"/ˈfɪltər ˈɛləmənt loʊˈkeɪtər/",
+cn:"滤芯定位器",
+desc:"用于固定滤芯位置",
+words:[
+{ w:"Filter", cn:"过滤", phonetic:"/ˈfɪltər/" },
+{ w:"Element", cn:"滤芯", phonetic:"/ˈɛləmənt/" },
+{ w:"Locator", cn:"定位器", phonetic:"/loʊˈkeɪtər/" }
+]
+},
+
+{
+text:"Housing",
+phonetic:"/ˈhaʊzɪŋ/",
+cn:"壳体",
+desc:"用于容纳内部元件的结构件"
+},
+
+{
+text:"Filter Element",
+phonetic:"/ˈfɪltər ˈɛləmənt/",
+cn:"滤芯",
+desc:"用于过滤杂质的核心元件",
+words:[
+{ w:"Filter", cn:"过滤", phonetic:"/ˈfɪltər/" },
+{ w:"Element", cn:"元件", phonetic:"/ˈɛləmənt/" }
+]
+},
+
+{
+text:"Filter Cartridge",
+phonetic:"/ˈfɪltər ˈkɑːrtrɪdʒ/",
+cn:"滤筒",
+desc:"滤芯外部结构或组件",
+words:[
+{ w:"Filter", cn:"过滤", phonetic:"/ˈfɪltər/" },
+{ w:"Cartridge", cn:"滤筒", phonetic:"/ˈkɑːrtrɪdʒ/" }
+]
+},
+
+{
+text:"Bypass Valve",
+phonetic:"/ˈbaɪpæs vælv/",
+cn:"旁通阀",
+desc:"当过滤器堵塞时旁通油路",
+words:[
+{ w:"Bypass", cn:"旁通", phonetic:"/ˈbaɪpæs/" },
+{ w:"Valve", cn:"阀", phonetic:"/vælv/" }
+]
+},
+
+{
+text:"Screw",
+phonetic:"/skruː/",
+cn:"螺钉",
+desc:"用于固定连接"
+},
+
+{
+text:"Hydraulic Oil Tank",
+phonetic:"/haɪˈdrɔːlɪk ɔɪl tæŋk/",
+cn:"油箱本体",
+desc:"储存液压油的主体结构",
+words:[
+{ w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+{ w:"Oil", cn:"油", phonetic:"/ɔɪl/" },
+{ w:"Tank", cn:"油箱", phonetic:"/tæŋk/" }
+]
+},
+
+{
+text:"Plug",
+phonetic:"/plʌɡ/",
+cn:"堵头",
+desc:"用于封闭孔口或接口"
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
