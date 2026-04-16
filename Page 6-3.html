@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pothole Protection System Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Left Pothole Guard",
+phonetic:"/left ˈpɑːthoʊl ɡɑːrd/",
+cn:"左坑洞板",
+desc:"用于左侧坑洞保护与越障支撑结构",
+words:[
+{ w:"Left", cn:"左", phonetic:"/left/" },
+{ w:"Pothole", cn:"坑洞", phonetic:"/ˈpɑːthoʊl/" },
+{ w:"Guard", cn:"防护板", phonetic:"/ɡɑːrd/" }
+]
+},
+
+{
+text:"Right Pothole Guard",
+phonetic:"/raɪt ˈpɑːthoʊl ɡɑːrd/",
+cn:"右坑洞板",
+desc:"用于右侧坑洞保护结构",
+words:[
+{ w:"Right", cn:"右", phonetic:"/raɪt/" },
+{ w:"Pothole", cn:"坑洞", phonetic:"/ˈpɑːthoʊl/" },
+{ w:"Guard", cn:"防护板", phonetic:"/ɡɑːrd/" }
+]
+},
+
+{
+text:"Pothole Bellcrank",
+phonetic:"/ˈpɑːthoʊl ˈbɛlkræŋk/",
+cn:"旋转连杆",
+desc:"用于坑洞机构的转动连杆机构",
+words:[
+{ w:"Pothole", cn:"坑洞", phonetic:"/ˈpɑːthoʊl/" },
+{ w:"Bellcrank", cn:"摇臂", phonetic:"/ˈbɛlkræŋk/" }
+]
+},
+
+{
+text:"Pothole Linkage Plate",
+phonetic:"/ˈpɑːthoʊl ˈlɪŋkɪdʒ pleɪt/",
+cn:"坑洞板连杆",
+desc:"用于坑洞机构连接与传动的板件",
+words:[
+{ w:"Pothole", cn:"坑洞", phonetic:"/ˈpɑːthoʊl/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+]
+},
+
+{
+text:"Spacer Sleeve",
+phonetic:"/ˈspeɪsər sliːv/",
+cn:"隔套",
+desc:"用于间距定位的套筒结构",
+words:[
+{ w:"Spacer", cn:"隔套", phonetic:"/ˈspeɪsər/" },
+{ w:"Sleeve", cn:"套筒", phonetic:"/sliːv/" }
+]
+},
+
+{
+text:"Pothole Location Shaft",
+phonetic:"/ˈpɑːthoʊl loʊˈkeɪʃən ʃæft/",
+cn:"坑洼定位轴",
+desc:"用于坑洞机构定位的轴类零件",
+words:[
+{ w:"Pothole", cn:"坑洞", phonetic:"/ˈpɑːthoʊl/" },
+{ w:"Location", cn:"定位", phonetic:"/loʊˈkeɪʃən/" },
+{ w:"Shaft", cn:"轴", phonetic:"/ʃæft/" }
+]
+},
+
+{
+text:"Pothole Guide Weldment",
+phonetic:"/ˈpɑːthoʊl ɡaɪd ˈwɛldmənt/",
+cn:"压轴导向筒焊件",
+desc:"用于坑洞机构导向与支撑的焊接结构",
+words:[
+{ w:"Pothole", cn:"坑洞", phonetic:"/ˈpɑːthoʊl/" },
+{ w:"Guide", cn:"导向", phonetic:"/ɡaɪd/" },
+{ w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Cam Follower",
+phonetic:"/kæm ˈfɑːloʊər/",
+cn:"压轮",
+desc:"用于凸轮机构随动的滚轮件",
+words:[
+{ w:"Cam", cn:"凸轮", phonetic:"/kæm/" },
+{ w:"Follower", cn:"随动轮", phonetic:"/ˈfɑːloʊər/" }
+]
+},
+
+{
+text:"Pothole Pusher Assembly",
+phonetic:"/ˈpɑːthoʊl ˈpʊʃər əˈsɛmbli/",
+cn:"压轴总成",
+desc:"用于坑洞机构推动动作的总成",
+words:[
+{ w:"Pothole", cn:"坑洞", phonetic:"/ˈpɑːthoʊl/" },
+{ w:"Pusher", cn:"推杆", phonetic:"/ˈpʊʃər/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Flange Bushing",
+phonetic:"/flændʒ ˈbʊʃɪŋ/",
+cn:"法兰轴套",
+desc:"带法兰定位的轴套结构",
+words:[
+{ w:"Flange", cn:"法兰", phonetic:"/flændʒ/" },
+{ w:"Bushing", cn:"轴套", phonetic:"/ˈbʊʃɪŋ/" }
+]
+},
+
+{
+text:"Bushing",
+phonetic:"/ˈbʊʃɪŋ/",
+cn:"轴套",
+desc:"用于轴孔间减磨支撑"
+},
+
+{
+text:"Washer",
+phonetic:"/ˈwɑːʃər/",
+cn:"垫圈",
+desc:"用于载荷分布或防松"
+},
+
+{
+text:"Keeper Pin",
+phonetic:"/ˈkiːpər pɪn/",
+cn:"销轴",
+desc:"用于结构固定与限位的销轴",
+words:[
+{ w:"Keeper", cn:"固定", phonetic:"/ˈkiːpər/" },
+{ w:"Pin", cn:"销轴", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Pin",
+phonetic:"/pɪn/",
+cn:"销",
+desc:"基础连接销件"
+},
+
+{
+text:"Bolt",
+phonetic:"/boʊlt/",
+cn:"螺栓",
+desc:"标准紧固件"
+},
+
+{
+text:"Gas Spring",
+phonetic:"/ɡæs sprɪŋ/",
+cn:"气弹簧",
+desc:"用于辅助支撑与缓冲的弹性机构",
+words:[
+{ w:"Gas", cn:"气体", phonetic:"/ɡæs/" },
+{ w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
