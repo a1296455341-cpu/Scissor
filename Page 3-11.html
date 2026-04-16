@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic & Chassis Pin Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Bushing",
+phonetic:"/ˈbʊʃɪŋ/",
+cn:"轴套",
+desc:"用于轴与孔之间的支撑与减磨零件"
+},
+
+{
+text:"Cylinder Pin",
+phonetic:"/ˈsɪlɪndər pɪn/",
+cn:"油缸销轴",
+desc:"用于油缸连接与铰接的销轴",
+words:[
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+{ w:"Pin", cn:"销轴", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Nut",
+phonetic:"/nʌt/",
+cn:"螺母",
+desc:"用于螺栓配合的紧固件"
+},
+
+{
+text:"Cotter Pin",
+phonetic:"/ˈkɑːtər pɪn/",
+cn:"活节销 / 开口销",
+desc:"用于防止零件脱落的锁定销",
+words:[
+{ w:"Cotter", cn:"开口", phonetic:"/ˈkɑːtər/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Bolt",
+phonetic:"/boʊlt/",
+cn:"螺栓",
+desc:"用于结构连接的紧固件"
+},
+
+{
+text:"Chassis Long Pin",
+phonetic:"/ˈʃæsi lɔːŋ pɪn/",
+cn:"底盘长销轴",
+desc:"用于底盘结构连接的长型销轴",
+words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Long", cn:"长", phonetic:"/lɔːŋ/" },
+{ w:"Pin", cn:"销轴", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Protective Sleeve",
+phonetic:"/prəˈtɛktɪv sliːv/",
+cn:"保护套",
+desc:"用于防护与隔离的套筒结构",
+words:[
+{ w:"Protective", cn:"保护", phonetic:"/prəˈtɛktɪv/" },
+{ w:"Sleeve", cn:"套筒", phonetic:"/sliːv/" }
+]
+},
+
+{
+text:"Safety Chock",
+phonetic:"/ˈseɪfti tʃɑːk/",
+cn:"安全支架",
+desc:"用于设备支撑与防坠安全保护",
+words:[
+{ w:"Safety", cn:"安全", phonetic:"/ˈseɪfti/" },
+{ w:"Chock", cn:"支撑块", phonetic:"/tʃɑːk/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
