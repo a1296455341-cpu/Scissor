@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electric & Energy Assemblies</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Charger Assembly",
+phonetic:"/ˈtʃɑːrdʒər əˈsɛmbli/",
+cn:"充电器部装",
+desc:"用于为电池系统充电的装配单元",
+words:[
+{ w:"Charger", cn:"充电器", phonetic:"/ˈtʃɑːrdʒər/" },
+{ w:"Assembly", cn:"部装", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Battery Pack Assembly",
+phonetic:"/ˈbætəri pæk əˈsɛmbli/",
+cn:"电池包部装",
+desc:"用于储存和提供电能的电池组装单元",
+words:[
+{ w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+{ w:"Pack", cn:"包", phonetic:"/pæk/" },
+{ w:"Assembly", cn:"部装", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Pump Motor Assembly",
+phonetic:"/pʌmp ˈmoʊtər əˈsɛmbli/",
+cn:"泵电机部装",
+desc:"为液压泵提供动力的电机组件",
+words:[
+{ w:"Pump", cn:"泵", phonetic:"/pʌmp/" },
+{ w:"Motor", cn:"电机", phonetic:"/ˈmoʊtər/" },
+{ w:"Assembly", cn:"部装", phonetic:"/əˈsɛmbli/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
