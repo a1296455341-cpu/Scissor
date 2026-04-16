@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ground Control Electrical System</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Ground Control Panel",
+phonetic:"/ɡraʊnd kənˈtroʊl ˈpænəl/",
+cn:"下控面板",
+desc:"地面操作人员使用的控制操作面板",
+words:[
+{ w:"Ground", cn:"地面", phonetic:"/ɡraʊnd/" },
+{ w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+{ w:"Panel", cn:"面板", phonetic:"/ˈpænəl/" }
+]
+},
+
+{
+text:"Programmable Controller",
+phonetic:"/ˈproʊɡræməbəl kənˈtroʊlər/",
+cn:"可编程控制器",
+desc:"用于逻辑控制的工业控制器（PLC）",
+words:[
+{ w:"Programmable", cn:"可编程", phonetic:"/ˈproʊɡræməbəl/" },
+{ w:"Controller", cn:"控制器", phonetic:"/kənˈtroʊlər/" }
+]
+},
+
+{
+text:"Intermediate Relay",
+phonetic:"/ˌɪntərˈmiːdiət rɪˈleɪ/",
+cn:"中间继电器",
+desc:"用于信号转换和放大的继电器",
+words:[
+{ w:"Intermediate", cn:"中间", phonetic:"/ˌɪntərˈmiːdiət/" },
+{ w:"Relay", cn:"继电器", phonetic:"/rɪˈleɪ/" }
+]
+},
+
+{
+text:"Buzzer",
+phonetic:"/ˈbʌzər/",
+cn:"蜂鸣器",
+desc:"用于发出声音报警或提示信号"
+},
+
+{
+text:"Push Button Switch",
+phonetic:"/pʊʃ ˈbʌtn swɪtʃ/",
+cn:"按键开关",
+desc:"通过按压实现电路通断的开关",
+words:[
+{ w:"Push", cn:"按压", phonetic:"/pʊʃ/" },
+{ w:"Button", cn:"按钮", phonetic:"/ˈbʌtn/" },
+{ w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+]
+},
+
+{
+text:"DC Contactor",
+phonetic:"/ˌdiː ˌsiː kənˈtæktər/",
+cn:"直流接触器",
+desc:"用于直流电路的高功率开关装置",
+words:[
+{ w:"DC", cn:"直流", phonetic:"/ˌdiː ˌsiː/" },
+{ w:"Contactor", cn:"接触器", phonetic:"/kənˈtæktər/" }
+]
+},
+
+{
+text:"Fuse",
+phonetic:"/fjuːz/",
+cn:"熔断器",
+desc:"电路过载时自动断开的保护元件"
+},
+
+{
+text:"Angle Sensor",
+phonetic:"/ˈæŋɡəl ˈsɛnsər/",
+cn:"角度传感器",
+desc:"用于检测旋转或角度位置的传感器",
+words:[
+{ w:"Angle", cn:"角度", phonetic:"/ˈæŋɡəl/" },
+{ w:"Sensor", cn:"传感器", phonetic:"/ˈsɛnsər/" }
+]
+},
+
+{
+text:"Electric Horn",
+phonetic:"/ɪˈlɛktrɪk hɔːrn/",
+cn:"电喇叭",
+desc:"用于声音警示的电气装置",
+words:[
+{ w:"Electric", cn:"电动", phonetic:"/ɪˈlɛktrɪk/" },
+{ w:"Horn", cn:"喇叭", phonetic:"/hɔːrn/" }
+]
+},
+
+{
+text:"Washer",
+phonetic:"/ˈwɑːʃər/",
+cn:"垫圈",
+desc:"用于紧固件防松或分散压力"
+},
+
+{
+text:"Screw",
+phonetic:"/skruː/",
+cn:"螺钉",
+desc:"用于固定连接的标准紧固件"
+},
+
+{
+text:"Limit Switch Protective Cover",
+phonetic:"/ˈlɪmɪt swɪtʃ prəˈtɛktɪv ˈkʌvər/",
+cn:"限位开关护罩",
+desc:"保护限位开关免受冲击和污染",
+words:[
+{ w:"Limit Switch", cn:"限位开关", phonetic:"/ˈlɪmɪt swɪtʃ/" },
+{ w:"Protective", cn:"防护", phonetic:"/prəˈtɛktɪv/" },
+{ w:"Cover", cn:"护罩", phonetic:"/ˈkʌvər/" }
+]
+},
+
+{
+text:"Grounding Strap",
+phonetic:"/ˈɡraʊndɪŋ stræp/",
+cn:"静电带",
+desc:"用于释放静电并防止电气损伤",
+words:[
+{ w:"Grounding", cn:"接地", phonetic:"/ˈɡraʊndɪŋ/" },
+{ w:"Strap", cn:"带", phonetic:"/stræp/" }
+]
+},
+
+{
+text:"Harness",
+phonetic:"/ˈhɑːrnɪs/",
+cn:"线束",
+desc:"电气线路的集成布线系统"
+},
+
+{
+text:"Hinge",
+phonetic:"/hɪndʒ/",
+cn:"铰链",
+desc:"用于连接并实现旋转运动的结构件"
+},
+
+{
+text:"ECU Protective Board",
+phonetic:"/ˌiː siː ˈjuː prəˈtɛktɪv bɔːrd/",
+cn:"ECU防护板",
+desc:"用于保护电子控制单元的防护结构",
+words:[
+{ w:"ECU", cn:"电子控制单元", phonetic:"/ˌiː siː ˈjuː/" },
+{ w:"Protective", cn:"防护", phonetic:"/prəˈtɛktɪv/" },
+{ w:"Board", cn:"板", phonetic:"/bɔːrd/" }
+]
+},
+
+{
+text:"Bolt",
+phonetic:"/boʊlt/",
+cn:"螺栓",
+desc:"用于结构连接的标准紧固件"
+},
+
+{
+text:"Nut",
+phonetic:"/nʌt/",
+cn:"螺母",
+desc:"与螺栓配合使用的紧固件"
+},
+
+{
+text:"Warning Light",
+phonetic:"/ˈwɔːrnɪŋ laɪt/",
+cn:"警示灯",
+desc:"用于状态提示或安全警告的灯具",
+words:[
+{ w:"Warning", cn:"警告", phonetic:"/ˈwɔːrnɪŋ/" },
+{ w:"Light", cn:"灯", phonetic:"/laɪt/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
