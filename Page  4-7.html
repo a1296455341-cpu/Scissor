@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chassis Structural Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Chassis Weldment",
+phonetic:"/ˈʃæsi ˈwɛldmənt/",
+cn:"底盘焊合",
+desc:"底盘主体结构焊接总成",
+words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Fiber-wound Bearing",
+phonetic:"/ˈfaɪbər waʊnd ˈbɛrɪŋ/",
+cn:"纤维绕制轴承",
+desc:"高强度复合材料轴承结构",
+words:[
+{ w:"Fiber-wound", cn:"纤维缠绕", phonetic:"/ˈfaɪbər waʊnd/" },
+{ w:"Bearing", cn:"轴承", phonetic:"/ˈbɛrɪŋ/" }
+]
+},
+
+{
+text:"Battery Drawer Spacer Block",
+phonetic:"/ˈbætəri ˈdrɔːər ˈspeɪsər blɑːk/",
+cn:"抽屉垫块",
+desc:"用于电池抽屉结构定位与支撑",
+words:[
+{ w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+{ w:"Drawer", cn:"抽屉", phonetic:"/ˈdrɔːər/" },
+{ w:"Spacer", cn:"垫块", phonetic:"/ˈspeɪsər/" },
+{ w:"Block", cn:"块", phonetic:"/blɑːk/" }
+]
+},
+
+{
+text:"Screw",
+phonetic:"/skruː/",
+cn:"螺钉",
+desc:"标准紧固件"
+},
+
+{
+text:"Bushing",
+phonetic:"/ˈbʊʃɪŋ/",
+cn:"轴套",
+desc:"用于轴与孔之间的减磨部件"
+},
+
+{
+text:"Shim",
+phonetic:"/ʃɪm/",
+cn:"调整垫片",
+desc:"用于间隙调整"
+},
+
+{
+text:"Rubber Grommet",
+phonetic:"/ˈrʌbər ˈɡrɑːmɪt/",
+cn:"橡胶过线圈",
+desc:"用于线束保护与减振",
+words:[
+{ w:"Rubber", cn:"橡胶", phonetic:"/ˈrʌbər/" },
+{ w:"Grommet", cn:"护圈", phonetic:"/ˈɡrɑːmɪt/" }
+]
+},
+
+{
+text:"Steering Yoke Cover",
+phonetic:"/ˈstɪrɪŋ joʊk ˈkʌvər/",
+cn:"转向节护盖",
+desc:"保护转向节结构的防护罩",
+words:[
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Yoke", cn:"节叉", phonetic:"/joʊk/" },
+{ w:"Cover", cn:"护盖", phonetic:"/ˈkʌvər/" }
+]
+},
+
+{
+text:"Bumper",
+phonetic:"/ˈbʌmpər/",
+cn:"防撞块",
+desc:"用于缓冲碰撞的防护结构"
+},
+
+{
+text:"Spring Washer",
+phonetic:"/sprɪŋ ˈwɑːʃər/",
+cn:"弹簧垫圈",
+desc:"用于防松与预紧",
+words:[
+{ w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/" },
+{ w:"Washer", cn:"垫圈", phonetic:"/ˈwɑːʃər/" }
+]
+},
+
+{
+text:"Washer",
+phonetic:"/ˈwɑːʃər/",
+cn:"垫圈",
+desc:"用于分散载荷"
+},
+
+{
+text:"Bolt",
+phonetic:"/boʊlt/",
+cn:"螺栓",
+desc:"标准紧固件"
+},
+
+{
+text:"Right Protective Cover",
+phonetic:"/raɪt prəˈtɛktɪv ˈkʌvər/",
+cn:"右防护罩",
+desc:"设备右侧防护结构",
+words:[
+{ w:"Right", cn:"右", phonetic:"/raɪt/" },
+{ w:"Protective", cn:"防护", phonetic:"/prəˈtɛktɪv/" },
+{ w:"Cover", cn:"罩", phonetic:"/ˈkʌvər/" }
+]
+},
+
+{
+text:"Bracket",
+phonetic:"/ˈbrækɪt/",
+cn:"支架",
+desc:"用于支撑或安装的结构件"
+},
+
+{
+text:"Locking Pin",
+phonetic:"/ˈlɑːkɪŋ pɪn/",
+cn:"锁柱",
+desc:"用于结构锁止的销轴",
+words:[
+{ w:"Locking", cn:"锁定", phonetic:"/ˈlɑːkɪŋ/" },
+{ w:"Pin", cn:"销轴", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Nut",
+phonetic:"/nʌt/",
+cn:"螺母",
+desc:"与螺栓配合使用"
+},
+
+{
+text:"Linkage Spacer",
+phonetic:"/ˈlɪŋkɪdʒ ˈspeɪsər/",
+cn:"叉架隔垫",
+desc:"用于连杆间距调整",
+words:[
+{ w:"Linkage", cn:"连杆机构", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Spacer", cn:"隔垫", phonetic:"/ˈspeɪsər/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
