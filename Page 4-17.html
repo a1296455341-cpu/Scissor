@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cylinder Assembly Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Cylinder Barrel Assembly",
+phonetic:"/ˈsɪlɪndər ˈbærəl əˈsɛmbli/",
+cn:"缸筒总成",
+desc:"液压油缸的外筒结构总成",
+words:[
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+{ w:"Barrel", cn:"缸筒", phonetic:"/ˈbærəl/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Piston Rod Assembly",
+phonetic:"/ˈpɪstən rɑːd əˈsɛmbli/",
+cn:"活塞杆总成",
+desc:"液压缸动力输出杆组件",
+words:[
+{ w:"Piston", cn:"活塞", phonetic:"/ˈpɪstən/" },
+{ w:"Rod", cn:"杆", phonetic:"/rɑːd/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Guide Sleeve",
+phonetic:"/ɡaɪd sliːv/",
+cn:"导向套",
+desc:"用于活塞杆导向与支撑",
+words:[
+{ w:"Guide", cn:"导向", phonetic:"/ɡaɪd/" },
+{ w:"Sleeve", cn:"套筒", phonetic:"/sliːv/" }
+]
+},
+
+{
+text:"Piston",
+phonetic:"/ˈpɪstən/",
+cn:"活塞",
+desc:"液压缸内部受力运动部件"
+},
+
+{
+text:"Washer",
+phonetic:"/ˈwɑːʃər/",
+cn:"垫圈",
+desc:"用于分散载荷或防松"
+},
+
+{
+text:"Grease Fitting",
+phonetic:"/ɡriːs ˈfɪtɪŋ/",
+cn:"油杯",
+desc:"用于润滑注油接口",
+words:[
+{ w:"Grease", cn:"润滑脂", phonetic:"/ɡriːs/" },
+{ w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+]
+},
+
+{
+text:"Spherical Plain Bearing",
+phonetic:"/ˈsfɪrɪkəl pleɪn ˈbɛrɪŋ/",
+cn:"关节轴承",
+desc:"允许角度偏转的球面轴承",
+words:[
+{ w:"Spherical", cn:"球面", phonetic:"/ˈsfɪrɪkəl/" },
+{ w:"Plain", cn:"滑动", phonetic:"/pleɪn/" },
+{ w:"Bearing", cn:"轴承", phonetic:"/ˈbɛrɪŋ/" }
+]
+},
+
+{
+text:"Retainer Ring",
+phonetic:"/rɪˈteɪnər rɪŋ/",
+cn:"挡圈",
+desc:"用于轴向固定零件",
+words:[
+{ w:"Retainer", cn:"固定", phonetic:"/rɪˈteɪnər/" },
+{ w:"Ring", cn:"环", phonetic:"/rɪŋ/" }
+]
+},
+
+{
+text:"Self-Lubricating Bearing",
+phonetic:"/ˌsɛlf ˈluːbrɪˌkeɪtɪŋ ˈbɛrɪŋ/",
+cn:"自润滑轴承",
+desc:"无需外部润滑的轴承结构",
+words:[
+{ w:"Self", cn:"自", phonetic:"/sɛlf/" },
+{ w:"Lubricating", cn:"润滑", phonetic:"/ˈluːbrɪˌkeɪtɪŋ/" },
+{ w:"Bearing", cn:"轴承", phonetic:"/ˈbɛrɪŋ/" }
+]
+},
+
+{
+text:"Grease Fitting Cap",
+phonetic:"/ɡriːs ˈfɪtɪŋ kæp/",
+cn:"黄油嘴保护帽",
+desc:"用于保护润滑油嘴",
+words:[
+{ w:"Grease", cn:"润滑脂", phonetic:"/ɡriːs/" },
+{ w:"Fitting", cn:"油嘴", phonetic:"/ˈfɪtɪŋ/" },
+{ w:"Cap", cn:"帽", phonetic:"/kæp/" }
+]
+},
+
+{
+text:"Nut",
+phonetic:"/nʌt/",
+cn:"螺母",
+desc:"标准紧固件"
+},
+
+{
+text:"Seal Kit",
+phonetic:"/siːl kɪt/",
+cn:"密封包",
+desc:"用于液压缸密封系统维修组件",
+words:[
+{ w:"Seal", cn:"密封", phonetic:"/siːl/" },
+{ w:"Kit", cn:"组件包", phonetic:"/kɪt/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
