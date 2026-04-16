@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chassis & Steering System</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Tyre",
+phonetic:"/taɪər/",
+cn:"轮胎",
+desc:"车辆与地面接触并承载重量的橡胶部件",
+words:[
+{ w:"Tyre", cn:"轮胎", phonetic:"/taɪər/" }
+]
+},
+
+{
+text:"Front Left Steering Yoke Assembly",
+phonetic:"/frʌnt lɛft ˈstɪrɪŋ joʊk əˈsɛmbli/",
+cn:"左前转向节总成",
+desc:"车辆左前侧转向执行结构总成",
+words:[
+{ w:"Front", cn:"前", phonetic:"/frʌnt/" },
+{ w:"Left", cn:"左", phonetic:"/lɛft/" },
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Yoke", cn:"转向节", phonetic:"/joʊk/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Front Left Outrigger Assembly",
+phonetic:"/frʌnt lɛft ˈaʊtrɪɡər əˈsɛmbli/",
+cn:"左前支腿总成",
+desc:"用于支撑车辆稳定性的左前支腿结构",
+words:[
+{ w:"Front", cn:"前", phonetic:"/frʌnt/" },
+{ w:"Left", cn:"左", phonetic:"/lɛft/" },
+{ w:"Outrigger", cn:"支腿", phonetic:"/ˈaʊtrɪɡər/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Front Right Outrigger Assembly",
+phonetic:"/frʌnt raɪt ˈaʊtrɪɡər əˈsɛmbli/",
+cn:"右前支腿总成",
+desc:"用于支撑车辆稳定性的右前支腿结构",
+words:[
+{ w:"Front", cn:"前", phonetic:"/frʌnt/" },
+{ w:"Right", cn:"右", phonetic:"/raɪt/" },
+{ w:"Outrigger", cn:"支腿", phonetic:"/ˈaʊtrɪɡər/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Front Right Steering Yoke Assembly",
+phonetic:"/frʌnt raɪt ˈstɪrɪŋ joʊk əˈsɛmbli/",
+cn:"右前转向节总成",
+desc:"车辆右前侧转向执行结构总成",
+words:[
+{ w:"Front", cn:"前", phonetic:"/frʌnt/" },
+{ w:"Right", cn:"右", phonetic:"/raɪt/" },
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Yoke", cn:"转向节", phonetic:"/joʊk/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Gearbox",
+phonetic:"/ˈɡɪərbɒks/",
+cn:"减速机",
+desc:"用于降低转速并增大扭矩的传动装置",
+words:[
+{ w:"Gear", cn:"齿轮", phonetic:"/ɡɪər/" },
+{ w:"Box", cn:"箱体", phonetic:"/bɒks/" }
+]
+},
+
+{
+text:"Nut",
+phonetic:"/nʌt/",
+cn:"螺母",
+desc:"与螺栓配合使用的紧固件",
+words:[
+{ w:"Nut", cn:"螺母", phonetic:"/nʌt/" }
+]
+},
+
+{
+text:"Washer",
+phonetic:"/ˈwɑːʃər/",
+cn:"垫圈",
+desc:"用于分散压力的紧固件",
+words:[
+{ w:"Washer", cn:"垫圈", phonetic:"/ˈwɑːʃər/" }
+]
+},
+
+{
+text:"Bolt",
+phonetic:"/boʊlt/",
+cn:"螺栓",
+desc:"用于连接零件的紧固件",
+words:[
+{ w:"Bolt", cn:"螺栓", phonetic:"/boʊlt/" }
+]
+},
+
+{
+text:"Chassis Assembly",
+phonetic:"/ˈʃæsɪs əˈsɛmbli/",
+cn:"车架总成",
+desc:"整车承载与结构基础总成",
+words:[
+{ w:"Chassis", cn:"车架", phonetic:"/ˈʃæsɪs/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
