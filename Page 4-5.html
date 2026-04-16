@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chassis & Energy System Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Chassis Assembly",
+phonetic:"/ˈʃæsi əˈsɛmbli/",
+cn:"底盘总成",
+desc:"设备底盘整体结构装配",
+words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Hydraulic Tank Assembly",
+phonetic:"/haɪˈdrɔːlɪk tæŋk əˈsɛmbli/",
+cn:"液压箱总成",
+desc:"用于存储液压油的油箱组件",
+words:[
+{ w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+{ w:"Tank", cn:"油箱", phonetic:"/tæŋk/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Battery Box Assembly",
+phonetic:"/ˈbætəri bɑːks əˈsɛmbli/",
+cn:"电池箱总成",
+desc:"用于安装与保护电池的箱体结构",
+words:[
+{ w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+{ w:"Box", cn:"箱体", phonetic:"/bɑːks/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Tray Pivot Shaft",
+phonetic:"/treɪ ˈpɪvət ʃæft/",
+cn:"托盘销轴",
+desc:"用于托盘结构转动连接的轴件",
+words:[
+{ w:"Tray", cn:"托盘", phonetic:"/treɪ/" },
+{ w:"Pivot", cn:"铰接/转轴", phonetic:"/ˈpɪvət/" },
+{ w:"Shaft", cn:"轴", phonetic:"/ʃæft/" }
+]
+},
+
+{
+text:"Shim",
+phonetic:"/ʃɪm/",
+cn:"垫片",
+desc:"用于间隙调整的薄垫片"
+},
+
+{
+text:"Retainer Ring",
+phonetic:"/rɪˈteɪnər rɪŋ/",
+cn:"挡圈",
+desc:"用于轴向固定零件的卡环结构",
+words:[
+{ w:"Retainer", cn:"固定", phonetic:"/rɪˈteɪnər/" },
+{ w:"Ring", cn:"环", phonetic:"/rɪŋ/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
