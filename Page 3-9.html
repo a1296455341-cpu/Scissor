@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pin & Routing System Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Bushing",
+phonetic:"/ˈbʊʃɪŋ/",
+cn:"轴套",
+desc:"用于轴与孔之间的支撑与减磨部件"
+},
+
+{
+text:"Spacer Sleeve",
+phonetic:"/ˈspeɪsər sliːv/",
+cn:"隔套",
+desc:"用于零件间距定位的套筒结构",
+words:[
+{ w:"Spacer", cn:"隔套", phonetic:"/ˈspeɪsər/" },
+{ w:"Sleeve", cn:"套筒", phonetic:"/sliːv/" }
+]
+},
+
+{
+text:"Long Keeper Pin",
+phonetic:"/lɔːŋ ˈkiːpər pɪn/",
+cn:"长销轴",
+desc:"用于结构连接与限位的长型销轴",
+words:[
+{ w:"Long", cn:"长", phonetic:"/lɔːŋ/" },
+{ w:"Keeper", cn:"固定", phonetic:"/ˈkiːpər/" },
+{ w:"Pin", cn:"销轴", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Short Keeper Pin",
+phonetic:"/ʃɔːrt ˈkiːpər pɪn/",
+cn:"短销轴",
+desc:"用于结构连接与限位的短型销轴",
+words:[
+{ w:"Short", cn:"短", phonetic:"/ʃɔːrt/" },
+{ w:"Keeper", cn:"固定", phonetic:"/ˈkiːpər/" },
+{ w:"Pin", cn:"销轴", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Bolt",
+phonetic:"/boʊlt/",
+cn:"螺栓",
+desc:"用于连接结构件的紧固件"
+},
+
+{
+text:"Nut",
+phonetic:"/nʌt/",
+cn:"螺母",
+desc:"与螺栓配合使用的紧固件"
+},
+
+{
+text:"Washer",
+phonetic:"/ˈwɑːʃər/",
+cn:"垫圈",
+desc:"用于分散载荷或防松"
+},
+
+{
+text:"Retainer Ring",
+phonetic:"/rɪˈteɪnər rɪŋ/",
+cn:"挡圈",
+desc:"用于轴向固定零件",
+words:[
+{ w:"Retainer", cn:"固定", phonetic:"/rɪˈteɪnər/" },
+{ w:"Ring", cn:"环", phonetic:"/rɪŋ/" }
+]
+},
+
+{
+text:"Outer Retaining Ring",
+phonetic:"/ˈaʊtər rɪˈteɪnɪŋ rɪŋ/",
+cn:"外挡环",
+desc:"安装在外侧的卡簧式挡环",
+words:[
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Retaining", cn:"固定", phonetic:"/rɪˈteɪnɪŋ/" },
+{ w:"Ring", cn:"环", phonetic:"/rɪŋ/" }
+]
+},
+
+{
+text:"Inner Retaining Ring Assembly",
+phonetic:"/ˈɪnər rɪˈteɪnɪŋ rɪŋ əˈsɛmbli/",
+cn:"内挡环组件",
+desc:"用于内部轴向锁止的挡环组件",
+words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Retaining", cn:"固定", phonetic:"/rɪˈteɪnɪŋ/" },
+{ w:"Ring", cn:"环", phonetic:"/rɪŋ/" },
+{ w:"Assembly", cn:"组件", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Long Cable Routing Channel",
+phonetic:"/lɔːŋ ˈkeɪbəl ˈruːtɪŋ ˈtʃænəl/",
+cn:"长轴走线槽",
+desc:"用于长路径线束布置的走线通道",
+words:[
+{ w:"Long", cn:"长", phonetic:"/lɔːŋ/" },
+{ w:"Cable", cn:"电缆", phonetic:"/ˈkeɪbəl/" },
+{ w:"Routing", cn:"走线", phonetic:"/ˈruːtɪŋ/" },
+{ w:"Channel", cn:"槽", phonetic:"/ˈtʃænəl/" }
+]
+},
+
+{
+text:"Short Cable Routing Channel",
+phonetic:"/ʃɔːrt ˈkeɪbəl ˈruːtɪŋ ˈtʃænəl/",
+cn:"短轴走线槽",
+desc:"用于短路径线束布置的走线通道",
+words:[
+{ w:"Short", cn:"短", phonetic:"/ʃɔːrt/" },
+{ w:"Cable", cn:"电缆", phonetic:"/ˈkeɪbəl/" },
+{ w:"Routing", cn:"走线", phonetic:"/ˈruːtɪŋ/" },
+{ w:"Channel", cn:"槽", phonetic:"/ˈtʃænəl/" }
+]
+},
+
+{
+text:"Screw",
+phonetic:"/skruː/",
+cn:"螺钉",
+desc:"用于连接的紧固件"
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
