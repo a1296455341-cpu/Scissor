@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCU Control System Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"PCU Box",
+phonetic:"/piː siː juː bɒks/",
+cn:"PCU盒体",
+desc:"PCU控制单元外壳结构",
+words:[
+{ w:"PCU", cn:"控制单元", phonetic:"/piː siː juː/" },
+{ w:"Box", cn:"盒体", phonetic:"/bɒks/" }
+]
+},
+
+{
+text:"PCU Button Cap",
+phonetic:"/piː siː juː ˈbʌtən kæp/",
+cn:"PCU按键帽",
+desc:"用于保护与操作按键的外壳部件",
+words:[
+{ w:"PCU", cn:"控制单元", phonetic:"/piː siː juː/" },
+{ w:"Button", cn:"按钮", phonetic:"/ˈbʌtən/" },
+{ w:"Cap", cn:"帽/盖", phonetic:"/kæp/" }
+]
+},
+
+{
+text:"PCBA",
+phonetic:"/piː siː biː eɪ/",
+cn:"PCBA板",
+desc:"印刷电路板组件",
+words:[
+{ w:"PCB", cn:"电路板", phonetic:"/piː siː biː/" },
+{ w:"Assembly", cn:"组装", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Joystick Overlay",
+phonetic:"/ˈdʒɔɪˌstɪk ˈoʊvərˌleɪ/",
+cn:"手柄贴膜",
+desc:"覆盖在手柄表面的标识贴膜",
+words:[
+{ w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪˌstɪk/" },
+{ w:"Overlay", cn:"贴膜", phonetic:"/ˈoʊvərˌleɪ/" }
+]
+},
+
+{
+text:"PCU-PCB Plate Fixing Screw",
+phonetic:"/piː siː juː piː siː biː pleɪt ˈfɪksɪŋ skruː/",
+cn:"PCU-PCB固定螺钉",
+desc:"用于固定PCU与PCB板的螺钉",
+words:[
+{ w:"PCU", cn:"控制单元", phonetic:"/piː siː juː/" },
+{ w:"PCB", cn:"电路板", phonetic:"/piː siː biː/" },
+{ w:"Plate", cn:"板", phonetic:"/pleɪt/" },
+{ w:"Fixing", cn:"固定", phonetic:"/ˈfɪksɪŋ/" },
+{ w:"Screw", cn:"螺钉", phonetic:"/skruː/" }
+]
+},
+
+{
+text:"Joystick",
+phonetic:"/ˈdʒɔɪˌstɪk/",
+cn:"手柄",
+desc:"用于方向与动作控制的操作杆",
+words:[
+{ w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪˌstɪk/" }
+]
+},
+
+{
+text:"Joystick Silicone Boot",
+phonetic:"/ˈdʒɔɪˌstɪk ˈsɪlɪkoʊn buːt/",
+cn:"手柄硅胶套",
+desc:"保护手柄的硅胶防护套",
+words:[
+{ w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪˌstɪk/" },
+{ w:"Silicone", cn:"硅胶", phonetic:"/ˈsɪlɪkoʊn/" },
+{ w:"Boot", cn:"保护套", phonetic:"/buːt/" }
+]
+},
+
+{
+text:"Joystick Direction Label",
+phonetic:"/ˈdʒɔɪˌstɪk dəˈrɛkʃən ˈleɪbəl/",
+cn:"手柄方向贴膜",
+desc:"用于标识操作方向的贴纸",
+words:[
+{ w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪˌstɪk/" },
+{ w:"Direction", cn:"方向", phonetic:"/dəˈrɛkʃən/" },
+{ w:"Label", cn:"标识", phonetic:"/ˈleɪbəl/" }
+]
+},
+
+{
+text:"PCU Joystick Bolt",
+phonetic:"/piː siː juː ˈdʒɔɪˌstɪk boʊlt/",
+cn:"PCU手柄螺栓",
+desc:"用于固定手柄结构的螺栓",
+words:[
+{ w:"PCU", cn:"控制单元", phonetic:"/piː siː juː/" },
+{ w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪˌstɪk/" },
+{ w:"Bolt", cn:"螺栓", phonetic:"/boʊlt/" }
+]
+},
+
+{
+text:"PCU Joystick Washer",
+phonetic:"/piː siː juː ˈdʒɔɪˌstɪk ˈwɑːʃər/",
+cn:"PCU手柄垫片",
+desc:"用于分散受力的垫片",
+words:[
+{ w:"PCU", cn:"控制单元", phonetic:"/piː siː juː/" },
+{ w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪˌstɪk/" },
+{ w:"Washer", cn:"垫片", phonetic:"/ˈwɑːʃər/" }
+]
+},
+
+{
+text:"PCU Joystick Nut",
+phonetic:"/piː siː juː ˈdʒɔɪˌstɪk nʌt/",
+cn:"PCU手柄螺母",
+desc:"用于紧固连接的螺母",
+words:[
+{ w:"PCU", cn:"控制单元", phonetic:"/piː siː juː/" },
+{ w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪˌstɪk/" },
+{ w:"Nut", cn:"螺母", phonetic:"/nʌt/" }
+]
+},
+
+{
+text:"TE 5-Pin Heavy-duty Connector Assembly",
+phonetic:"/tiː iː faɪv pɪn ˈhɛvi ˈduːti kəˈnɛktər əˈsɛmbli/",
+cn:"TE五芯重载连接器总成",
+desc:"高可靠性工业连接器",
+words:[
+{ w:"TE", cn:"品牌TE", phonetic:"/tiː iː/" },
+{ w:"Five", cn:"五", phonetic:"/faɪv/" },
+{ w:"Pin", cn:"针脚", phonetic:"/pɪn/" },
+{ w:"Heavy-duty", cn:"重载", phonetic:"/ˈhɛvi ˈduːti/" },
+{ w:"Connector", cn:"连接器", phonetic:"/kəˈnɛktər/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Coiled Cable",
+phonetic:"/kɔɪld ˈkeɪbəl/",
+cn:"弹簧线束",
+desc:"可伸缩卷曲的电缆",
+words:[
+{ w:"Coiled", cn:"盘绕的", phonetic:"/kɔɪld/" },
+{ w:"Cable", cn:"电缆", phonetic:"/ˈkeɪbəl/" }
+]
+},
+
+{
+text:"Joystick Emergency Stop Switch",
+phonetic:"/ˈdʒɔɪˌstɪk ɪˈmɜːrʤənsi stɒp swɪtʃ/",
+cn:"手柄急停开关",
+desc:"安装在手柄上的紧急停止开关",
+words:[
+{ w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪˌstɪk/" },
+{ w:"Emergency", cn:"急停", phonetic:"/ɪˈmɜːrʤənsi/" },
+{ w:"Stop", cn:"停止", phonetic:"/stɒp/" },
+{ w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+]
+},
+
+{
+text:"PCU Buzzer",
+phonetic:"/piː siː juː ˈbʌzər/",
+cn:"PCU蜂鸣器",
+desc:"发出声音报警的装置",
+words:[
+{ w:"PCU", cn:"控制单元", phonetic:"/piː siː juː/" },
+{ w:"Buzzer", cn:"蜂鸣器", phonetic:"/ˈbʌzər/" }
+]
+},
+
+{
+text:"PCU Box Cover",
+phonetic:"/piː siː juː bɒks ˈkʌvər/",
+cn:"PCU盒盖",
+desc:"PCU外壳上盖",
+words:[
+{ w:"PCU", cn:"控制单元", phonetic:"/piː siː juː/" },
+{ w:"Box", cn:"盒体", phonetic:"/bɒks/" },
+{ w:"Cover", cn:"盖子", phonetic:"/ˈkʌvər/" }
+]
+},
+
+{
+text:"PCU Connector Housing",
+phonetic:"/piː siː juː kəˈnɛktər ˈhaʊzɪŋ/",
+cn:"PCU接插件壳体",
+words:[
+{ w:"PCU", cn:"控制单元", phonetic:"/piː siː juː/" },
+{ w:"Connector", cn:"连接器", phonetic:"/kəˈnɛktər/" },
+{ w:"Housing", cn:"壳体", phonetic:"/ˈhaʊzɪŋ/" }
+]
+},
+
+{
+text:"PCU Connector",
+phonetic:"/piː siː juː kəˈnɛktər/",
+cn:"PCU接插件接头",
+words:[
+{ w:"PCU", cn:"控制单元", phonetic:"/piː siː juː/" },
+{ w:"Connector", cn:"连接器", phonetic:"/kəˈnɛktər/" }
+]
+},
+
+{
+text:"SIBAS CEF Female Pin",
+phonetic:"/ˈsiːbæs siː iː ɛf ˈfiːmeɪl pɪn/",
+cn:"西霸士CEF母插针",
+words:[
+{ w:"SIBAS", cn:"品牌", phonetic:"/ˈsiːbæs/" },
+{ w:"CEF", cn:"型号", phonetic:"/siː iː ɛf/" },
+{ w:"Female", cn:"母端", phonetic:"/ˈfiːmeɪl/" },
+{ w:"Pin", cn:"插针", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Cable Gland",
+phonetic:"/ˈkeɪbəl ɡlænd/",
+cn:"电缆接头",
+words:[
+{ w:"Cable", cn:"电缆", phonetic:"/ˈkeɪbəl/" },
+{ w:"Gland", cn:"接头", phonetic:"/ɡlænd/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic || ""}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc || ""}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
