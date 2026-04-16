@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Battery Box Assembly Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Battery Box Weldment",
+phonetic:"/ˈbætəri bɑːks ˈwɛldmənt/",
+cn:"电池箱焊合件",
+desc:"电池箱结构的焊接总成",
+words:[
+{ w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+{ w:"Box", cn:"箱体", phonetic:"/bɑːks/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Wear Plate",
+phonetic:"/wer pleɪt/",
+cn:"防划板",
+desc:"用于防磨损与防刮伤的保护板",
+words:[
+{ w:"Wear", cn:"耐磨", phonetic:"/wer/" },
+{ w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+]
+},
+
+{
+text:"Handle",
+phonetic:"/ˈhændl/",
+cn:"拉手",
+desc:"用于开启或搬运的手柄结构"
+},
+
+{
+text:"Bolt",
+phonetic:"/boʊlt/",
+cn:"螺栓",
+desc:"标准紧固件"
+},
+
+{
+text:"Door Lock",
+phonetic:"/dɔːr lɑːk/",
+cn:"门锁",
+desc:"用于箱门锁止的机构",
+words:[
+{ w:"Door", cn:"门", phonetic:"/dɔːr/" },
+{ w:"Lock", cn:"锁", phonetic:"/lɑːk/" }
+]
+},
+
+{
+text:"Washer",
+phonetic:"/ˈwɑːʃər/",
+cn:"垫圈",
+desc:"用于分散载荷或防松"
+},
+
+{
+text:"Nut",
+phonetic:"/nʌt/",
+cn:"螺母",
+desc:"与螺栓配合使用"
+},
+
+{
+text:"Bushing",
+phonetic:"/ˈbʊʃɪŋ/",
+cn:"轴套",
+desc:"用于轴与孔之间的减磨结构"
+},
+
+{
+text:"Screw",
+phonetic:"/skruː/",
+cn:"螺钉",
+desc:"用于连接的紧固件"
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
