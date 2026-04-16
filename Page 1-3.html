@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Assemblies</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Platform Assembly", phonetic:"/ˈplætˌfɔːrm əˈsɛmbli/", cn:"平台总成", desc:"整个平台结构组件", words:[
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Scissor Assembly", phonetic:"/ˈsɪzər əˈsɛmbli/", cn:"叉架总成", desc:"剪叉结构组件", words:[
+    { w:"Scissor", cn:"剪叉", phonetic:"/ˈsɪzər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Chassis Assembly", phonetic:"/ˈtʃæsi əˈsɛmbli/", cn:"底座总成", desc:"设备底盘结构", words:[
+    { w:"Chassis", cn:"底盘", phonetic:"/ˈtʃæsi/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Pothole Protection Assembly", phonetic:"/ˈpɑːthoʊl prəˈtɛkʃən əˈsɛmbli/", cn:"坑洞保护机构", desc:"用于防止设备陷入坑洞的保护机构", words:[
+    { w:"Pothole", cn:"坑洞", phonetic:"/ˈpɑːthoʊl/" },
+    { w:"Protection", cn:"保护", phonetic:"/prəˈtɛkʃən/" },
+    { w:"Assembly", cn:"机构/总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Rear Axle Assembly", phonetic:"/rɪr ˈæksl əˈsɛmbli/", cn:"后桥总成", desc:"后桥驱动或支撑组件", words:[
+    { w:"Rear", cn:"后", phonetic:"/rɪr/" },
+    { w:"Axle", cn:"车桥", phonetic:"/ˈæksl/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Front Axle Assembly", phonetic:"/frʌnt ˈæksl əˈsɛmbli/", cn:"前桥总成", desc:"前桥转向或支撑组件", words:[
+    { w:"Front", cn:"前", phonetic:"/frʌnt/" },
+    { w:"Axle", cn:"车桥", phonetic:"/ˈæksl/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Decal-SPS1414 Decals Layout", phonetic:"/ˈdiːkæl ˌdiːkælz ˈleɪaʊt/", cn:"整机标识布置图", desc:"设备贴花/标识布局图", words:[
+    { w:"Decal", cn:"标识贴纸", phonetic:"/ˈdiːkæl/" },
+    { w:"Layout", cn:"布置图", phonetic:"/ˈleɪaʊt/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
