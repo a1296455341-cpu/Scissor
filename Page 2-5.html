@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Main Platform Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Main Platform Weldment",
+phonetic:"/meɪn ˈplætˌfɔːrm ˈwɛldmənt/",
+cn:"主平台焊合",
+desc:"主平台的焊接结构件",
+words:[
+{ w:"Main", cn:"主", phonetic:"/meɪn/" },
+{ w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Roller Bracket",
+phonetic:"/ˈroʊlər ˈbrækɪt/",
+cn:"滚轮架",
+desc:"用于支撑滚轮的支架",
+words:[
+{ w:"Roller", cn:"滚轮", phonetic:"/ˈroʊlər/" },
+{ w:"Bracket", cn:"支架", phonetic:"/ˈbrækɪt/" }
+]
+},
+
+{
+text:"Shim",
+phonetic:"/ʃɪm/",
+cn:"调整垫片",
+desc:"用于调整间隙的薄垫片"
+},
+
+{
+text:"Roller Assembly",
+phonetic:"/ˈroʊlər əˈsɛmbli/",
+cn:"滚轮组件",
+desc:"由滚轮及其结构组成的组件",
+words:[
+{ w:"Roller", cn:"滚轮", phonetic:"/ˈroʊlər/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Main Platform Rear Door",
+phonetic:"/meɪn ˈplætˌfɔːrm rɪr dɔːr/",
+cn:"主平台后门",
+desc:"主平台后部的门结构",
+words:[
+{ w:"Main", cn:"主", phonetic:"/meɪn/" },
+{ w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+{ w:"Rear", cn:"后", phonetic:"/rɪr/" },
+{ w:"Door", cn:"门", phonetic:"/dɔːr/" }
+]
+},
+
+{
+text:"Main Platform Right Guardrail Weldment",
+phonetic:"/meɪn ˈplætˌfɔːrm raɪt ˈɡɑːrdreɪl ˈwɛldmənt/",
+cn:"主平台右护栏焊合",
+desc:"右侧护栏焊接结构",
+words:[
+{ w:"Main", cn:"主", phonetic:"/meɪn/" },
+{ w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+{ w:"Right", cn:"右", phonetic:"/raɪt/" },
+{ w:"Guardrail", cn:"护栏", phonetic:"/ˈɡɑːrdreɪl/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Main Platform Left Guardrail Weldment",
+phonetic:"/meɪn ˈplætˌfɔːrm lɛft ˈɡɑːrdreɪl ˈwɛldmənt/",
+cn:"主平台左护栏焊合",
+desc:"左侧护栏焊接结构",
+words:[
+{ w:"Main", cn:"主", phonetic:"/meɪn/" },
+{ w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+{ w:"Left", cn:"左", phonetic:"/lɛft/" },
+{ w:"Guardrail", cn:"护栏", phonetic:"/ˈɡɑːrdreɪl/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Steel Pin",
+phonetic:"/stiːl pɪn/",
+cn:"钢插销",
+desc:"用于连接或限位的钢制销轴",
+words:[
+{ w:"Steel", cn:"钢", phonetic:"/stiːl/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]
+},
+
+{
+text:"Block",
+phonetic:"/blɑːk/",
+cn:"挡块",
+desc:"用于限位或支撑的块状零件"
+},
+
+{
+text:"Hinge",
+phonetic:"/hɪndʒ/",
+cn:"铰链",
+desc:"用于门或盖板转动连接"
+},
+
+{
+text:"Swing Gate Weldment",
+phonetic:"/swɪŋ ɡeɪt ˈwɛldmənt/",
+cn:"半旋转门焊合",
+desc:"可旋转开启的门结构",
+words:[
+{ w:"Swing", cn:"旋转", phonetic:"/swɪŋ/" },
+{ w:"Gate", cn:"门", phonetic:"/ɡeɪt/" },
+{ w:"Weldment", cn:"焊合件", phonetic:"/ˈwɛldmənt/" }
+]
+},
+
+{
+text:"Wear Pad",
+phonetic:"/wer pæd/",
+cn:"滑块",
+desc:"用于减少磨损的滑动块",
+words:[
+{ w:"Wear", cn:"磨损", phonetic:"/wer/" },
+{ w:"Pad", cn:"垫块", phonetic:"/pæd/" }
+]
+},
+
+{
+text:"Spring",
+phonetic:"/sprɪŋ/",
+cn:"弹簧",
+desc:"用于提供弹性力的零件"
+},
+
+{
+text:"Bolt",
+phonetic:"/boʊlt/",
+cn:"螺栓",
+desc:"用于连接零件的紧固件"
+},
+
+{
+text:"Nut",
+phonetic:"/nʌt/",
+cn:"螺母",
+desc:"与螺栓配合使用的紧固件"
+},
+
+{
+text:"Screw",
+phonetic:"/skruː/",
+cn:"螺钉",
+desc:"用于旋入连接的紧固件"
+},
+
+{
+text:"Bracket Weldment",
+phonetic:"/ˈbrækɪt ˈwɛldmənt/",
+cn:"支架焊接",
+desc:"支架类焊接结构件",
+words:[
+{ w:"Bracket", cn:"支架", phonetic:"/ˈbrækɪt/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
