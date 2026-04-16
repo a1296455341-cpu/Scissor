@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connector Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Connector Housing",
+phonetic:"/kəˈnɛktər ˈhaʊzɪŋ/",
+cn:"连接器外壳",
+desc:"用于保护和固定连接器内部结构的外壳",
+words:[
+{ w:"Connector", cn:"连接器", phonetic:"/kəˈnɛktər/" },
+{ w:"Housing", cn:"外壳", phonetic:"/ˈhaʊzɪŋ/" }
+]
+},
+
+{
+text:"Male Insert",
+phonetic:"/meɪl ˈɪnsɜːrt/",
+cn:"公头插芯",
+desc:"连接器中的公端插入件",
+words:[
+{ w:"Male", cn:"公头", phonetic:"/meɪl/" },
+{ w:"Insert", cn:"插芯", phonetic:"/ˈɪnsɜːrt/" }
+]
+},
+
+{
+text:"Male Pin",
+phonetic:"/meɪl pɪn/",
+cn:"公插针",
+desc:"连接器中的公端导电针",
+words:[
+{ w:"Male", cn:"公", phonetic:"/meɪl/" },
+{ w:"Pin", cn:"插针", phonetic:"/pɪn/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
