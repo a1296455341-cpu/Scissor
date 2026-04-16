@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chassis System Assembly</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Chassis Assembly",
+phonetic:"/ˈʃæsi əˈsɛmbli/",
+cn:"底盘部装",
+desc:"底盘系统的整体装配结构",
+words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Assembly", cn:"部装/总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Micro Ladder Assembly",
+phonetic:"/ˈmaɪkroʊ ˈlædər əˈsɛmbli/",
+cn:"车梯总成",
+desc:"用于设备上下的折叠/微型梯结构",
+words:[
+{ w:"Micro", cn:"微型", phonetic:"/ˈmaɪkroʊ/" },
+{ w:"Ladder", cn:"梯子", phonetic:"/ˈlædər/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Steering Assembly",
+phonetic:"/ˈstɪrɪŋ əˈsɛmbli/",
+cn:"转向机构装配总成",
+desc:"用于实现车辆转向控制的机构总成",
+words:[
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
