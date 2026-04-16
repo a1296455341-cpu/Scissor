@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scissor Assembly Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); margin-bottom:12px;}
+.title { font-weight:bold; font-size:18px; }
+.desc { color:#666; font-size:14px; margin-top:6px; }
+.word { display:block; margin-left:10px; margin-top:6px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Scissor Assembly",
+phonetic:"/ˈsɪzər əˈsɛmbli/",
+cn:"叉架部装",
+desc:"剪叉结构的装配总成",
+words:[
+{ w:"Scissor", cn:"剪叉", phonetic:"/ˈsɪzər/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]
+},
+
+{
+text:"Lower Lift Cylinder",
+phonetic:"/ˈloʊər lɪft ˈsɪlɪndər/",
+cn:"下举升油缸",
+desc:"用于下部举升动作的液压油缸",
+words:[
+{ w:"Lower", cn:"下部", phonetic:"/ˈloʊər/" },
+{ w:"Lift", cn:"举升", phonetic:"/lɪft/" },
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+]
+},
+
+{
+text:"Upper Lift Cylinder",
+phonetic:"/ˈʌpər lɪft ˈsɪlɪndər/",
+cn:"上举升油缸",
+desc:"用于上部举升动作的液压油缸",
+words:[
+{ w:"Upper", cn:"上部", phonetic:"/ˈʌpər/" },
+{ w:"Lift", cn:"举升", phonetic:"/lɪft/" },
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+]
+},
+
+{
+text:"Washer",
+phonetic:"/ˈwɑːʃər/",
+cn:"垫圈",
+desc:"用于分散压力的紧固件"
+},
+
+{
+text:"Shim",
+phonetic:"/ʃɪm/",
+cn:"调整垫片",
+desc:"用于调整间隙的薄垫片"
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>
+`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
