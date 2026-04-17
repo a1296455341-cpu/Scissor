@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts 3</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+  { text:"Front Left Outrigger Weldment", phonetic:"/frʌnt lɛft ˈaʊtrɪɡər ˈwɛldmənt/", cn:"左前支脚焊件", desc:"左前支撑结构焊接件", words:[
+    { w:"Front", cn:"前", phonetic:"/frʌnt/" },
+    { w:"Left", cn:"左", phonetic:"/lɛft/" },
+    { w:"Outrigger", cn:"支腿", phonetic:"/ˈaʊtrɪɡər/" },
+    { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+
+  { text:"Rear Left Outrigger Weldment", phonetic:"/rɪr lɛft ˈaʊtrɪɡər ˈwɛldmənt/", cn:"左后支脚焊件", desc:"左后支撑结构焊接件", words:[
+    { w:"Rear", cn:"后", phonetic:"/rɪr/" },
+    { w:"Left", cn:"左", phonetic:"/lɛft/" },
+    { w:"Outrigger", cn:"支腿", phonetic:"/ˈaʊtrɪɡər/" },
+    { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+
+  { text:"Flange", phonetic:"/flændʒ/", cn:"法兰盘", desc:"用于管道连接的法兰结构" },
+
+  { text:"Flange Coupling", phonetic:"/flændʒ ˈkʌplɪŋ/", cn:"法兰联轴器", desc:"用于轴与轴连接", words:[
+    { w:"Flange", cn:"法兰", phonetic:"/flændʒ/" },
+    { w:"Coupling", cn:"联轴器", phonetic:"/ˈkʌplɪŋ/" }
+  ]},
+
+  { text:"Front Right Outrigger Weldment", phonetic:"/frʌnt raɪt ˈaʊtrɪɡər ˈwɛldmənt/", cn:"右前支脚焊件", desc:"右前支撑结构焊接件", words:[
+    { w:"Front", cn:"前", phonetic:"/frʌnt/" },
+    { w:"Right", cn:"右", phonetic:"/raɪt/" },
+    { w:"Outrigger", cn:"支腿", phonetic:"/ˈaʊtrɪɡər/" },
+    { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+
+  { text:"Oil Drain Valve", phonetic:"/ɔɪl dreɪn vælv/", cn:"放油阀", desc:"用于排放油液", words:[
+    { w:"Oil", cn:"油", phonetic:"/ɔɪl/" },
+    { w:"Drain", cn:"排放", phonetic:"/dreɪn/" },
+    { w:"Valve", cn:"阀", phonetic:"/vælv/" }
+  ]},
+
+  { text:"Rear Right Outrigger Weldment", phonetic:"/rɪr raɪt ˈaʊtrɪɡər ˈwɛldmənt/", cn:"右后支脚焊件", desc:"右后支撑结构焊接件", words:[
+    { w:"Rear", cn:"后", phonetic:"/rɪr/" },
+    { w:"Right", cn:"右", phonetic:"/raɪt/" },
+    { w:"Outrigger", cn:"支腿", phonetic:"/ˈaʊtrɪɡər/" },
+    { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+
+  { text:"Shock Absorber", phonetic:"/ʃɑːk əbˈzɔːrbər/", cn:"减震器", desc:"用于吸收振动能量", words:[
+    { w:"Shock", cn:"冲击", phonetic:"/ʃɑːk/" },
+    { w:"Absorber", cn:"吸收器", phonetic:"/əbˈzɔːrbər/" }
+  ]},
+
+  { text:"Shock Absorber Plate", phonetic:"/ʃɑːk əbˈzɔːrbər pleɪt/", cn:"减震器垫板", desc:"用于减震支撑", words:[
+    { w:"Shock", cn:"减震", phonetic:"/ʃɑːk/" },
+    { w:"Absorber", cn:"器", phonetic:"/əbˈzɔːrbər/" },
+    { w:"Plate", cn:"垫板", phonetic:"/pleɪt/" }
+  ]},
+
+  { text:"Sealing Foam", phonetic:"/ˈsiːlɪŋ foʊm/", cn:"密封海绵", desc:"用于密封防尘防水", words:[
+    { w:"Sealing", cn:"密封", phonetic:"/ˈsiːlɪŋ/" },
+    { w:"Foam", cn:"泡棉", phonetic:"/foʊm/" }
+  ]},
+
+  { text:"Protective Sleeve", phonetic:"/prəˈtɛktɪv sliːv/", cn:"护套", desc:"用于保护管线或零件", words:[
+    { w:"Protective", cn:"保护", phonetic:"/prəˈtɛktɪv/" },
+    { w:"Sleeve", cn:"套", phonetic:"/sliːv/" }
+  ]},
+
+  { text:"Radiator Mounting Bracket", phonetic:"/ˈreɪdieɪtər ˈmaʊntɪŋ ˈbrækɪt/", cn:"散热器安装架", desc:"用于安装散热器", words:[
+    { w:"Radiator", cn:"散热器", phonetic:"/ˈreɪdieɪtər/" },
+    { w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/" },
+    { w:"Bracket", cn:"支架", phonetic:"/ˈbrækɪt/" }
+  ]},
+
+  { text:"Mounting Plate", phonetic:"/ˈmaʊntɪŋ pleɪt/", cn:"安装板", desc:"用于设备安装", words:[
+    { w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/" },
+    { w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+  ]},
+
+  { text:"Reservoir", phonetic:"/ˈrɛzərvwɑːr/", cn:"储液箱", desc:"用于储存液体" },
+
+  { text:"Radiator Support Rod", phonetic:"/ˈreɪdieɪtər səˈpɔːrt rɑːd/", cn:"水箱撑杆", desc:"支撑散热器结构", words:[
+    { w:"Radiator", cn:"水箱", phonetic:"/ˈreɪdieɪtər/" },
+    { w:"Support", cn:"支撑", phonetic:"/səˈpɔːrt/" },
+    { w:"Rod", cn:"杆", phonetic:"/rɑːd/" }
+  ]},
+
+  { text:"Worm Drive Hose Clamp with Spring Band", phonetic:"/wɜːrm draɪv hoʊs klæmp wɪð sprɪŋ bænd/", cn:"螺旋弹簧蜗杆卡箍", desc:"用于管路紧固", words:[
+    { w:"Worm Drive", cn:"蜗杆驱动", phonetic:"/wɜːrm draɪv/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊs/" },
+    { w:"Clamp", cn:"卡箍", phonetic:"/klæmp/" },
+    { w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/" },
+    { w:"Band", cn:"带", phonetic:"/bænd/" }
+  ]},
+
+  { text:"Rubber Pad", phonetic:"/ˈrʌbər pæd/", cn:"橡胶垫", desc:"用于减震缓冲", words:[
+    { w:"Rubber", cn:"橡胶", phonetic:"/ˈrʌbər/" },
+    { w:"Pad", cn:"垫", phonetic:"/pæd/" }
+  ]},
+
+  { text:"Upper Radiator Hose", phonetic:"/ˈʌpər ˈreɪdieɪtər hoʊs/", cn:"水箱上水管", desc:"上部冷却液管路", words:[
+    { w:"Upper", cn:"上", phonetic:"/ˈʌpər/" },
+    { w:"Radiator", cn:"水箱", phonetic:"/ˈreɪdieɪtər/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Radiator", phonetic:"/ˈreɪdieɪtər/", cn:"散热器", desc:"冷却系统核心部件" },
+
+  { text:"Drain Hose", phonetic:"/dreɪn hoʊs/", cn:"放水管", desc:"用于排水", words:[
+    { w:"Drain", cn:"排水", phonetic:"/dreɪn/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Lower Radiator Hose", phonetic:"/ˈloʊər ˈreɪdieɪtər hoʊs/", cn:"水箱下水管", desc:"下部冷却液管路", words:[
+    { w:"Lower", cn:"下", phonetic:"/ˈloʊər/" },
+    { w:"Radiator", cn:"水箱", phonetic:"/ˈreɪdieɪtər/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Water-side Dust Screen", phonetic:"/ˈwɔːtər saɪd dʌst skriːn/", cn:"水侧防尘网", desc:"防止灰尘进入", words:[
+    { w:"Water-side", cn:"水侧", phonetic:"/ˈwɔːtər saɪd/" },
+    { w:"Dust", cn:"灰尘", phonetic:"/dʌst/" },
+    { w:"Screen", cn:"网", phonetic:"/skriːn/" }
+  ]},
+
+  { text:"Retaining Pin with Ring", phonetic:"/rɪˈteɪnɪŋ pɪn wɪð rɪŋ/", cn:"环形O型销", desc:"用于固定连接", words:[
+    { w:"Retaining", cn:"固定", phonetic:"/rɪˈteɪnɪŋ/" },
+    { w:"Pin", cn:"销", phonetic:"/pɪn/" },
+    { w:"Ring", cn:"环", phonetic:"/rɪŋ/" }
+  ]},
+
+  { text:"Radiator Cap", phonetic:"/ˈreɪdieɪtər kæp/", cn:"加水口盖", desc:"密封散热器加水口", words:[
+    { w:"Radiator", cn:"水箱", phonetic:"/ˈreɪdieɪtər/" },
+    { w:"Cap", cn:"盖", phonetic:"/kæp/" }
+  ]},
+
+  { text:"Radiator Assembly", phonetic:"/ˈreɪdieɪtər əˈsɛmbli/", cn:"水散组件", desc:"散热系统总成", words:[
+    { w:"Radiator", cn:"散热器", phonetic:"/ˈreɪdieɪtər/" },
+    { w:"Assembly", cn:"组件", phonetic:"/əˈsɛmbli/" }
+  ]}
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
