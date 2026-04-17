@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Assemblies Vocabulary</title>
+
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:980px; margin:auto; }
+
+.item {
+  background:#fff;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.title { font-weight:bold; cursor:pointer; }
+
+.desc { color:#666; font-size:14px; margin-top:6px; }
+
+.split {
+  margin-left:18px;
+  margin-top:8px;
+}
+
+.word {
+  display:block;
+  margin-top:6px;
+  cursor:pointer;
+}
+
+.btn { color:#1a73e8; cursor:pointer; }
+
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+</style>
+</head>
+
+<body>
+<div class="container"></div>
+
+<script>
+
+const parts = [
+
+  // ===== 词组 =====
+  {
+    text:"Platform Assembly",
+    phonetic:"/ˈplætˌfɔːrm əˈsɛmbli/",
+    cn:"平台总成",
+    desc:"用于设备作业承载的平台结构总成",
+    words:[
+      { w:"Platform", phonetic:"/ˈplætˌfɔːrm/", cn:"平台" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Bracket Assembly",
+    phonetic:"/ˈbrækɪt əˈsɛmbli/",
+    cn:"托架总成",
+    desc:"用于支撑结构的托架组件总成",
+    words:[
+      { w:"Bracket", phonetic:"/ˈbrækɪt/", cn:"托架" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Fly Jib Assembly",
+    phonetic:"/flaɪ dʒɪb əˈsɛmbli/",
+    cn:"飞臂总成",
+    desc:"辅助伸展臂结构总成",
+    words:[
+      { w:"Fly", phonetic:"/flaɪ/", cn:"飞" },
+      { w:"Jib", phonetic:"/dʒɪb/", cn:"副臂" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Telescopic Boom Assembly",
+    phonetic:"/ˌtelɪˈskɒpɪk buːm əˈsɛmbli/",
+    cn:"臂架总成",
+    desc:"可伸缩工作臂结构总成",
+    words:[
+      { w:"Telescopic", phonetic:"/ˌtelɪˈskɒpɪk/", cn:"伸缩式" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Cover Assembly",
+    phonetic:"/ˈkʌvər əˈsɛmbli/",
+    cn:"覆盖件总成",
+    desc:"外部防护覆盖结构总成",
+    words:[
+      { w:"Cover", phonetic:"/ˈkʌvər/", cn:"覆盖件" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Telescoping Rope Mechanism",
+    phonetic:"/ˈtelɪˌskoʊpɪŋ roʊp ˈmekəˌnɪzəm/",
+    cn:"伸缩绳系统",
+    desc:"用于伸缩控制的绳索机构系统",
+    words:[
+      { w:"Telescoping", phonetic:"/ˈtelɪˌskoʊpɪŋ/", cn:"伸缩" },
+      { w:"Rope", phonetic:"/roʊp/", cn:"绳索" },
+      { w:"Mechanism", phonetic:"/ˈmekəˌnɪzəm/", cn:"机构" }
+    ]
+  },
+
+  {
+    text:"Drag-Chain System",
+    phonetic:"/dræɡ tʃeɪn ˈsɪstəm/",
+    cn:"拖链系统",
+    desc:"用于电缆保护与导向的拖链结构系统",
+    words:[
+      { w:"Drag", phonetic:"/dræɡ/", cn:"拖动" },
+      { w:"Chain", phonetic:"/tʃeɪn/", cn:"链条" },
+      { w:"System", phonetic:"/ˈsɪstəm/", cn:"系统" }
+    ]
+  },
+
+  {
+    text:"Diesel Power Assembly",
+    phonetic:"/ˈdiːzəl ˈpaʊər əˈsɛmbli/",
+    cn:"柴油动力总成",
+    desc:"柴油发动机动力输出系统总成",
+    words:[
+      { w:"Diesel", phonetic:"/ˈdiːzəl/", cn:"柴油" },
+      { w:"Power", phonetic:"/ˈpaʊər/", cn:"动力" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Turntable Assembly",
+    phonetic:"/ˈtɜːrnˌteɪbəl əˈsɛmbli/",
+    cn:"转台装配",
+    desc:"用于旋转支撑的转台结构总成",
+    words:[
+      { w:"Turntable", phonetic:"/ˈtɜːrnˌteɪbəl/", cn:"转台" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"装配" }
+    ]
+  },
+
+  {
+    text:"Slewing Mechanism",
+    phonetic:"/ˈsluːɪŋ ˈmekəˌnɪzəm/",
+    cn:"回转机构总成",
+    desc:"实现旋转运动的回转机构系统",
+    words:[
+      { w:"Slewing", phonetic:"/ˈsluːɪŋ/", cn:"回转" },
+      { w:"Mechanism", phonetic:"/ˈmekəˌnɪzəm/", cn:"机构" }
+    ]
+  },
+
+  {
+    text:"Counterweight Assembly",
+    phonetic:"/ˈkaʊntərˌweɪt əˈsɛmbli/",
+    cn:"配重总成",
+    desc:"用于平衡设备重量的配重系统",
+    words:[
+      { w:"Counterweight", phonetic:"/ˈkaʊntərˌweɪt/", cn:"配重" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Undercarriage Assembly",
+    phonetic:"/ˌʌndərˈkærɪdʒ əˈsɛmbli/",
+    cn:"下车总成",
+    desc:"设备底盘行走结构总成",
+    words:[
+      { w:"Undercarriage", phonetic:"/ˌʌndərˈkærɪdʒ/", cn:"底盘" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Electrical System Assembly",
+    phonetic:"/ɪˈlɛktrɪkəl ˈsɪstəm əˈsɛmbli/",
+    cn:"电气系统总成",
+    desc:"整机电气控制系统总成",
+    words:[
+      { w:"Electrical", phonetic:"/ɪˈlɛktrɪkəl/", cn:"电气" },
+      { w:"System", phonetic:"/ˈsɪstəm/", cn:"系统" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Hydraulic System Assembly",
+    phonetic:"/haɪˈdrɔːlɪk ˈsɪstəm əˈsɛmbli/",
+    cn:"液压系统总成",
+    desc:"液压动力与控制系统总成",
+    words:[
+      { w:"Hydraulic", phonetic:"/haɪˈdrɔːlɪk/", cn:"液压" },
+      { w:"System", phonetic:"/ˈsɪstəm/", cn:"系统" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  // ===== 单词 =====
+  { text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接固定零件的紧固件" },
+  { text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"与螺栓配合使用的紧固件" },
+  { text:"Screw", phonetic:"/skruː/", cn:"螺钉", desc:"旋入式紧固件" },
+  { text:"Spring Washer", phonetic:"/sprɪŋ ˈwɑːʃər/", cn:"弹簧垫圈", desc:"防松垫圈" },
+  { text:"Clamp", phonetic:"/klæmp/", cn:"夹具", desc:"用于夹紧工件的装置" },
+  { text:"Plug", phonetic:"/plʌɡ/", cn:"堵头", desc:"用于封闭孔口" }
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-US";
+  speechSynthesis.speak(u);
+}
+
+function render(){
+  const container = document.querySelector(".container");
+
+  parts.forEach(p=>{
+    const item = document.createElement("div");
+    item.className = "item";
+
+    let html = "";
+
+    if(p.words){
+      html = `
+        <div class="split">
+          ${p.words.map(w=>`
+            <div class="word btn" onclick="speak('${w.w}')">
+              🔊 ${w.w}
+              <span class="phonetic">${w.phonetic}</span>
+              <span class="small">${w.cn}</span>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+
+      <div class="desc">${p.desc}</div>
+
+      ${html}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = render;
+
+</script>
+</body>
+</html>
