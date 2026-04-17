@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Structure Vocabulary</title>
+
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:980px; margin:auto; }
+
+.item {
+  background:#fff;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.title { font-weight:bold; cursor:pointer; }
+
+.desc { color:#666; font-size:14px; margin-top:6px; }
+
+.split { margin-left:18px; margin-top:8px; }
+
+.word {
+  display:block;
+  margin-top:6px;
+  cursor:pointer;
+}
+
+.btn { color:#1a73e8; cursor:pointer; }
+
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+</style>
+</head>
+
+<body>
+<div class="container"></div>
+
+<script>
+
+const parts = [
+
+  // ================= 结构件 =================
+  {
+    text:"Beam Weldment",
+    phonetic:"/biːm ˈwɛldmənt/",
+    cn:"横梁焊件",
+    desc:"用于承载结构的焊接横梁组件",
+    words:[
+      { w:"Beam", phonetic:"/biːm/", cn:"横梁" },
+      { w:"Weldment", phonetic:"/ˈwɛldmənt/", cn:"焊接件" }
+    ]
+  },
+
+  {
+    text:"Magnet Head",
+    phonetic:"/ˈmæɡnɪt hɛd/",
+    cn:"磁吸头",
+    desc:"用于吸附固定的小型磁性结构",
+    words:[
+      { w:"Magnet", phonetic:"/ˈmæɡnɪt/", cn:"磁铁" },
+      { w:"Head", phonetic:"/hɛd/", cn:"头部" }
+    ]
+  },
+
+  {
+    text:"Inspection Wire",
+    phonetic:"/ɪnˈspɛkʃən waɪr/",
+    cn:"拉线",
+    desc:"用于检测或控制的钢丝拉线系统",
+    words:[
+      { w:"Inspection", phonetic:"/ɪnˈspɛkʃən/", cn:"检测" },
+      { w:"Wire", phonetic:"/waɪr/", cn:"钢丝" }
+    ]
+  },
+
+  {
+    text:"Bracket",
+    phonetic:"/ˈbrækɪt/",
+    cn:"支架",
+    desc:"用于支撑或固定结构的支撑件"
+  },
+
+  {
+    text:"Self-locking Nut",
+    phonetic:"/ˌsɛlf ˈlɒkɪŋ nʌt/",
+    cn:"自锁螺母",
+    desc:"具有防松功能的螺母",
+    words:[
+      { w:"Self-locking", phonetic:"/ˌsɛlf ˈlɒkɪŋ/", cn:"自锁" },
+      { w:"Nut", phonetic:"/nʌt/", cn:"螺母" }
+    ]
+  },
+
+  {
+    text:"Bumper Liner Plates",
+    phonetic:"/ˈbʌmpər ˈlaɪnər pleɪts/",
+    cn:"缓冲垫板",
+    desc:"用于吸收冲击的保护板",
+    words:[
+      { w:"Bumper", phonetic:"/ˈbʌmpər/", cn:"缓冲器" },
+      { w:"Liner", phonetic:"/ˈlaɪnər/", cn:"衬板" },
+      { w:"Plates", phonetic:"/pleɪts/", cn:"板" }
+    ]
+  },
+
+  {
+    text:"Connection Support",
+    phonetic:"/kəˈnɛkʃən səˈpɔːrt/",
+    cn:"连接架",
+    desc:"用于结构连接与支撑的部件",
+    words:[
+      { w:"Connection", phonetic:"/kəˈnɛkʃən/", cn:"连接" },
+      { w:"Support", phonetic:"/səˈpɔːrt/", cn:"支撑" }
+    ]
+  },
+
+  {
+    text:"Self-Lubricating Bearing",
+    phonetic:"/ˌsɛlf ˌluːbrɪˈkeɪtɪŋ ˈbɛərɪŋ/",
+    cn:"自润滑轴承",
+    desc:"无需额外润滑的轴承结构",
+    words:[
+      { w:"Self-Lubricating", phonetic:"/ˌsɛlf ˌluːbrɪˈkeɪtɪŋ/", cn:"自润滑" },
+      { w:"Bearing", phonetic:"/ˈbɛərɪŋ/", cn:"轴承" }
+    ]
+  },
+
+  {
+    text:"Thrust Washer",
+    phonetic:"/θrʌst ˈwɒʃər/",
+    cn:"止推垫片",
+    desc:"用于承受轴向力的垫片",
+    words:[
+      { w:"Thrust", phonetic:"/θrʌst/", cn:"推力" },
+      { w:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈" }
+    ]
+  },
+
+  {
+    text:"Rotating Shaft",
+    phonetic:"/ˈroʊteɪtɪŋ ʃæft/",
+    cn:"转轴",
+    desc:"用于传递旋转运动的轴",
+    words:[
+      { w:"Rotating", phonetic:"/ˈroʊteɪtɪŋ/", cn:"旋转" },
+      { w:"Shaft", phonetic:"/ʃæft/", cn:"轴" }
+    ]
+  },
+
+  {
+    text:"Platform Support Weldment",
+    phonetic:"/ˈplætˌfɔːrm səˈpɔːrt ˈwɛldmənt/",
+    cn:"托架焊接体",
+    desc:"平台结构的焊接支撑件",
+    words:[
+      { w:"Platform", phonetic:"/ˈplætˌfɔːrm/", cn:"平台" },
+      { w:"Support", phonetic:"/səˈpɔːrt/", cn:"支撑" },
+      { w:"Weldment", phonetic:"/ˈwɛldmənt/", cn:"焊接件" }
+    ]
+  },
+
+  {
+    text:"Cushion Block",
+    phonetic:"/ˈkʊʃən blɒk/",
+    cn:"垫块",
+    desc:"用于缓冲或支撑的块状结构",
+    words:[
+      { w:"Cushion", phonetic:"/ˈkʊʃən/", cn:"缓冲" },
+      { w:"Block", phonetic:"/blɒk/", cn:"块" }
+    ]
+  },
+
+  {
+    text:"Upper Jib Boom Weldment",
+    phonetic:"/ˈʌpər dʒɪb buːm ˈwɛldmənt/",
+    cn:"上飞臂焊件",
+    desc:"飞臂上部焊接结构",
+    words:[
+      { w:"Upper", phonetic:"/ˈʌpər/", cn:"上部" },
+      { w:"Jib", phonetic:"/dʒɪb/", cn:"副臂" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Weldment", phonetic:"/ˈwɛldmənt/", cn:"焊件" }
+    ]
+  },
+
+  {
+    text:"Steel Structure High-strength Washer",
+    phonetic:"/stiːl ˈstrʌktʃər haɪ ˈstrɛŋkθ ˈwɒʃər/",
+    cn:"钢结构高强度垫圈",
+    desc:"用于高强度连接的垫圈",
+    words:[
+      { w:"Steel", phonetic:"/stiːl/", cn:"钢" },
+      { w:"Structure", phonetic:"/ˈstrʌktʃər/", cn:"结构" },
+      { w:"High-strength", phonetic:"/haɪ ˈstrɛŋkθ/", cn:"高强度" },
+      { w:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈" }
+    ]
+  },
+
+  {
+    text:"Leveling Support Weldment",
+    phonetic:"/ˈlɛvəlɪŋ səˈpɔːrt ˈwɛldmənt/",
+    cn:"调平焊件",
+    desc:"用于水平调节的支撑焊接结构",
+    words:[
+      { w:"Leveling", phonetic:"/ˈlɛvəlɪŋ/", cn:"调平" },
+      { w:"Support", phonetic:"/səˈpɔːrt/", cn:"支撑" },
+      { w:"Weldment", phonetic:"/ˈwɛldmənt/", cn:"焊件" }
+    ]
+  },
+
+  {
+    text:"Shim",
+    phonetic:"/ʃɪm/",
+    cn:"垫片",
+    desc:"用于调整间隙的薄片"
+  },
+
+  {
+    text:"Inspection Board",
+    phonetic:"/ɪnˈspɛkʃən bɔːrd/",
+    cn:"检测板",
+    desc:"用于检测或安装基准的板件",
+    words:[
+      { w:"Inspection", phonetic:"/ɪnˈspɛkʃən/", cn:"检测" },
+      { w:"Board", phonetic:"/bɔːrd/", cn:"板" }
+    ]
+  },
+
+  {
+    text:"Lower Jib Boom Weldment",
+    phonetic:"/ˈloʊər dʒɪb buːm ˈwɛldmənt/",
+    cn:"下飞臂焊件",
+    desc:"飞臂下部焊接结构",
+    words:[
+      { w:"Lower", phonetic:"/ˈloʊər/", cn:"下部" },
+      { w:"Jib", phonetic:"/dʒɪb/", cn:"副臂" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Weldment", phonetic:"/ˈwɛldmənt/", cn:"焊件" }
+    ]
+  },
+
+  {
+    text:"Keeper pin",
+    phonetic:"/ˈkiːpər pɪn/",
+    cn:"销轴",
+    desc:"用于固定或锁止的销轴结构"
+  },
+
+  {
+    text:"Shaft",
+    phonetic:"/ʃæft/",
+    cn:"轴",
+    desc:"用于传递动力或旋转的轴类零件"
+  },
+
+  {
+    text:"Swing Cylinder",
+    phonetic:"/swɪŋ ˈsɪlɪndər/",
+    cn:"摆动马达",
+    desc:"用于回转运动的液压执行元件",
+    words:[
+      { w:"Swing", phonetic:"/swɪŋ/", cn:"摆动" },
+      { w:"Cylinder", phonetic:"/ˈsɪlɪndər/", cn:"油缸" }
+    ]
+  },
+
+  {
+    text:"Base Boom Assembly",
+    phonetic:"/beɪs buːm əˈsɛmbli/",
+    cn:"一节臂总成",
+    desc:"臂架的基础段结构",
+    words:[
+      { w:"Base", phonetic:"/beɪs/", cn:"基础" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Second Boom Assembly",
+    phonetic:"/ˈsɛkənd buːm əˈsɛmbli/",
+    cn:"二节臂总成",
+    desc:"臂架第二伸缩段",
+    words:[
+      { w:"Second", phonetic:"/ˈsɛkənd/", cn:"第二" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Third Boom Assembly",
+    phonetic:"/θɜːrd buːm əˈsɛmbli/",
+    cn:"三节臂总成",
+    desc:"臂架第三伸缩段",
+    words:[
+      { w:"Third", phonetic:"/θɜːrd/", cn:"第三" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Fourth Boom Assembly",
+    phonetic:"/fɔːrθ buːm əˈsɛmbli/",
+    cn:"四节臂总成",
+    desc:"臂架第四伸缩段",
+    words:[
+      { w:"Fourth", phonetic:"/fɔːrθ/", cn:"第四" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  }
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-US";
+  speechSynthesis.speak(u);
+}
+
+function render(){
+  const container = document.querySelector(".container");
+
+  parts.forEach(p=>{
+    const item = document.createElement("div");
+    item.className = "item";
+
+    let html = "";
+
+    if(p.words){
+      html = `
+        <div class="split">
+          ${p.words.map(w=>`
+            <div class="word btn" onclick="speak('${w.w}')">
+              🔊 ${w.w}
+              <span class="phonetic">${w.phonetic}</span>
+              <span class="small">${w.cn}</span>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+
+      <div class="desc">${p.desc}</div>
+
+      ${html}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = render;
+
+</script>
+</body>
+</html>
