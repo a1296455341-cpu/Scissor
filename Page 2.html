@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boom & Structure Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{ text:"Beam Weldment", cn:"横梁焊件", desc:"横向承载结构焊接件", words:[
+{ w:"Beam", cn:"梁", phonetic:"/biːm/" },
+{ w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Magnet Head", cn:"磁吸头", desc:"用于磁性吸附的部件", words:[
+{ w:"Magnet", cn:"磁铁", phonetic:"/ˈmæɡnɪt/" },
+{ w:"Head", cn:"头", phonetic:"/hɛd/" }
+]},
+
+{ text:"Inspection Wire", cn:"拉线", desc:"用于检测或控制的钢丝绳", words:[
+{ w:"Inspection", cn:"检测", phonetic:"/ɪnˈspɛkʃən/" },
+{ w:"Wire", cn:"线", phonetic:"/waɪər/" }
+]},
+
+{ text:"Bracket", cn:"支架", desc:"用于支撑或安装的结构件", phonetic:"/ˈbrækɪt/" },
+
+{ text:"Self-locking Nut", cn:"自锁螺母", desc:"带防松功能的螺母", words:[
+{ w:"Self-locking", cn:"自锁", phonetic:"/ˈsɛlf ˌlɑːkɪŋ/" },
+{ w:"Nut", cn:"螺母", phonetic:"/nʌt/" }
+]},
+
+{ text:"Bumper Liner Plates", cn:"缓冲垫板", desc:"用于缓冲冲击的垫板", words:[
+{ w:"Bumper", cn:"缓冲", phonetic:"/ˈbʌmpər/" },
+{ w:"Liner", cn:"衬垫", phonetic:"/ˈlaɪnər/" },
+{ w:"Plates", cn:"板", phonetic:"/pleɪts/" }
+]},
+
+{ text:"Connection Support", cn:"连接架", desc:"用于连接结构的支撑件", words:[
+{ w:"Connection", cn:"连接", phonetic:"/kəˈnɛkʃən/" },
+{ w:"Support", cn:"支撑", phonetic:"/səˈpɔːrt/" }
+]},
+
+{ text:"Self-Lubricating Bearing", cn:"自润滑轴承", desc:"无需额外润滑的轴承", words:[
+{ w:"Self-Lubricating", cn:"自润滑", phonetic:"/ˈsɛlf ˈluːbrɪˌkeɪtɪŋ/" },
+{ w:"Bearing", cn:"轴承", phonetic:"/ˈbɛrɪŋ/" }
+]},
+
+{ text:"Thrust Washer", cn:"止推垫片", desc:"承受轴向力的垫片", words:[
+{ w:"Thrust", cn:"推力", phonetic:"/θrʌst/" },
+{ w:"Washer", cn:"垫片", phonetic:"/ˈwɑːʃər/" }
+]},
+
+{ text:"Rotating Shaft", cn:"转轴", desc:"用于旋转运动的轴", words:[
+{ w:"Rotating", cn:"旋转", phonetic:"/ˈroʊteɪtɪŋ/" },
+{ w:"Shaft", cn:"轴", phonetic:"/ʃæft/" }
+]},
+
+{ text:"Platform Support Weldment", cn:"托架焊接体", desc:"平台支撑结构焊件", words:[
+{ w:"Platform", cn:"平台", phonetic:"/ˈplætfɔːrm/" },
+{ w:"Support", cn:"支撑", phonetic:"/səˈpɔːrt/" },
+{ w:"Weldment", cn:"焊接体", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Cushion Block", cn:"垫块", desc:"用于缓冲或支撑的块状件", words:[
+{ w:"Cushion", cn:"缓冲", phonetic:"/ˈkʊʃən/" },
+{ w:"Block", cn:"块", phonetic:"/blɑːk/" }
+]},
+
+{ text:"Upper Jib Boom Weldment", cn:"上飞臂焊件", desc:"上部飞臂结构焊接件", words:[
+{ w:"Upper", cn:"上", phonetic:"/ˈʌpər/" },
+{ w:"Jib", cn:"飞臂", phonetic:"/dʒɪb/" },
+{ w:"Boom", cn:"臂", phonetic:"/buːm/" },
+{ w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Steel Structure High-strength Washer", cn:"钢结构用高强度垫圈", desc:"用于钢结构连接的高强度垫圈", words:[
+{ w:"Steel", cn:"钢", phonetic:"/stiːl/" },
+{ w:"Structure", cn:"结构", phonetic:"/ˈstrʌktʃər/" },
+{ w:"High-strength", cn:"高强度", phonetic:"/ˈhaɪ ˈstrɛŋθ/" },
+{ w:"Washer", cn:"垫圈", phonetic:"/ˈwɑːʃər/" }
+]},
+
+{ text:"Leveling Support Weldment", cn:"调平焊件", desc:"用于调平的支撑焊接件", words:[
+{ w:"Leveling", cn:"调平", phonetic:"/ˈlɛvəlɪŋ/" },
+{ w:"Support", cn:"支撑", phonetic:"/səˈpɔːrt/" },
+{ w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Shim", cn:"垫片", desc:"用于微调间隙的薄片", phonetic:"/ʃɪm/" },
+
+{ text:"Inspection Board", cn:"检测板", desc:"用于检测的板件", words:[
+{ w:"Inspection", cn:"检测", phonetic:"/ɪnˈspɛkʃən/" },
+{ w:"Board", cn:"板", phonetic:"/bɔːrd/" }
+]},
+
+{ text:"Lower Jib Boom Weldment", cn:"下飞臂焊件", desc:"下部飞臂结构焊接件", words:[
+{ w:"Lower", cn:"下", phonetic:"/ˈloʊər/" },
+{ w:"Jib", cn:"飞臂", phonetic:"/dʒɪb/" },
+{ w:"Boom", cn:"臂", phonetic:"/buːm/" },
+{ w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Keeper Pin", cn:"销轴", desc:"用于固定或连接的销", words:[
+{ w:"Keeper", cn:"保持器", phonetic:"/ˈkiːpər/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]},
+
+{ text:"Shaft", cn:"轴", desc:"用于传递旋转运动的零件", phonetic:"/ʃæft/" },
+
+{ text:"Swing Cylinder", cn:"摆动马达", desc:"用于回转或摆动的液压执行器", words:[
+{ w:"Swing", cn:"摆动", phonetic:"/swɪŋ/" },
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+]},
+
+{ text:"Base Boom Assembly", cn:"一节臂总成", desc:"最底部主臂结构", words:[
+{ w:"Base", cn:"基础", phonetic:"/beɪs/" },
+{ w:"Boom", cn:"臂架", phonetic:"/buːm/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]},
+
+{ text:"Second Boom Assembly", cn:"二节臂总成", desc:"第二节伸缩臂", words:[
+{ w:"Second", cn:"第二", phonetic:"/ˈsɛkənd/" },
+{ w:"Boom", cn:"臂架", phonetic:"/buːm/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]},
+
+{ text:"Third Boom Assembly", cn:"三节臂总成", desc:"第三节伸缩臂", words:[
+{ w:"Third", cn:"第三", phonetic:"/θɜːrd/" },
+{ w:"Boom", cn:"臂架", phonetic:"/buːm/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]},
+
+{ text:"Fourth Boom Assembly", cn:"四节臂总成", desc:"第四节伸缩臂", words:[
+{ w:"Fourth", cn:"第四", phonetic:"/fɔːrθ/" },
+{ w:"Boom", cn:"臂架", phonetic:"/buːm/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]}
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</body>
+</html>
