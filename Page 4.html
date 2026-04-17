@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+  { text:"Hinge", phonetic:"/hɪndʒ/", cn:"铰链", desc:"用于连接并允许转动的部件" },
+
+  { text:"Board / Plate", phonetic:"/bɔːrd pleɪt/", cn:"板", desc:"用于结构或安装的平面件", words:[
+    { w:"Board", cn:"板", phonetic:"/bɔːrd/" },
+    { w:"Plate", cn:"板件", phonetic:"/pleɪt/" }
+  ]},
+
+  { text:"Exhaust Pipe Assembly", phonetic:"/ɪɡˈzɔːst paɪp əˈsɛmbli/", cn:"排气管总成", desc:"用于排放废气的管路组件", words:[
+    { w:"Exhaust", cn:"排气", phonetic:"/ɪɡˈzɔːst/" },
+    { w:"Pipe", cn:"管", phonetic:"/paɪp/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Mounting Plate for Hinge", phonetic:"/ˈmaʊntɪŋ pleɪt fɔːr hɪndʒ/", cn:"铰链安装板", desc:"用于安装铰链的板件", words:[
+    { w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/" },
+    { w:"Plate", cn:"板", phonetic:"/pleɪt/" },
+    { w:"Hinge", cn:"铰链", phonetic:"/hɪndʒ/" }
+  ]},
+
+  { text:"Limiting Rubber Block", phonetic:"/ˈlɪmɪtɪŋ ˈrʌbər blɑːk/", cn:"限位橡胶块", desc:"用于限位和缓冲", words:[
+    { w:"Limiting", cn:"限位", phonetic:"/ˈlɪmɪtɪŋ/" },
+    { w:"Rubber", cn:"橡胶", phonetic:"/ˈrʌbər/" },
+    { w:"Block", cn:"块", phonetic:"/blɑːk/" }
+  ]},
+
+  { text:"Left Side Cover 1 Weldment", phonetic:"/left saɪd ˈkʌvər wɛldmənt/", cn:"左侧小覆盖件焊接体", desc:"左侧覆盖件焊接结构", words:[
+    { w:"Left", cn:"左侧", phonetic:"/left/" },
+    { w:"Side", cn:"侧", phonetic:"/saɪd/" },
+    { w:"Cover", cn:"覆盖件", phonetic:"/ˈkʌvər/" },
+    { w:"Weldment", cn:"焊接体", phonetic:"/ˈwɛldmənt/" }
+  ]},
+
+  { text:"Sheave Assembly", phonetic:"/ʃiːv əˈsɛmbli/", cn:"滑轮组件", desc:"由滑轮组成的组件", words:[
+    { w:"Sheave", cn:"滑轮", phonetic:"/ʃiːv/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Steel Wire Rope", phonetic:"/stiːl ˈwaɪər roʊp/", cn:"钢丝绳", desc:"用于承载或牵引", words:[
+    { w:"Steel", cn:"钢", phonetic:"/stiːl/" },
+    { w:"Wire", cn:"钢丝", phonetic:"/ˈwaɪər/" },
+    { w:"Rope", cn:"绳", phonetic:"/roʊp/" }
+  ]},
+
+  { text:"Sheave", phonetic:"/ʃiːv/", cn:"导向轮", desc:"用于导向钢丝绳" },
+
+  { text:"Connector Base", phonetic:"/kəˈnɛktər beɪs/", cn:"连接座", desc:"用于连接与固定", words:[
+    { w:"Connector", cn:"连接件", phonetic:"/kəˈnɛktər/" },
+    { w:"Base", cn:"底座", phonetic:"/beɪs/" }
+  ]},
+
+  { text:"Spring", phonetic:"/sprɪŋ/", cn:"弹簧", desc:"用于储能或缓冲" },
+
+  { text:"Roller", phonetic:"/ˈroʊlər/", cn:"滚轮", desc:"用于滚动支撑" },
+
+  { text:"Sheave Base", phonetic:"/ʃiːv beɪs/", cn:"滑轮座", desc:"用于安装滑轮", words:[
+    { w:"Sheave", cn:"滑轮", phonetic:"/ʃiːv/" },
+    { w:"Base", cn:"座", phonetic:"/beɪs/" }
+  ]},
+
+  { text:"Fuel System", phonetic:"/ˈfjuːəl ˈsɪstəm/", cn:"燃油系统", desc:"提供燃料的系统", words:[
+    { w:"Fuel", cn:"燃油", phonetic:"/ˈfjuːəl/" },
+    { w:"System", cn:"系统", phonetic:"/ˈsɪstəm/" }
+  ]},
+
+  { text:"Control System", phonetic:"/kənˈtroʊl ˈsɪstəm/", cn:"控制系统", desc:"用于控制设备运行", words:[
+    { w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+    { w:"System", cn:"系统", phonetic:"/ˈsɪstəm/" }
+  ]},
+
+  { text:"Air Intake and Exhaust System", phonetic:"/er ˈɪnteɪk ænd ɪɡˈzɔːst ˈsɪstəm/", cn:"进排气系统", desc:"控制空气进出与废气排放", words:[
+    { w:"Air", cn:"空气", phonetic:"/er/" },
+    { w:"Intake", cn:"进气", phonetic:"/ˈɪnteɪk/" },
+    { w:"Exhaust", cn:"排气", phonetic:"/ɪɡˈzɔːst/" },
+    { w:"System", cn:"系统", phonetic:"/ˈsɪstəm/" }
+  ]},
+
+  { text:"Transmission and Suspension System", phonetic:"/trænzˈmɪʃən ænd səˈspɛnʃən ˈsɪstəm/", cn:"传动与减震系统", desc:"负责动力传递与减震", words:[
+    { w:"Transmission", cn:"传动", phonetic:"/trænzˈmɪʃən/" },
+    { w:"Suspension", cn:"悬挂", phonetic:"/səˈspɛnʃən/" },
+    { w:"System", cn:"系统", phonetic:"/ˈsɪstəm/" }
+  ]},
+
+  { text:"Cooling System", phonetic:"/ˈkuːlɪŋ ˈsɪstəm/", cn:"冷却系统", desc:"用于散热降温", words:[
+    { w:"Cooling", cn:"冷却", phonetic:"/ˈkuːlɪŋ/" },
+    { w:"System", cn:"系统", phonetic:"/ˈsɪstəm/" }
+  ]},
+
+  { text:"Reducer Diesel Hose", phonetic:"/rɪˈduːsər ˈdiːzəl hoʊs/", cn:"变径柴油管", desc:"用于不同直径连接", words:[
+    { w:"Reducer", cn:"变径", phonetic:"/rɪˈduːsər/" },
+    { w:"Diesel", cn:"柴油", phonetic:"/ˈdiːzəl/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Diesel Hose", phonetic:"/ˈdiːzəl hoʊs/", cn:"柴油管", desc:"输送柴油的软管", words:[
+    { w:"Diesel", cn:"柴油", phonetic:"/ˈdiːzəl/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Steel Band Hose Clamp", phonetic:"/stiːl bænd hoʊs klæmp/", cn:"钢带式弹性卡箍", desc:"用于固定软管", words:[
+    { w:"Steel", cn:"钢", phonetic:"/stiːl/" },
+    { w:"Band", cn:"带", phonetic:"/bænd/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊs/" },
+    { w:"Clamp", cn:"卡箍", phonetic:"/klæmp/" }
+  ]},
+
+  { text:"Coarse Filter Suction Tube", phonetic:"/kɔːrs ˈfɪltər ˈsʌkʃən tuːb/", cn:"粗滤吸油管", desc:"用于吸油并粗过滤", words:[
+    { w:"Coarse", cn:"粗", phonetic:"/kɔːrs/" },
+    { w:"Filter", cn:"过滤器", phonetic:"/ˈfɪltər/" },
+    { w:"Suction", cn:"吸入", phonetic:"/ˈsʌkʃən/" },
+    { w:"Tube", cn:"管", phonetic:"/tuːb/" }
+  ]},
+
+  { text:"Fuel Tank Assembly", phonetic:"/ˈfjuːəl tæŋk əˈsɛmbli/", cn:"燃油箱总成", desc:"储存燃油的组件", words:[
+    { w:"Fuel", cn:"燃油", phonetic:"/ˈfjuːəl/" },
+    { w:"Tank", cn:"油箱", phonetic:"/tæŋk/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]}
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
