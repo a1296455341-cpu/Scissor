@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Vocabulary Fixed</title>
+
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:980px; margin:auto; }
+
+.item {
+  background:#fff;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.title { font-weight:bold; cursor:pointer; }
+
+.desc { color:#666; font-size:14px; margin-top:6px; }
+
+.split { margin-left:18px; margin-top:8px; }
+
+.word {
+  display:block;
+  margin-top:6px;
+  cursor:pointer;
+}
+
+.btn { color:#1a73e8; cursor:pointer; }
+
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+</style>
+</head>
+
+<body>
+<div class="container"></div>
+
+<script>
+
+// ================== 数据 ==================
+const parts = [
+
+  // ===== 词组（拆分 + 整体解释）=====
+  {
+    text:"Base Boom Weldment",
+    phonetic:"/beɪs buːm ˈwɛldmənt/",
+    cn:"一节臂焊接体",
+    desc:"臂架基础段焊接结构",
+    words:[
+      { w:"Base", phonetic:"/beɪs/", cn:"基础" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Weldment", phonetic:"/ˈwɛldmənt/", cn:"焊接件" }
+    ]
+  },
+
+  {
+    text:"Wear pad Assembly",
+    phonetic:"/wɛr pæd əˈsɛmbli/",
+    cn:"滑块组件",
+    desc:"耐磨滑动组件",
+    words:[
+      { w:"Wear", phonetic:"/wɛr/", cn:"磨损/耐磨" },
+      { w:"Pad", phonetic:"/pæd/", cn:"垫块" },
+      { w:"Assembly", phonetic:"/əˈsɛmbli/", cn:"总成" }
+    ]
+  },
+
+  {
+    text:"Soft Brush",
+    phonetic:"/sɒft brʌʃ/",
+    cn:"软毛刷",
+    desc:"清洁用软刷",
+    words:[
+      { w:"Soft", phonetic:"/sɒft/", cn:"柔软" },
+      { w:"Brush", phonetic:"/brʌʃ/", cn:"刷子" }
+    ]
+  },
+
+  {
+    text:"Wear Pad",
+    phonetic:"/wɛr pæd/",
+    cn:"滑块",
+    desc:"耐磨滑动块",
+    words:[
+      { w:"Wear", phonetic:"/wɛr/", cn:"磨损/耐磨" },
+      { w:"Pad", phonetic:"/pæd/", cn:"垫块" }
+    ]
+  },
+
+  {
+    text:"Contraction Rope Frame",
+    phonetic:"/kənˈtrækʃən roʊp freɪm/",
+    cn:"缩绳架",
+    desc:"钢丝绳收放结构",
+    words:[
+      { w:"Contraction", phonetic:"/kənˈtrækʃən/", cn:"收缩" },
+      { w:"Rope", phonetic:"/roʊp/", cn:"钢绳" },
+      { w:"Frame", phonetic:"/freɪm/", cn:"框架" }
+    ]
+  },
+
+  { text:"Block", phonetic:"/blɒk/", cn:"挡块", desc:"限位块" },
+
+  {
+    text:"Junction Box",
+    phonetic:"/ˈdʒʌŋkʃən bɒks/",
+    cn:"线盒",
+    desc:"电气连接盒",
+    words:[
+      { w:"Junction", phonetic:"/ˈdʒʌŋkʃən/", cn:"连接" },
+      { w:"Box", phonetic:"/bɒks/", cn:"盒" }
+    ]
+  },
+
+  {
+    text:"Second Boom Weldment",
+    phonetic:"/ˈsɛkənd buːm ˈwɛldmənt/",
+    cn:"二节臂焊接体",
+    desc:"第二段臂焊接结构",
+    words:[
+      { w:"Second", phonetic:"/ˈsɛkənd/", cn:"第二" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Weldment", phonetic:"/ˈwɛldmənt/", cn:"焊接件" }
+    ]
+  },
+
+  { text:"Plate", phonetic:"/pleɪt/", cn:"挡板", desc:"结构板件" },
+
+  {
+    text:"Third Boom Weldment",
+    phonetic:"/θɜːrd buːm ˈwɛldmənt/",
+    cn:"三节臂焊接体",
+    desc:"第三段臂焊接结构",
+    words:[
+      { w:"Third", phonetic:"/θɜːrd/", cn:"第三" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Weldment", phonetic:"/ˈwɛldmənt/", cn:"焊接件" }
+    ]
+  },
+
+  { text:"Pin", phonetic:"/pɪn/", cn:"销", desc:"定位销" },
+
+  {
+    text:"Fourth Boom Weldment",
+    phonetic:"/fɔːrθ buːm ˈwɛldmənt/",
+    cn:"四节臂焊接体",
+    desc:"第四段臂焊接结构",
+    words:[
+      { w:"Fourth", phonetic:"/fɔːrθ/", cn:"第四" },
+      { w:"Boom", phonetic:"/buːm/", cn:"臂" },
+      { w:"Weldment", phonetic:"/ˈwɛldmənt/", cn:"焊接件" }
+    ]
+  },
+
+  {
+    text:"Bent Plate",
+    phonetic:"/bɛnt pleɪt/",
+    cn:"弯板",
+    desc:"弯曲成型板件",
+    words:[
+      { w:"Bent", phonetic:"/bɛnt/", cn:"弯曲" },
+      { w:"Plate", phonetic:"/pleɪt/", cn:"板" }
+    ]
+  },
+
+  {
+    text:"Retainer Ring",
+    phonetic:"/rɪˈteɪnər rɪŋ/",
+    cn:"挡圈",
+    desc:"轴向固定环",
+    words:[
+      { w:"Retainer", phonetic:"/rɪˈteɪnər/", cn:"固定器" },
+      { w:"Ring", phonetic:"/rɪŋ/", cn:"环" }
+    ]
+  },
+
+  {
+    text:"Right Side Cover 1",
+    phonetic:"/raɪt saɪd ˈkʌvər/",
+    cn:"右侧小覆盖件",
+    desc:"右侧小型防护罩",
+    words:[
+      { w:"Right", phonetic:"/raɪt/", cn:"右" },
+      { w:"Side", phonetic:"/saɪd/", cn:"侧" },
+      { w:"Cover", phonetic:"/ˈkʌvər/", cn:"覆盖件" }
+    ]
+  },
+
+  {
+    text:"Right Side Cover 2",
+    phonetic:"/raɪt saɪd ˈkʌvər/",
+    cn:"右侧大覆盖件",
+    desc:"右侧大型防护罩",
+    words:[
+      { w:"Right", phonetic:"/raɪt/", cn:"右" },
+      { w:"Side", phonetic:"/saɪd/", cn:"侧" },
+      { w:"Cover", phonetic:"/ˈkʌvər/", cn:"覆盖件" }
+    ]
+  },
+
+  {
+    text:"Gas Spring",
+    phonetic:"/ɡæs sprɪŋ/",
+    cn:"气弹簧",
+    desc:"气压支撑弹簧",
+    words:[
+      { w:"Gas", phonetic:"/ɡæs/", cn:"气体" },
+      { w:"Spring", phonetic:"/sprɪŋ/", cn:"弹簧" }
+    ]
+  },
+
+  { text:"Support", phonetic:"/səˈpɔːrt/", cn:"支撑", desc:"支撑结构" },
+
+  {
+    text:"Die-lock",
+    phonetic:"/daɪ lɒk/",
+    cn:"锁扣",
+    desc:"模具锁定装置",
+    words:[
+      { w:"Die", phonetic:"/daɪ/", cn:"模具" },
+      { w:"Lock", phonetic:"/lɒk/", cn:"锁" }
+    ]
+  },
+
+  {
+    text:"Left Side Cover 1",
+    phonetic:"/lɛft saɪd ˈkʌvər/",
+    cn:"左侧小覆盖件",
+    desc:"左侧小防护罩",
+    words:[
+      { w:"Left", phonetic:"/lɛft/", cn:"左" },
+      { w:"Side", phonetic:"/saɪd/", cn:"侧" },
+      { w:"Cover", phonetic:"/ˈkʌvər/", cn:"覆盖件" }
+    ]
+  },
+
+  {
+    text:"Left Side Cover 2",
+    phonetic:"/lɛft saɪd ˈkʌvər/",
+    cn:"左侧大覆盖件",
+    desc:"左侧大型防护罩",
+    words:[
+      { w:"Left", phonetic:"/lɛft/", cn:"左" },
+      { w:"Side", phonetic:"/saɪd/", cn:"侧" },
+      { w:"Cover", phonetic:"/ˈkʌvər/", cn:"覆盖件" }
+    ]
+  },
+
+  { text:"Door", phonetic:"/dɔːr/", cn:"门", desc:"检修门" },
+
+  {
+    text:"Right Side Cover 2 Weldment",
+    phonetic:"/raɪt saɪd ˈkʌvər ˈwɛldmənt/",
+    cn:"右侧大覆盖件焊接体",
+    desc:"右侧覆盖件焊接结构",
+    words:[
+      { w:"Right", phonetic:"/raɪt/", cn:"右" },
+      { w:"Side", phonetic:"/saɪd/", cn:"侧" },
+      { w:"Cover", phonetic:"/ˈkʌvər/", cn:"覆盖件" },
+      { w:"Weldment", phonetic:"/ˈwɛldmənt/", cn:"焊接件" }
+    ]
+  },
+
+  { text:"Handle", phonetic:"/ˈhændl/", cn:"拉手", desc:"操作把手" },
+
+  {
+    text:"Door Lock",
+    phonetic:"/dɔːr lɒk/",
+    cn:"门锁",
+    desc:"门锁装置",
+    words:[
+      { w:"Door", phonetic:"/dɔːr/", cn:"门" },
+      { w:"Lock", phonetic:"/lɒk/", cn:"锁" }
+    ]
+  }
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-US";
+  speechSynthesis.speak(u);
+}
+
+function render(){
+  const container = document.querySelector(".container");
+
+  parts.forEach(p=>{
+    const item = document.createElement("div");
+    item.className = "item";
+
+    let html = "";
+
+    if(p.words){
+      html = `
+        <div class="split">
+          ${p.words.map(w=>`
+            <div class="word btn" onclick="speak('${w.w}')">
+              🔊 ${w.w}
+              <span class="phonetic">${w.phonetic}</span>
+              <span class="small">${w.cn}</span>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+
+      <div class="desc">${p.desc}</div>
+
+      ${html}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = render;
+
+</script>
+</body>
+</html>
