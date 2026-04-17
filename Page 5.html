@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts 2</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+  { text:"Water Pipe / Hose", phonetic:"/ˈwɔːtər paɪp hoʊs/", cn:"水管", desc:"用于输送水或液体", words:[
+    { w:"Water", cn:"水", phonetic:"/ˈwɔːtər/" },
+    { w:"Pipe", cn:"管", phonetic:"/paɪp/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Pivot Bolt", phonetic:"/ˈpɪvət boʊlt/", cn:"铰接螺栓", desc:"用于铰接连接", words:[
+    { w:"Pivot", cn:"铰接", phonetic:"/ˈpɪvət/" },
+    { w:"Bolt", cn:"螺栓", phonetic:"/boʊlt/" }
+  ]},
+
+  { text:"Harness Clamp", phonetic:"/ˈhɑːrnəs klæmp/", cn:"线夹", desc:"用于固定线束", words:[
+    { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnəs/" },
+    { w:"Clamp", cn:"夹", phonetic:"/klæmp/" }
+  ]},
+
+  { text:"Filter Mesh", phonetic:"/ˈfɪltər meʃ/", cn:"滤网", desc:"用于过滤杂质", words:[
+    { w:"Filter", cn:"过滤", phonetic:"/ˈfɪltər/" },
+    { w:"Mesh", cn:"网", phonetic:"/meʃ/" }
+  ]},
+
+  { text:"T-bolt Clamp", phonetic:"/tiː boʊlt klæmp/", cn:"T型抱箍", desc:"用于管路紧固", words:[
+    { w:"T-bolt", cn:"T型螺栓", phonetic:"/tiː boʊlt/" },
+    { w:"Clamp", cn:"抱箍", phonetic:"/klæmp/" }
+  ]},
+
+  { text:"Air Filter", phonetic:"/er ˈfɪltər/", cn:"空气滤清器", desc:"过滤空气杂质", words:[
+    { w:"Air", cn:"空气", phonetic:"/er/" },
+    { w:"Filter", cn:"滤清器", phonetic:"/ˈfɪltər/" }
+  ]},
+
+  { text:"Air Filter Sensor Connector", phonetic:"/er ˈfɪltər ˈsɛnsər kəˈnɛktər/", cn:"空滤传感器接头", desc:"连接传感器的接口", words:[
+    { w:"Air", cn:"空气", phonetic:"/er/" },
+    { w:"Filter", cn:"滤清器", phonetic:"/ˈfɪltər/" },
+    { w:"Sensor", cn:"传感器", phonetic:"/ˈsɛnsər/" },
+    { w:"Connector", cn:"接头", phonetic:"/kəˈnɛktər/" }
+  ]},
+
+  { text:"Pressure Differential Indicator", phonetic:"/ˈprɛʃər ˌdɪfəˈrɛnʃəl ˈɪndɪkeɪtər/", cn:"压差指示器", desc:"显示压力差", words:[
+    { w:"Pressure", cn:"压力", phonetic:"/ˈprɛʃər/" },
+    { w:"Differential", cn:"差值", phonetic:"/ˌdɪfəˈrɛnʃəl/" },
+    { w:"Indicator", cn:"指示器", phonetic:"/ˈɪndɪkeɪtər/" }
+  ]},
+
+  { text:"Air Intake Hose", phonetic:"/er ˈɪnteɪk hoʊs/", cn:"进气管", desc:"用于进气", words:[
+    { w:"Air", cn:"空气", phonetic:"/er/" },
+    { w:"Intake", cn:"进气", phonetic:"/ˈɪnteɪk/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Air Filter Clamp", phonetic:"/er ˈfɪltər klæmp/", cn:"空滤抱箍", desc:"固定空气滤清器", words:[
+    { w:"Air", cn:"空气", phonetic:"/er/" },
+    { w:"Filter", cn:"滤清器", phonetic:"/ˈfɪltər/" },
+    { w:"Clamp", cn:"抱箍", phonetic:"/klæmp/" }
+  ]},
+
+  { text:"Muffler", phonetic:"/ˈmʌflər/", cn:"消声器", desc:"降低噪音" },
+
+  { text:"Clamp", phonetic:"/klæmp/", cn:"环箍", desc:"用于固定管件" },
+
+  { text:"Muffler Clamp", phonetic:"/ˈmʌflər klæmp/", cn:"消音器抱箍", desc:"固定消音器", words:[
+    { w:"Muffler", cn:"消音器", phonetic:"/ˈmʌflər/" },
+    { w:"Clamp", cn:"抱箍", phonetic:"/klæmp/" }
+  ]},
+
+  { text:"Pipe Clamp", phonetic:"/paɪp klæmp/", cn:"管带", desc:"固定管道", words:[
+    { w:"Pipe", cn:"管", phonetic:"/paɪp/" },
+    { w:"Clamp", cn:"卡箍", phonetic:"/klæmp/" }
+  ]},
+
+  { text:"Muffler Bracket", phonetic:"/ˈmʌflər ˈbrækɪt/", cn:"消音器支架", desc:"支撑消音器", words:[
+    { w:"Muffler", cn:"消音器", phonetic:"/ˈmʌflər/" },
+    { w:"Bracket", cn:"支架", phonetic:"/ˈbrækɪt/" }
+  ]},
+
+  { text:"Crankcase Ventilation Tube", phonetic:"/ˈkræŋkkeɪs ˌvɛntɪˈleɪʃən tuːb/", cn:"曲轴箱通风管", desc:"用于通风排气", words:[
+    { w:"Crankcase", cn:"曲轴箱", phonetic:"/ˈkræŋkkeɪs/" },
+    { w:"Ventilation", cn:"通风", phonetic:"/ˌvɛntɪˈleɪʃən/" },
+    { w:"Tube", cn:"管", phonetic:"/tuːb/" }
+  ]},
+
+  { text:"Muffler Drain Tube", phonetic:"/ˈmʌflər dreɪn tuːb/", cn:"消音器排水管", desc:"排出冷凝水", words:[
+    { w:"Muffler", cn:"消音器", phonetic:"/ˈmʌflər/" },
+    { w:"Drain", cn:"排水", phonetic:"/dreɪn/" },
+    { w:"Tube", cn:"管", phonetic:"/tuːb/" }
+  ]},
+
+  { text:"Dust Ejector Valve", phonetic:"/dʌst ɪˈdʒɛktər vælv/", cn:"排尘阀", desc:"排出灰尘", words:[
+    { w:"Dust", cn:"灰尘", phonetic:"/dʌst/" },
+    { w:"Ejector", cn:"排出器", phonetic:"/ɪˈdʒɛktər/" },
+    { w:"Valve", cn:"阀", phonetic:"/vælv/" }
+  ]},
+
+  { text:"End Cap Assembly", phonetic:"/ɛnd kæp əˈsɛmbli/", cn:"端盖组件", desc:"封闭结构端部", words:[
+    { w:"End", cn:"端", phonetic:"/ɛnd/" },
+    { w:"Cap", cn:"盖", phonetic:"/kæp/" },
+    { w:"Assembly", cn:"组件", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Air Filter Main Filter Element", phonetic:"/er ˈfɪltər meɪn ˈfɪltər ˈɛləmənt/", cn:"空气滤清器主滤芯", desc:"主要过滤部件", words:[
+    { w:"Air", cn:"空气", phonetic:"/er/" },
+    { w:"Filter", cn:"滤清器", phonetic:"/ˈfɪltər/" },
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Element", cn:"滤芯", phonetic:"/ˈɛləmənt/" }
+  ]},
+
+  { text:"Air Filter Safety Filter Element", phonetic:"/er ˈfɪltər ˈseɪfti ˈɛləmənt/", cn:"空气滤清器安全滤芯", desc:"备用保护滤芯", words:[
+    { w:"Air", cn:"空气", phonetic:"/er/" },
+    { w:"Filter", cn:"滤清器", phonetic:"/ˈfɪltər/" },
+    { w:"Safety", cn:"安全", phonetic:"/ˈseɪfti/" },
+    { w:"Element", cn:"滤芯", phonetic:"/ˈɛləmənt/" }
+  ]},
+
+  { text:"Housing Assembly", phonetic:"/ˈhaʊzɪŋ əˈsɛmbli/", cn:"壳体组件", desc:"外壳结构", words:[
+    { w:"Housing", cn:"壳体", phonetic:"/ˈhaʊzɪŋ/" },
+    { w:"Assembly", cn:"组件", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Fan", phonetic:"/fæn/", cn:"风扇", desc:"用于散热或通风" },
+
+  { text:"Diesel Engine", phonetic:"/ˈdiːzəl ˈɛnʤɪn/", cn:"发动机", desc:"柴油动力装置", words:[
+    { w:"Diesel", cn:"柴油", phonetic:"/ˈdiːzəl/" },
+    { w:"Engine", cn:"发动机", phonetic:"/ˈɛnʤɪn/" }
+  ]},
+
+  { text:"Limit Plate", phonetic:"/ˈlɪmɪt pleɪt/", cn:"限位板", desc:"用于限制位置", words:[
+    { w:"Limit", cn:"限位", phonetic:"/ˈlɪmɪt/" },
+    { w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+  ]}
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
