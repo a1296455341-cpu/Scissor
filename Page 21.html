@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{ text:"Linkage Spacer", phonetic:"/ˈlɪŋkɪdʒ ˈspeɪsər/", cn:"叉架隔垫", desc:"连接间隔垫片", words:[
+{ w:"Linkage", cn:"叉架/连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Spacer", cn:"隔垫", phonetic:"/ˈspeɪsər/" }
+]},
+
+{ text:"Angle Sensor Protective Cover", phonetic:"/ˈæŋɡəl ˈsensər prəˈtɛktɪv ˈkʌvər/", cn:"角度传感器保护罩", desc:"传感器防护罩", words:[
+{ w:"Angle", cn:"角度", phonetic:"/ˈæŋɡəl/" },
+{ w:"Sensor", cn:"传感器", phonetic:"/ˈsensər/" },
+{ w:"Protective", cn:"防护", phonetic:"/prəˈtɛktɪv/" },
+{ w:"Cover", cn:"罩", phonetic:"/ˈkʌvər/" }
+]},
+
+{ text:"Chassis Left Wear Pad", phonetic:"/ˈʃæsi lɛft weər pæd/", cn:"底盘左滑块", desc:"底盘耐磨块", words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Left", cn:"左", phonetic:"/lɛft/" },
+{ w:"Wear", cn:"磨损", phonetic:"/weər/" },
+{ w:"Pad", cn:"滑块", phonetic:"/pæd/" }
+]},
+
+{ text:"Chassis Right Wear Pad", phonetic:"/ˈʃæsi raɪt weər pæd/", cn:"底盘右滑块", desc:"底盘耐磨块", words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Right", cn:"右", phonetic:"/raɪt/" },
+{ w:"Wear", cn:"磨损", phonetic:"/weər/" },
+{ w:"Pad", cn:"滑块", phonetic:"/pæd/" }
+]},
+
+{ text:"Platform Wear Pad", phonetic:"/ˈplætˌfɔːrm weər pæd/", cn:"平台滑块", desc:"平台耐磨块", words:[
+{ w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+{ w:"Wear", cn:"磨损", phonetic:"/weər/" },
+{ w:"Pad", cn:"滑块", phonetic:"/pæd/" }
+]},
+
+{ text:"Platform Keeper Pin", phonetic:"/ˈplætˌfɔːrm ˈkiːpər pɪn/", cn:"平台销轴", desc:"固定销轴", words:[
+{ w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+{ w:"Keeper", cn:"固定", phonetic:"/ˈkiːpər/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]},
+
+{ text:"Long Keeper Pin", phonetic:"/lɔːŋ ˈkiːpər pɪn/", cn:"长销轴", desc:"长固定销轴", words:[
+{ w:"Long", cn:"长", phonetic:"/lɔːŋ/" },
+{ w:"Keeper", cn:"固定", phonetic:"/ˈkiːpər/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]},
+
+{ text:"Short Keeper Pin", phonetic:"/ʃɔːrt ˈkiːpər pɪn/", cn:"短销轴", desc:"短固定销轴", words:[
+{ w:"Short", cn:"短", phonetic:"/ʃɔːrt/" },
+{ w:"Keeper", cn:"固定", phonetic:"/ˈkiːpər/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]},
+
+{ text:"Outer Retaining Ring", phonetic:"/ˈaʊtər rɪˈteɪnɪŋ rɪŋ/", cn:"外挡环", desc:"外部卡环", words:[
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Retaining", cn:"保持", phonetic:"/rɪˈteɪnɪŋ/" },
+{ w:"Ring", cn:"环", phonetic:"/rɪŋ/" }
+]},
+
+{ text:"Inner Retaining Ring Assembly", phonetic:"/ˈɪnər rɪˈteɪnɪŋ rɪŋ əˈsɛmbli/", cn:"内挡环组件", desc:"内卡环总成", words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Retaining", cn:"保持", phonetic:"/rɪˈteɪnɪŋ/" },
+{ w:"Ring", cn:"环", phonetic:"/rɪŋ/" },
+{ w:"Assembly", cn:"组件", phonetic:"/əˈsɛmbli/" }
+]},
+
+{ text:"Long Cable Routing Channel", phonetic:"/lɔːŋ ˈkeɪbəl ˈraʊtɪŋ ˈtʃænəl/", cn:"长轴走线槽", desc:"电缆走线通道", words:[
+{ w:"Long", cn:"长", phonetic:"/lɔːŋ/" },
+{ w:"Cable", cn:"电缆", phonetic:"/ˈkeɪbəl/" },
+{ w:"Routing", cn:"布线", phonetic:"/ˈraʊtɪŋ/" },
+{ w:"Channel", cn:"槽", phonetic:"/ˈtʃænəl/" }
+]},
+
+{ text:"Short Cable Routing Channel", phonetic:"/ʃɔːrt ˈkeɪbəl ˈraʊtɪŋ ˈtʃænəl/", cn:"短轴走线槽", desc:"电缆走线通道", words:[
+{ w:"Short", cn:"短", phonetic:"/ʃɔːrt/" },
+{ w:"Cable", cn:"电缆", phonetic:"/ˈkeɪbəl/" },
+{ w:"Routing", cn:"布线", phonetic:"/ˈraʊtɪŋ/" },
+{ w:"Channel", cn:"槽", phonetic:"/ˈtʃænəl/" }
+]},
+
+{ text:"Cylinder Pin", phonetic:"/ˈsɪlɪndər pɪn/", cn:"油缸销轴", desc:"油缸连接销", words:[
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]},
+
+{ text:"Cotter Pin", phonetic:"/ˈkɒtər pɪn/", cn:"活节光杆", desc:"开口销", words:[
+{ w:"Cotter", cn:"开口", phonetic:"/ˈkɒtər/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]},
+
+{ text:"Chassis Long Pin", phonetic:"/ˈʃæsi lɔːŋ pɪn/", cn:"底盘长销轴", desc:"底盘长定位销", words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Long", cn:"长", phonetic:"/lɔːŋ/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]},
+
+{ text:"Protective Sleeve", phonetic:"/prəˈtɛktɪv sliːv/", cn:"保护套", desc:"防护套", words:[
+{ w:"Protective", cn:"防护", phonetic:"/prəˈtɛktɪv/" },
+{ w:"Sleeve", cn:"套", phonetic:"/sliːv/" }
+]},
+
+{ text:"Safety Chock", phonetic:"/ˈseɪfti tʃɒk/", cn:"安全支架", desc:"安全止挡装置", words:[
+{ w:"Safety", cn:"安全", phonetic:"/ˈseɪfti/" },
+{ w:"Chock", cn:"止挡", phonetic:"/tʃɒk/" }
+]},
+
+{ text:"Chassis Assembly", phonetic:"/ˈʃæsi əˈsɛmbli/", cn:"底盘部装", desc:"底盘总成", words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]},
+
+{ text:"Micro Ladder Assembly", phonetic:"/ˈmaɪkroʊ ˈlædər əˈsɛmbli/", cn:"车梯总成", desc:"小型登梯结构", words:[
+{ w:"Micro", cn:"微型", phonetic:"/ˈmaɪkroʊ/" },
+{ w:"Ladder", cn:"梯子", phonetic:"/ˈlædər/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]},
+
+{ text:"Steering Assembly", phonetic:"/ˈstɪrɪŋ əˈsɛmbli/", cn:"转向机构装配总成", desc:"转向系统总成", words:[
+{ w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]},
+
+{ text:"Hydraulic Tank Assembly", phonetic:"/haɪˈdrɔːlɪk tæŋk əˈsɛmbli/", cn:"液压箱总成", desc:"液压油箱总成", words:[
+{ w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+{ w:"Tank", cn:"油箱", phonetic:"/tæŋk/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]},
+
+{ text:"Battery Box Assembly", phonetic:"/ˈbætəri bɒks əˈsɛmbli/", cn:"电池箱总成", desc:"电池箱结构", words:[
+{ w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+{ w:"Box", cn:"箱", phonetic:"/bɒks/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]},
+
+{ text:"Tray Pivot Shaft", phonetic:"/treɪ ˈpɪvət ʃæft/", cn:"托盘销轴", desc:"托盘转轴", words:[
+{ w:"Tray", cn:"托盘", phonetic:"/treɪ/" },
+{ w:"Pivot", cn:"枢轴", phonetic:"/ˈpɪvət/" },
+{ w:"Shaft", cn:"轴", phonetic:"/ʃæft/" }
+]},
+
+{ text:"Chassis Weldment", phonetic:"/ˈʃæsi ˈwɛldmənt/", cn:"底盘焊合", desc:"底盘焊接结构", words:[
+{ w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]}
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    const wordsHtml = p.words.map(w=>`
+      <span class="word btn" onclick="speak('${w.w}')">
+        🔊 ${w.w}
+        <span class="phonetic">${w.phonetic}</span>
+        <span class="small">${w.cn}</span>
+      </span>
+    `).join("");
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
