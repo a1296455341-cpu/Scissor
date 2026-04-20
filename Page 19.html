@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Solenoid Coil", phonetic:"/ˈsɒlənɔɪd kɔɪl/", cn:"线圈", desc:"电磁驱动线圈", words:[
+    { w:"Solenoid", cn:"电磁阀", phonetic:"/ˈsɒlənɔɪd/" },
+    { w:"Coil", cn:"线圈", phonetic:"/kɔɪl/" }
+  ]},
+
+  { text:"Propotional Relief Valve", phonetic:"/prəˈpɔːʃənl rɪˈliːf vælv/", cn:"比例溢流阀", desc:"按比例控制压力溢流阀", words:[
+    { w:"Propotional", cn:"比例", phonetic:"/prəˈpɔːʃənl/" },
+    { w:"Relief", cn:"泄压", phonetic:"/rɪˈliːf/" },
+    { w:"Valve", cn:"阀", phonetic:"/vælv/" }
+  ]},
+
+  { text:"Gear Sector Shaft", phonetic:"/ɡɪər ˈsɛktər ʃæft/", cn:"选档软轴", desc:"换挡机构传动轴", words:[
+    { w:"Gear", cn:"齿轮", phonetic:"/ɡɪər/" },
+    { w:"Sector", cn:"扇形", phonetic:"/ˈsɛktər/" },
+    { w:"Shaft", cn:"轴", phonetic:"/ʃæft/" }
+  ]},
+
+  { text:"Upper Lift Cylinder Valve Block", phonetic:"/ˈʌpər lɪft ˈsɪlɪndər vælv blɑːk/", cn:"上举升油缸阀块", desc:"控制上举升油缸的阀块", words:[
+    { w:"Upper", cn:"上部", phonetic:"/ˈʌpər/" },
+    { w:"Lift", cn:"举升", phonetic:"/lɪft/" },
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+    { w:"Valve", cn:"阀", phonetic:"/vælv/" },
+    { w:"Block", cn:"块", phonetic:"/blɑːk/" }
+  ]},
+
+  { text:"Valve Block", phonetic:"/vælv blɑːk/", cn:"阀块", desc:"液压控制阀集成块", words:[
+    { w:"Valve", cn:"阀", phonetic:"/vælv/" },
+    { w:"Block", cn:"块", phonetic:"/blɑːk/" }
+  ]},
+
+  { text:"Lower Valve Block Guard", phonetic:"/ˈloʊər vælv blɑːk ɡɑːrd/", cn:"下阀块护罩", desc:"保护下阀块结构", words:[
+    { w:"Lower", cn:"下部", phonetic:"/ˈloʊər/" },
+    { w:"Valve", cn:"阀", phonetic:"/vælv/" },
+    { w:"Block", cn:"块", phonetic:"/blɑːk/" },
+    { w:"Guard", cn:"护罩", phonetic:"/ɡɑːrd/" }
+  ]},
+
+  { text:"Scissor Assembly", phonetic:"/ˈsɪzər əˈsɛmbli/", cn:"叉架总成", desc:"剪叉式结构组件", words:[
+    { w:"Scissor", cn:"剪叉", phonetic:"/ˈsɪzər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Chassis Assembly", phonetic:"/ˈʃæsi əˈsɛmbli/", cn:"底座总成", desc:"设备底盘总成", words:[
+    { w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Pothole Protection Assembly", phonetic:"/ˈpɒthoʊl prəˈtɛkʃən əˈsɛmbli/", cn:"坑洞保护机构", desc:"防坑洞保护系统", words:[
+    { w:"Pothole", cn:"坑洞", phonetic:"/ˈpɒthoʊl/" },
+    { w:"Protection", cn:"保护", phonetic:"/prəˈtɛkʃən/" },
+    { w:"Assembly", cn:"机构", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Rear Axle Assembly", phonetic:"/rɪər ˈæksəl əˈsɛmbli/", cn:"后桥总成", desc:"车辆后桥组件", words:[
+    { w:"Rear", cn:"后", phonetic:"/rɪər/" },
+    { w:"Axle", cn:"车桥", phonetic:"/ˈæksəl/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Front Axle Assembly", phonetic:"/frʌnt ˈæksəl əˈsɛmbli/", cn:"前桥总成", desc:"车辆前桥组件", words:[
+    { w:"Front", cn:"前", phonetic:"/frʌnt/" },
+    { w:"Axle", cn:"车桥", phonetic:"/ˈæksəl/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Decal-SPS1414 Decals Layout", phonetic:"/ˈdiːkæl ˈleɪaʊt/", cn:"整机标识布置图", desc:"整机贴标布置说明" },
+
+  { text:"Main Platform", phonetic:"/meɪn ˈplætˌfɔːrm/", cn:"主平台", desc:"主要作业平台", words:[
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" }
+  ]},
+
+  { text:"Extension Platform", phonetic:"/ɪkˈstɛnʃən ˈplætˌfɔːrm/", cn:"延伸平台", desc:"可伸缩平台", words:[
+    { w:"Extension", cn:"延伸", phonetic:"/ɪkˈstɛnʃən/" },
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" }
+  ]},
+
+  { text:"Main Platform Weldment", phonetic:"/meɪn ˈplætˌfɔːrm ˈwɛldmənt/", cn:"主平台焊合", desc:"主平台焊接结构", words:[
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+    { w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+
+  { text:"Roller Bracket", phonetic:"/ˈroʊlər ˈbrækɪt/", cn:"滚轮架", desc:"滚轮支撑结构", words:[
+    { w:"Roller", cn:"滚轮", phonetic:"/ˈroʊlər/" },
+    { w:"Bracket", cn:"支架", phonetic:"/ˈbrækɪt/" }
+  ]},
+
+  { text:"Roller Assembly", phonetic:"/ˈroʊlər əˈsɛmbli/", cn:"滚轮组件", desc:"滚轮装配件", words:[
+    { w:"Roller", cn:"滚轮", phonetic:"/ˈroʊlər/" },
+    { w:"Assembly", cn:"组件", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Main Platform Rear Door", phonetic:"/meɪn ˈplætˌfɔːrm rɪər dɔːr/", cn:"主平台后门", desc:"平台后部门结构", words:[
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+    { w:"Rear", cn:"后", phonetic:"/rɪər/" },
+    { w:"Door", cn:"门", phonetic:"/dɔːr/" }
+  ]},
+
+  { text:"Main Platform Right Guardrail Weldment", phonetic:"/meɪn ˈplætˌfɔːrm raɪt ˈɡɑːrdreɪl ˈwɛldmənt/", cn:"主平台右护栏焊合", desc:"右侧护栏焊接结构", words:[
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+    { w:"Right", cn:"右", phonetic:"/raɪt/" },
+    { w:"Guardrail", cn:"护栏", phonetic:"/ˈɡɑːrdreɪl/" },
+    { w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+
+  { text:"Main Platform Left Guardrail Weldment", phonetic:"/meɪn ˈplætˌfɔːrm lɛft ˈɡɑːrdreɪl ˈwɛldmənt/", cn:"主平台左护栏焊合", desc:"左侧护栏焊接结构", words:[
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+    { w:"Left", cn:"左", phonetic:"/lɛft/" },
+    { w:"Guardrail", cn:"护栏", phonetic:"/ˈɡɑːrdreɪl/" },
+    { w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+
+  { text:"Steel Pin", phonetic:"/stiːl pɪn/", cn:"钢插销", desc:"用于定位连接销", words:[
+    { w:"Steel", cn:"钢", phonetic:"/stiːl/" },
+    { w:"Pin", cn:"销", phonetic:"/pɪn/" }
+  ]},
+
+  { text:"Swing Gate Weldment", phonetic:"/swɪŋ ɡeɪt ˈwɛldmənt/", cn:"半旋转门焊合", desc:"旋转门焊接组件", words:[
+    { w:"Swing", cn:"旋转", phonetic:"/swɪŋ/" },
+    { w:"Gate", cn:"门", phonetic:"/ɡeɪt/" },
+    { w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+
+  { text:"Bracket Weldment", phonetic:"/ˈbrækɪt ˈwɛldmənt/", cn:"支架焊接", desc:"焊接支架结构", words:[
+    { w:"Bracket", cn:"支架", phonetic:"/ˈbrækɪt/" },
+    { w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+
+  { text:"Roller Bearing", phonetic:"/ˈroʊlər ˈbeərɪŋ/", cn:"滚动轴承", desc:"滚动支撑轴承", words:[
+    { w:"Roller", cn:"滚动", phonetic:"/ˈroʊlər/" },
+    { w:"Bearing", cn:"轴承", phonetic:"/ˈbeərɪŋ/" }
+  ]},
+
+  { text:"Extension Platform Weldment", phonetic:"/ɪkˈstɛnʃən ˈplætˌfɔːrm ˈwɛldmənt/", cn:"延伸平台焊合", desc:"延伸平台焊接结构", words:[
+    { w:"Extension", cn:"延伸", phonetic:"/ɪkˈstɛnʃən/" },
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+    { w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
