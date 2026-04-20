@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Pressure Reducing Valve", phonetic:"/ˈprɛʃər rɪˈduːsɪŋ ˈvælv/", cn:"减压阀", desc:"降低系统压力", words:[
+    { w:"Pressure", cn:"压力", phonetic:"/ˈprɛʃər/" },
+    { w:"Reducing", cn:"减压", phonetic:"/rɪˈduːsɪŋ/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Hydraulic Reservoir Assembly", phonetic:"/haɪˈdrɔːlɪk ˈrɛzərvwɑːr əˈsɛmbli/", cn:"液压油箱装配总成", desc:"储存液压油", words:[
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Reservoir", cn:"油箱", phonetic:"/ˈrɛzərvwɑːr/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Radiator Assembly", phonetic:"/ˈreɪdieɪtər əˈsɛmbli/", cn:"散热器总成", desc:"用于散热", words:[
+    { w:"Radiator", cn:"散热器", phonetic:"/ˈreɪdieɪtər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Turntable Main Valve Assembly", phonetic:"/ˈtɜːrnˌteɪbəl meɪn ˈvælv əˈsɛmbli/", cn:"转台主阀组件", desc:"转台主控制阀", words:[
+    { w:"Turntable", cn:"转台", phonetic:"/ˈtɜːrnˌteɪbəl/" },
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Turntable Pump Assembly", phonetic:"/ˈtɜːrnˌteɪbəl pʌmp əˈsɛmbli/", cn:"转台泵组", desc:"转台液压泵组件", words:[
+    { w:"Turntable", cn:"转台", phonetic:"/ˈtɜːrnˌteɪbəl/" },
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Filter Assembly", phonetic:"/ˈfɪltər əˈsɛmbli/", cn:"过滤器组件", desc:"过滤杂质", words:[
+    { w:"Filter", cn:"过滤器", phonetic:"/ˈfɪltər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Swing Motor Assembly", phonetic:"/swɪŋ ˈmoʊtər əˈsɛmbli/", cn:"回转马达组件", desc:"用于回转驱动", words:[
+    { w:"Swing", cn:"回转", phonetic:"/swɪŋ/" },
+    { w:"Motor", cn:"马达", phonetic:"/ˈmoʊtər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Separate-Mounted Emergency Pump", phonetic:"/ˈsɛpəreɪt ˈmaʊntɪd ɪˈmɜːrdʒənsi pʌmp/", cn:"应急泵分装", desc:"独立安装的应急泵", words:[
+    { w:"Separate-Mounted", cn:"分装", phonetic:"/ˈsɛpəreɪt ˈmaʊntɪd/" },
+    { w:"Emergency", cn:"应急", phonetic:"/ɪˈmɜːrdʒənsi/" },
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" }
+  ]},
+  { text:"T-nut", phonetic:"/ˈtiː nʌt/", cn:"T型螺母", desc:"T型结构螺母" },
+  { text:"Reservoir Weldment Assembly", phonetic:"/ˈrɛzərvwɑːr ˈwɛldmənt əˈsɛmbli/", cn:"油箱焊接总成", desc:"焊接结构油箱", words:[
+    { w:"Reservoir", cn:"油箱", phonetic:"/ˈrɛzərvwɑːr/" },
+    { w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Gasket", phonetic:"/ˈɡæskɪt/", cn:"密封垫", desc:"用于密封连接面" },
+  { text:"Flange Cover", phonetic:"/flændʒ ˈkʌvər/", cn:"法兰盖", desc:"覆盖法兰端口", words:[
+    { w:"Flange", cn:"法兰", phonetic:"/flændʒ/" },
+    { w:"Cover", cn:"盖", phonetic:"/ˈkʌvər/" }
+  ]},
+  { text:"Return Oil Filter", phonetic:"/rɪˈtɜːrn ɔɪl ˈfɪltər/", cn:"回油过滤器", desc:"过滤回油杂质", words:[
+    { w:"Return", cn:"回流", phonetic:"/rɪˈtɜːrn/" },
+    { w:"Oil", cn:"油", phonetic:"/ɔɪl/" },
+    { w:"Filter", cn:"过滤器", phonetic:"/ˈfɪltər/" }
+  ]},
+  { text:"Suction Filter", phonetic:"/ˈsʌkʃən ˈfɪltər/", cn:"吸油过滤器", desc:"吸油端过滤", words:[
+    { w:"Suction", cn:"吸入", phonetic:"/ˈsʌkʃən/" },
+    { w:"Filter", cn:"过滤器", phonetic:"/ˈfɪltər/" }
+  ]},
+  { text:"Ball Valve", phonetic:"/bɔːl ˈvælv/", cn:"球阀", desc:"球体控制流体", words:[
+    { w:"Ball", cn:"球", phonetic:"/bɔːl/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"End Straight Union Fitting", phonetic:"/ɛnd streɪt ˈjuːniən ˈfɪtɪŋ/", cn:"端直通组合接头", desc:"端部直通连接", words:[
+    { w:"End", cn:"端部", phonetic:"/ɛnd/" },
+    { w:"Straight", cn:"直通", phonetic:"/streɪt/" },
+    { w:"Union", cn:"组合", phonetic:"/ˈjuːniən/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Plug", phonetic:"/plʌɡ/", cn:"螺塞", desc:"用于封堵接口" },
+  { text:"Level Gauge", phonetic:"/ˈlɛvəl ɡeɪdʒ/", cn:"液位计", desc:"测量液位高度", words:[
+    { w:"Level", cn:"液位", phonetic:"/ˈlɛvəl/" },
+    { w:"Gauge", cn:"计", phonetic:"/ɡeɪdʒ/" }
+  ]},
+  { text:"Flange Gasket", phonetic:"/flændʒ ˈɡæskɪt/", cn:"法兰密封垫", desc:"法兰密封件", words:[
+    { w:"Flange", cn:"法兰", phonetic:"/flændʒ/" },
+    { w:"Gasket", cn:"密封垫", phonetic:"/ˈɡæskɪt/" }
+  ]},
+  { text:"Fuel Inlet Strainer", phonetic:"/ˈfjuːəl ˈɪnlɛt ˈstreɪnər/", cn:"加油滤网", desc:"过滤进入燃油杂质", words:[
+    { w:"Fuel", cn:"燃油", phonetic:"/ˈfjuːəl/" },
+    { w:"Inlet", cn:"入口", phonetic:"/ˈɪnlɛt/" },
+    { w:"Strainer", cn:"滤网", phonetic:"/ˈstreɪnər/" }
+  ]},
+  { text:"Air-cooled Radiator", phonetic:"/ɛr kuːld ˈreɪdieɪtər/", cn:"风冷散热器", desc:"通过空气冷却", words:[
+    { w:"Air-cooled", cn:"风冷", phonetic:"/ɛr kuːld/" },
+    { w:"Radiator", cn:"散热器", phonetic:"/ˈreɪdieɪtər/" }
+  ]},
+  { text:"Straight Reducer Fitting", phonetic:"/streɪt rɪˈduːsər ˈfɪtɪŋ/", cn:"对接式变径接头", desc:"直通变径连接", words:[
+    { w:"Straight", cn:"直通", phonetic:"/streɪt/" },
+    { w:"Reducer", cn:"变径", phonetic:"/rɪˈduːsər/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Main Valve Mounting Plate", phonetic:"/meɪn ˈvælv ˈmaʊntɪŋ pleɪt/", cn:"主阀安装板", desc:"用于安装主阀", words:[
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" },
+    { w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/" },
+    { w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+  ]},
+  { text:"Electrically Controlled Directional Valve", phonetic:"/ɪˈlɛktrɪkli kənˈtroʊld dəˈrɛkʃənl ˈvælv/", cn:"电控多路阀", desc:"电控方向阀", words:[
+    { w:"Electrically", cn:"电控", phonetic:"/ɪˈlɛktrɪkli/" },
+    { w:"Controlled", cn:"控制", phonetic:"/kənˈtroʊld/" },
+    { w:"Directional", cn:"多路", phonetic:"/dəˈrɛkʃənl/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Open-loop Piston Pump", phonetic:"/ˈoʊpən luːp ˈpɪstən pʌmp/", cn:"开式柱塞泵", desc:"开式回路液压泵", words:[
+    { w:"Open-loop", cn:"开式回路", phonetic:"/ˈoʊpən luːp/" },
+    { w:"Piston", cn:"柱塞", phonetic:"/ˈpɪstən/" },
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
