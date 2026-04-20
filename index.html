@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script>
+    const id = new URLSearchParams(location.search).get("id");
+
+    const map = {
+      "1": "https://scissor-8cj.pages.dev/Page1.html",
+      "2": "https://scissor-8cj.pages.dev/Page2.html"
+    };
+
+    if (map[id]) {
+      location.replace(map[id]);
+    }
+  </script>
+</head>
+<body>
+  Loading...
+</body>
+</html>
