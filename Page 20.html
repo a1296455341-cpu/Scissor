@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{ text:"Mechanical Stop", phonetic:"/məˈkænɪkəl stɒp/", cn:"机械限位", desc:"机械限位装置", words:[
+{ w:"Mechanical", cn:"机械", phonetic:"/məˈkænɪkəl/" },
+{ w:"Stop", cn:"限位", phonetic:"/stɒp/" }
+]},
+
+{ text:"Front Guardrail Weldment", phonetic:"/frʌnt ˈɡɑːrdreɪl ˈwɛldmənt/", cn:"前护拦焊合", desc:"前护栏结构", words:[
+{ w:"Front", cn:"前", phonetic:"/frʌnt/" },
+{ w:"Guardrail", cn:"护栏", phonetic:"/ˈɡɑːrdreɪl/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Extension Platform Right Guardrail Weldment", phonetic:"/ɪkˈstɛnʃən ˈplætˌfɔːrm raɪt ˈɡɑːrdreɪl ˈwɛldmənt/", cn:"延伸平台右护栏焊合", desc:"右护栏结构", words:[
+{ w:"Extension", cn:"延伸", phonetic:"/ɪkˈstɛnʃən/" },
+{ w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+{ w:"Right", cn:"右", phonetic:"/raɪt/" },
+{ w:"Guardrail", cn:"护栏", phonetic:"/ˈɡɑːrdreɪl/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Extension Platform Left Guardrail Weldment", phonetic:"/ɪkˈstɛnʃən ˈplætˌfɔːrm lɛft ˈɡɑːrdreɪl ˈwɛldmənt/", cn:"延伸平台左护栏焊合", desc:"左护栏结构", words:[
+{ w:"Extension", cn:"延伸", phonetic:"/ɪkˈstɛnʃən/" },
+{ w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+{ w:"Left", cn:"左", phonetic:"/lɛft/" },
+{ w:"Guardrail", cn:"护栏", phonetic:"/ˈɡɑːrdreɪl/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Rivet", phonetic:"/ˈrɪvɪt/", cn:"铆钉", desc:"连接铆钉", words:[
+{ w:"Rivet", cn:"铆钉", phonetic:"/ˈrɪvɪt/" }
+]},
+
+{ text:"Control Handle Bracket", phonetic:"/kənˈtroʊl ˈhændəl ˈbrækɪt/", cn:"操作手柄支架", desc:"控制支架", words:[
+{ w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+{ w:"Handle", cn:"手柄", phonetic:"/ˈhændəl/" },
+{ w:"Bracket", cn:"支架", phonetic:"/ˈbrækɪt/" }
+]},
+
+{ text:"Spring Seat", phonetic:"/sprɪŋ siːt/", cn:"弹簧座", desc:"弹簧座", words:[
+{ w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/" },
+{ w:"Seat", cn:"座", phonetic:"/siːt/" }
+]},
+
+{ text:"Spring Pin", phonetic:"/sprɪŋ pɪn/", cn:"弹簧销", desc:"弹性销", words:[
+{ w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/" },
+{ w:"Pin", cn:"销", phonetic:"/pɪn/" }
+]},
+
+{ text:"Foot Pedal", phonetic:"/fʊt ˈpɛdəl/", cn:"脚踏", desc:"脚踏机构", words:[
+{ w:"Foot", cn:"脚", phonetic:"/fʊt/" },
+{ w:"Pedal", cn:"踏板", phonetic:"/ˈpɛdəl/" }
+]},
+
+{ text:"Mounting Base Plate", phonetic:"/ˈmaʊntɪŋ beɪs pleɪt/", cn:"安装座板", desc:"安装底板", words:[
+{ w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/" },
+{ w:"Base", cn:"底座", phonetic:"/beɪs/" },
+{ w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+]},
+
+{ text:"Scissor Assembly", phonetic:"/ˈsɪzər əˈsɛmbli/", cn:"叉架部装", desc:"剪叉结构", words:[
+{ w:"Scissor", cn:"剪叉", phonetic:"/ˈsɪzər/" },
+{ w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+]},
+
+{ text:"Lower Lift Cylinder", phonetic:"/ˈloʊər lɪft ˈsɪlɪndər/", cn:"下举升油缸", desc:"下油缸", words:[
+{ w:"Lower", cn:"下", phonetic:"/ˈloʊər/" },
+{ w:"Lift", cn:"举升", phonetic:"/lɪft/" },
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+]},
+
+{ text:"Upper Lift Cylinder", phonetic:"/ˈʌpər lɪft ˈsɪlɪndər/", cn:"上举升油缸", desc:"上油缸", words:[
+{ w:"Upper", cn:"上", phonetic:"/ˈʌpər/" },
+{ w:"Lift", cn:"举升", phonetic:"/lɪft/" },
+{ w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+]},
+
+{ text:"Inner Linkage Weldment 1", phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"第一内臂焊合", desc:"内臂结构", words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Outer Linkage Weldment 1", phonetic:"/ˈaʊtər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"第一外臂焊合", desc:"外臂结构", words:[
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Inner Linkage Weldment 2", phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"第二内臂焊合", desc:"内臂结构", words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"General Outer Linkage Weldment 1", phonetic:"/ˈdʒɛnərəl ˈaʊtər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"通用外臂焊合一", desc:"通用外臂结构", words:[
+{ w:"General", cn:"通用", phonetic:"/ˈdʒɛnərəl/" },
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"General Outer Linkage Weldment 2", phonetic:"/ˈdʒɛnərəl ˈaʊtər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"通用外臂焊合二", desc:"通用外臂结构", words:[
+{ w:"General", cn:"通用", phonetic:"/ˈdʒɛnərəl/" },
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Inner Linkage Weldment 3", phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"第三内臂焊合", desc:"内臂结构", words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"General Outer Linkage Weldment 3", phonetic:"/ˈdʒɛnərəl ˈaʊtər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"通用外臂焊合三", desc:"通用外臂结构", words:[
+{ w:"General", cn:"通用", phonetic:"/ˈdʒɛnərəl/" },
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Inner Linkage Weldment 4", phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"第四内臂焊合", desc:"内臂结构", words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Inner Linkage Weldment 5", phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"第五内臂焊合", desc:"内臂结构", words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Inner Linkage Weldment 6", phonetic:"/ˈɪnər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"第六内臂焊合", desc:"内臂结构", words:[
+{ w:"Inner", cn:"内", phonetic:"/ˈɪnər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"Outer Linkage Weldment 6", phonetic:"/ˈaʊtər ˈlɪŋkɪdʒ ˈwɛldmənt/", cn:"第六外臂焊合", desc:"外臂结构", words:[
+{ w:"Outer", cn:"外", phonetic:"/ˈaʊtər/" },
+{ w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+{ w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/" }
+]},
+
+{ text:"E-coating Hole Plug", phonetic:"/ˈiː koʊtɪŋ hoʊl plʌɡ/", cn:"电泳孔塞", desc:"封堵件", words:[
+{ w:"E-coating", cn:"电泳", phonetic:"/ˈiː koʊtɪŋ/" },
+{ w:"Hole", cn:"孔", phonetic:"/hoʊl/" },
+{ w:"Plug", cn:"塞", phonetic:"/plʌɡ/" }
+]}
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = p.words.map(w=>`
+      <span class="word btn" onclick="speak('${w.w}')">
+        🔊 ${w.w}
+        <span class="phonetic">${w.phonetic}</span>
+        <span class="small">${w.cn}</span>
+      </span>
+    `).join("");
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
