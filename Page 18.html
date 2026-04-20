@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"UNC/UNF Bolt", phonetic:"/ˌjuː en siː ˌjuː en ɛf boʊlt/", cn:"美制螺栓", desc:"美制统一粗/细牙螺栓" },
+
+  { text:"Upper Hydraulic Hose Assembly", phonetic:"/ˈʌpər haɪˈdrɔːlɪk hoʊz əˈsɛmbli/", cn:"上车配管总成", desc:"上部液压管路组件", words:[
+    { w:"Upper", cn:"上部", phonetic:"/ˈʌpər/" },
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊz/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Steering Hydraulic Hose Assembly", phonetic:"/ˈstɪrɪŋ haɪˈdrɔːlɪk hoʊz əˈsɛmbli/", cn:"转向配管总成", desc:"转向系统液压管路", words:[
+    { w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊz/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Hydraulic Oil Tank", phonetic:"/haɪˈdrɔːlɪk ɔɪl tæŋk/", cn:"液压油箱", desc:"储存液压油的油箱", words:[
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Oil", cn:"油", phonetic:"/ɔɪl/" },
+    { w:"Tank", cn:"油箱", phonetic:"/tæŋk/" }
+  ]},
+
+  { text:"O-ring", phonetic:"/ˈoʊ rɪŋ/", cn:"O型密封圈", desc:"用于密封连接部位" },
+
+  { text:"Return Filter Cap", phonetic:"/rɪˈtɜːrn ˈfɪltər kæp/", cn:"回油滤油器盖", desc:"回油过滤器盖板", words:[
+    { w:"Return", cn:"回油", phonetic:"/rɪˈtɜːrn/" },
+    { w:"Filter", cn:"滤油器", phonetic:"/ˈfɪltər/" },
+    { w:"Cap", cn:"盖", phonetic:"/kæp/" }
+  ]},
+
+  { text:"Tank", phonetic:"/tæŋk/", cn:"油箱本体", desc:"液压油储存主体结构" },
+
+  { text:"Filter Element Locator", phonetic:"/ˈfɪltər ˈɛlɪmənt ˈloʊkeɪtər/", cn:"滤芯定位器", desc:"用于定位滤芯", words:[
+    { w:"Filter", cn:"滤芯", phonetic:"/ˈfɪltər/" },
+    { w:"Element", cn:"元件", phonetic:"/ˈɛlɪmənt/" },
+    { w:"Locator", cn:"定位器", phonetic:"/ˈloʊkeɪtər/" }
+  ]},
+
+  { text:"Breather Cap Washer", phonetic:"/ˈbriːðər kæp ˈwɑːʃər/", cn:"呼吸盖垫片", desc:"呼吸盖密封垫圈", words:[
+    { w:"Breather", cn:"呼吸", phonetic:"/ˈbriːðər/" },
+    { w:"Cap", cn:"盖", phonetic:"/kæp/" },
+    { w:"Washer", cn:"垫圈", phonetic:"/ˈwɑːʃər/" }
+  ]},
+
+  { text:"Breather Cap", phonetic:"/ˈbriːðər kæp/", cn:"呼吸盖", desc:"油箱通气盖", words:[
+    { w:"Breather", cn:"呼吸", phonetic:"/ˈbriːðər/" },
+    { w:"Cap", cn:"盖", phonetic:"/kæp/" }
+  ]},
+
+  { text:"Filter Element", phonetic:"/ˈfɪltər ˈɛlɪmənt/", cn:"滤芯", desc:"过滤液压油杂质" },
+
+  { text:"Bypass Valve", phonetic:"/ˈbaɪpæs vælv/", cn:"旁通阀", desc:"控制油液旁通流动", words:[
+    { w:"Bypass", cn:"旁通", phonetic:"/ˈbaɪpæs/" },
+    { w:"Valve", cn:"阀", phonetic:"/vælv/" }
+  ]},
+
+  { text:"Pneumatic Fitting", phonetic:"/nuːˈmætɪk ˈfɪtɪŋ/", cn:"气动组合接头", desc:"气动管路连接件", words:[
+    { w:"Pneumatic", cn:"气动", phonetic:"/nuːˈmætɪk/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+
+  { text:"Compound Gasket", phonetic:"/ˈkɒmpaʊnd ˈɡæskɪt/", cn:"组合垫圈", desc:"多层密封垫圈", words:[
+    { w:"Compound", cn:"组合", phonetic:"/ˈkɒmpaʊnd/" },
+    { w:"Gasket", cn:"垫圈", phonetic:"/ˈɡæskɪt/" }
+  ]},
+
+  { text:"Housing", phonetic:"/ˈhaʊzɪŋ/", cn:"壳体", desc:"设备外壳结构" },
+
+  { text:"Hydraulic Oil Suction Fitting", phonetic:"/haɪˈdrɔːlɪk ɔɪl ˈsʌkʃən ˈfɪtɪŋ/", cn:"吸油接头", desc:"液压油吸入接口", words:[
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Oil", cn:"油", phonetic:"/ɔɪl/" },
+    { w:"Suction", cn:"吸入", phonetic:"/ˈsʌkʃən/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+
+  { text:"Filter Cartridge", phonetic:"/ˈfɪltər ˈkɑːrtrɪdʒ/", cn:"滤筒", desc:"过滤元件筒体", words:[
+    { w:"Filter", cn:"过滤", phonetic:"/ˈfɪltər/" },
+    { w:"Cartridge", cn:"滤筒", phonetic:"/ˈkɑːrtrɪdʒ/" }
+  ]},
+
+  { text:"Hydraulic Tank Cap", phonetic:"/haɪˈdrɔːlɪk tæŋk kæp/", cn:"油箱盖", desc:"油箱封盖", words:[
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Tank", cn:"油箱", phonetic:"/tæŋk/" },
+    { w:"Cap", cn:"盖", phonetic:"/kæp/" }
+  ]},
+
+  { text:"Spool Valve", phonetic:"/spuːl vælv/", cn:"滑阀分装", desc:"控制流量方向阀", words:[
+    { w:"Spool", cn:"滑阀", phonetic:"/spuːl/" },
+    { w:"Valve", cn:"阀", phonetic:"/vælv/" }
+  ]},
+
+  { text:"Main Valve", phonetic:"/meɪn vælv/", cn:"主阀", desc:"系统主控制阀", words:[
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Valve", cn:"阀", phonetic:"/vælv/" }
+  ]},
+
+  { text:"External Gear Pump", phonetic:"/ɪkˈstɜːrnəl ɡɪər pʌmp/", cn:"外啮合齿轮泵", desc:"外啮合齿轮液压泵", words:[
+    { w:"External", cn:"外部", phonetic:"/ɪkˈstɜːrnəl/" },
+    { w:"Gear", cn:"齿轮", phonetic:"/ɡɪər/" },
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" }
+  ]},
+
+  { text:"Articulated joint", phonetic:"/ɑːrˈtɪkjʊleɪtɪd dʒɔɪnt/", cn:"铰接式接头", desc:"可转动连接结构", words:[
+    { w:"Articulated", cn:"铰接", phonetic:"/ɑːrˈtɪkjʊleɪtɪd/" },
+    { w:"joint", cn:"接头", phonetic:"/dʒɔɪnt/" }
+  ]},
+
+  { text:"Lifting Hose Assembly", phonetic:"/ˈlɪftɪŋ hoʊz əˈsɛmbli/", cn:"举升配管总成", desc:"举升系统液压管路", words:[
+    { w:"Lifting", cn:"举升", phonetic:"/ˈlɪftɪŋ/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊz/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Lower Lift Cylinder Valve Block", phonetic:"/ˈloʊər lɪft ˈsɪlɪndər vælv blɑːk/", cn:"下举升油缸阀块", desc:"控制下举升油缸的阀块", words:[
+    { w:"Lower", cn:"下部", phonetic:"/ˈloʊər/" },
+    { w:"Lift", cn:"举升", phonetic:"/lɪft/" },
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+    { w:"Valve", cn:"阀", phonetic:"/vælv/" },
+    { w:"Block", cn:"块", phonetic:"/blɑːk/" }
+  ]},
+
+  { text:"Emergency Mechanism", phonetic:"/ɪˈmɜːrdʒənsi ˈmɛkəˌnɪzəm/", cn:"应急机构", desc:"紧急操作装置", words:[
+    { w:"Emergency", cn:"应急", phonetic:"/ɪˈmɜːrdʒənsi/" },
+    { w:"Mechanism", cn:"机构", phonetic:"/ˈmɛkəˌnɪzəm/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
