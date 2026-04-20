@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Electric Horn", phonetic:"/ɪˈlɛktrɪk hɔːrn/", cn:"电喇叭", desc:"用于声音报警提示", words:[
+    { w:"Electric", cn:"电动", phonetic:"/ɪˈlɛktrɪk/" },
+    { w:"Horn", cn:"喇叭", phonetic:"/hɔːrn/" }
+  ]},
+  { text:"Upper-lower Communication Harness", phonetic:"/ˈʌpər ˈloʊər kəˌmjuːnɪˈkeɪʃən ˈhɑːrnɪs/", cn:"上下通讯线束", desc:"上下控制通信线路", words:[
+    { w:"Upper", cn:"上", phonetic:"/ˈʌpər/" },
+    { w:"Lower", cn:"下", phonetic:"/ˈloʊər/" },
+    { w:"Communication", cn:"通讯", phonetic:"/kəˌmjuːnɪˈkeɪʃən/" },
+    { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+  ]},
+  { text:"Anti-collision Linkage Harness", phonetic:"/ˌænti kəˈlɪʒən ˈlɪŋkɪdʒ ˈhɑːrnɪs/", cn:"防撞叉架线束", desc:"防碰撞控制线束", words:[
+    { w:"Anti-collision", cn:"防撞", phonetic:"/ˌænti kəˈlɪʒən/" },
+    { w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+    { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+  ]},
+  { text:"Power Switch to Contactor", phonetic:"/ˈpaʊər swɪtʃ tuː kənˈtæktər/", cn:"总电源开关至接触器", desc:"主电源控制线路", words:[
+    { w:"Power", cn:"电源", phonetic:"/ˈpaʊər/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" },
+    { w:"Contactor", cn:"接触器", phonetic:"/kənˈtæktər/" }
+  ]},
+  { text:"Motor Controller B- to Battery Negative", phonetic:"/ˈmoʊtər kənˈtroʊlər biː tuː ˈbætəri ˈnɛɡətɪv/", cn:"电机控制器B-至电池负极", desc:"负极连接线路", words:[
+    { w:"Motor", cn:"电机", phonetic:"/ˈmoʊtər/" },
+    { w:"Controller", cn:"控制器", phonetic:"/kənˈtroʊlər/" },
+    { w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+    { w:"Negative", cn:"负极", phonetic:"/ˈnɛɡətɪv/" }
+  ]},
+  { text:"Control Panel Overlay", phonetic:"/kənˈtroʊl ˈpænəl ˈoʊvərleɪ/", cn:"控制面板贴膜", desc:"面板保护贴膜", words:[
+    { w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+    { w:"Panel", cn:"面板", phonetic:"/ˈpænəl/" },
+    { w:"Overlay", cn:"贴膜", phonetic:"/ˈoʊvərleɪ/" }
+  ]},
+  { text:"Controller Upper Cover", phonetic:"/kənˈtroʊlər ˈʌpər ˈkʌvər/", cn:"控制器上盖", desc:"控制器上部外壳", words:[
+    { w:"Controller", cn:"控制器", phonetic:"/kənˈtroʊlər/" },
+    { w:"Upper", cn:"上", phonetic:"/ˈʌpər/" },
+    { w:"Cover", cn:"盖", phonetic:"/ˈkʌvər/" }
+  ]},
+  { text:"Controller Lower Cover", phonetic:"/kənˈtroʊlər ˈloʊər ˈkʌvər/", cn:"控制器下盖", desc:"控制器下部外壳", words:[
+    { w:"Controller", cn:"控制器", phonetic:"/kənˈtroʊlər/" },
+    { w:"Lower", cn:"下", phonetic:"/ˈloʊər/" },
+    { w:"Cover", cn:"盖", phonetic:"/ˈkʌvər/" }
+  ]},
+  { text:"Controller Main Board", phonetic:"/kənˈtroʊlər meɪn bɔːrd/", cn:"控制器主板", desc:"核心控制电路板", words:[
+    { w:"Controller", cn:"控制器", phonetic:"/kənˈtroʊlər/" },
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Board", cn:"板", phonetic:"/bɔːrd/" }
+  ]},
+  { text:"Display Screen", phonetic:"/dɪˈspleɪ skriːn/", cn:"显示屏", desc:"信息显示设备", words:[
+    { w:"Display", cn:"显示", phonetic:"/dɪˈspleɪ/" },
+    { w:"Screen", cn:"屏幕", phonetic:"/skriːn/" }
+  ]},
+  { text:"Fuse", phonetic:"/fjuːz/", cn:"保险", desc:"电路保护元件" },
+  { text:"Brake", phonetic:"/breɪk/", cn:"制动器", desc:"用于制动系统" },
+  { text:"Grease Fitting", phonetic:"/ɡriːs ˈfɪtɪŋ/", cn:"油嘴", desc:"润滑脂注入口", words:[
+    { w:"Grease", cn:"润滑脂", phonetic:"/ɡriːs/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Cylinder Barrel", phonetic:"/ˈsɪlɪndər ˈbærəl/", cn:"缸筒", desc:"油缸主体部分", words:[
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+    { w:"Barrel", cn:"筒", phonetic:"/ˈbærəl/" }
+  ]},
+  { text:"Sealing Ring", phonetic:"/ˈsiːlɪŋ rɪŋ/", cn:"密封圈", desc:"用于密封连接", words:[
+    { w:"Sealing", cn:"密封", phonetic:"/ˈsiːlɪŋ/" },
+    { w:"Ring", cn:"圈", phonetic:"/rɪŋ/" }
+  ]},
+  { text:"Dust Ring", phonetic:"/dʌst rɪŋ/", cn:"防尘圈", desc:"防止灰尘进入", words:[
+    { w:"Dust", cn:"防尘", phonetic:"/dʌst/" },
+    { w:"Ring", cn:"圈", phonetic:"/rɪŋ/" }
+  ]},
+  { text:"Guide Ring", phonetic:"/ɡaɪd rɪŋ/", cn:"导向环", desc:"用于导向支撑", words:[
+    { w:"Guide", cn:"导向", phonetic:"/ɡaɪd/" },
+    { w:"Ring", cn:"环", phonetic:"/rɪŋ/" }
+  ]},
+  { text:"Piston Rod", phonetic:"/ˈpɪstən rɑːd/", cn:"活塞杆", desc:"连接活塞的杆件", words:[
+    { w:"Piston", cn:"活塞", phonetic:"/ˈpɪstən/" },
+    { w:"Rod", cn:"杆", phonetic:"/rɑːd/" }
+  ]},
+  { text:"Electric Drive Assembly", phonetic:"/ɪˈlɛktrɪk draɪv əˈsɛmbli/", cn:"电动化总成", desc:"电驱动系统总成", words:[
+    { w:"Electric", cn:"电动", phonetic:"/ɪˈlɛktrɪk/" },
+    { w:"Drive", cn:"驱动", phonetic:"/draɪv/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Pump Motor Assembly", phonetic:"/pʌmp ˈmoʊtər əˈsɛmbli/", cn:"泵电机部装", desc:"泵与电机组合", words:[
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" },
+    { w:"Motor", cn:"电机", phonetic:"/ˈmoʊtər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"AC Motor", phonetic:"/ˌeɪˈsiː ˈmoʊtər/", cn:"交流电动机", desc:"交流驱动电机", words:[
+    { w:"AC", cn:"交流", phonetic:"/ˌeɪˈsiː/" },
+    { w:"Motor", cn:"电机", phonetic:"/ˈmoʊtər/" }
+  ]},
+  { text:"Charger Assembly", phonetic:"/ˈtʃɑːrdʒər əˈsɛmbli/", cn:"充电器部装", desc:"充电系统组件", words:[
+    { w:"Charger", cn:"充电器", phonetic:"/ˈtʃɑːrdʒər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Charger", phonetic:"/ˈtʃɑːrdʒər/", cn:"车载充电器", desc:"车辆充电设备" },
+  { text:"Charger AC Input Cable", phonetic:"/ˈtʃɑːrdʒər ˌeɪˈsiː ˈɪnpʊt ˈkeɪbəl/", cn:"充电机AC输入线", desc:"交流输入电缆", words:[
+    { w:"Charger", cn:"充电器", phonetic:"/ˈtʃɑːrdʒər/" },
+    { w:"AC", cn:"交流", phonetic:"/ˌeɪˈsiː/" },
+    { w:"Input", cn:"输入", phonetic:"/ˈɪnpʊt/" },
+    { w:"Cable", cn:"电缆", phonetic:"/ˈkeɪbəl/" }
+  ]},
+  { text:"Charger Protective Board", phonetic:"/ˈtʃɑːrdʒər prəˈtɛktɪv bɔːrd/", cn:"充电器护板", desc:"保护充电器电路", words:[
+    { w:"Charger", cn:"充电器", phonetic:"/ˈtʃɑːrdʒər/" },
+    { w:"Protective", cn:"防护", phonetic:"/prəˈtɛktɪv/" },
+    { w:"Board", cn:"板", phonetic:"/bɔːrd/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
