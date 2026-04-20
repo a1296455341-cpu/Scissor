@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Toggle Switch", phonetic:"/ˈtɑːɡəl swɪtʃ/", cn:"钮子开关", desc:"用于电路通断控制", words:[
+    { w:"Toggle", cn:"拨动", phonetic:"/ˈtɑːɡəl/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+  ]},
+  { text:"Waterproof Cap", phonetic:"/ˈwɔːtərpruːf kæp/", cn:"防水帽", desc:"用于防水保护", words:[
+    { w:"Waterproof", cn:"防水", phonetic:"/ˈwɔːtərpruːf/" },
+    { w:"Cap", cn:"帽", phonetic:"/kæp/" }
+  ]},
+  { text:"Platform Control Box Harness", phonetic:"/ˈplætfɔːrm kənˈtroʊl bɑːks ˈhɑːrnɪs/", cn:"平台控制箱线束", desc:"平台控制系统的线束", words:[
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætfɔːrm/" },
+    { w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+    { w:"Box", cn:"箱", phonetic:"/bɑːks/" },
+    { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+  ]},
+  { text:"Chassis Control Harness", phonetic:"/ˈʃæsis kənˈtroʊl ˈhɑːrnɪs/", cn:"下车控制线束", desc:"底盘控制线束", words:[
+    { w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsis/" },
+    { w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+    { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+  ]},
+  { text:"Cylinder Mounting Assembly", phonetic:"/ˈsɪlɪndər ˈmaʊntɪŋ əˈsɛmbli/", cn:"油缸安装总成", desc:"用于安装油缸的组件", words:[
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+    { w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Telescopic Boom Hydraulic Assembly", phonetic:"/ˌtɛləˈskɑːpɪk buːm haɪˈdrɔːlɪk əˈsɛmbli/", cn:"臂架液压系统", desc:"臂架液压系统总成", words:[
+    { w:"Telescopic", cn:"伸缩", phonetic:"/ˌtɛləˈskɑːpɪk/" },
+    { w:"Boom", cn:"臂架", phonetic:"/buːm/" },
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Chassis Hose Assembly", phonetic:"/ˈʃæsis hoʊs əˈsɛmbli/", cn:"底盘管路总成", desc:"底盘液压管路组件", words:[
+    { w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsis/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊs/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Turntable Hydraulic Assembly", phonetic:"/ˈtɜːrnˌteɪbəl haɪˈdrɔːlɪk əˈsɛmbli/", cn:"转台液压总成", desc:"转台液压系统", words:[
+    { w:"Turntable", cn:"转台", phonetic:"/ˈtɜːrnˌteɪbəl/" },
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Luffing Cylinder", phonetic:"/ˈlʌfɪŋ ˈsɪlɪndər/", cn:"变幅油缸", desc:"用于臂架变幅", words:[
+    { w:"Luffing", cn:"变幅", phonetic:"/ˈlʌfɪŋ/" },
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+  ]},
+  { text:"Steering Cylinder", phonetic:"/ˈstɪrɪŋ ˈsɪlɪndər/", cn:"转向油缸", desc:"用于转向控制", words:[
+    { w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+  ]},
+  { text:"Axle Telescopic Cylinder", phonetic:"/ˈæksəl ˌtɛləˈskɑːpɪk ˈsɪlɪndər/", cn:"轴伸缩油缸", desc:"用于车轴伸缩", words:[
+    { w:"Axle", cn:"车轴", phonetic:"/ˈæksəl/" },
+    { w:"Telescopic", cn:"伸缩", phonetic:"/ˌtɛləˈskɑːpɪk/" },
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+  ]},
+  { text:"Telescopic Cylinder", phonetic:"/ˌtɛləˈskɑːpɪk ˈsɪlɪndər/", cn:"伸缩油缸", desc:"用于伸缩机构", words:[
+    { w:"Telescopic", cn:"伸缩", phonetic:"/ˌtɛləˈskɑːpɪk/" },
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+  ]},
+  { text:"Jib Cylinder", phonetic:"/dʒɪb ˈsɪlɪndər/", cn:"飞臂油缸", desc:"用于飞臂动作", words:[
+    { w:"Jib", cn:"飞臂", phonetic:"/dʒɪb/" },
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+  ]},
+  { text:"Leveling Cylinder", phonetic:"/ˈlɛvəlɪŋ ˈsɪlɪndər/", cn:"调平油缸", desc:"用于调平系统", words:[
+    { w:"Leveling", cn:"调平", phonetic:"/ˈlɛvəlɪŋ/" },
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" }
+  ]},
+  { text:"Cylinder Barrel Assembly", phonetic:"/ˈsɪlɪndər ˈbærəl əˈsɛmbli/", cn:"缸筒总成", desc:"油缸主体部分", words:[
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+    { w:"Barrel", cn:"缸筒", phonetic:"/ˈbærəl/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Piston Rod Assembly", phonetic:"/ˈpɪstən rɑːd əˈsɛmbli/", cn:"活塞杆总成", desc:"连接活塞与外部机构", words:[
+    { w:"Piston", cn:"活塞", phonetic:"/ˈpɪstən/" },
+    { w:"Rod", cn:"杆", phonetic:"/rɑːd/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Cylinder Head", phonetic:"/ˈsɪlɪndər hɛd/", cn:"缸盖", desc:"封闭油缸端部", words:[
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+    { w:"Head", cn:"盖", phonetic:"/hɛd/" }
+  ]},
+  { text:"Bushing", phonetic:"/ˈbʊʃɪŋ/", cn:"衬套", desc:"用于减摩和支撑" },
+  { text:"Internal Retaining Ring", phonetic:"/ɪnˈtɜːrnəl rɪˈteɪnɪŋ rɪŋ/", cn:"钢丝挡圈-孔用", desc:"用于孔内固定", words:[
+    { w:"Internal", cn:"内置", phonetic:"/ɪnˈtɜːrnəl/" },
+    { w:"Retaining", cn:"固定", phonetic:"/rɪˈteɪnɪŋ/" },
+    { w:"Ring", cn:"环", phonetic:"/rɪŋ/" }
+  ]},
+  { text:"Piston", phonetic:"/ˈpɪstən/", cn:"活塞", desc:"在缸内往复运动部件" },
+  { text:"Steel Ball", phonetic:"/stiːl bɔːl/", cn:"钢球", desc:"用于滚动或密封", words:[
+    { w:"Steel", cn:"钢", phonetic:"/stiːl/" },
+    { w:"Ball", cn:"球", phonetic:"/bɔːl/" }
+  ]},
+  { text:"Bushing", phonetic:"/ˈbʊʃɪŋ/", cn:"轴套", desc:"用于轴支撑" },
+  { text:"Grease Fitting", phonetic:"/ɡriːs ˈfɪtɪŋ/", cn:"油杯", desc:"用于注入润滑脂", words:[
+    { w:"Grease", cn:"润滑脂", phonetic:"/ɡriːs/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Clamp", phonetic:"/klæmp/", cn:"喉箍", desc:"用于固定管道或软管" },
+  { text:"Seal Kit", phonetic:"/siːl kɪt/", cn:"密封件维修包", desc:"用于更换密封件", words:[
+    { w:"Seal", cn:"密封", phonetic:"/siːl/" },
+    { w:"Kit", cn:"套件", phonetic:"/kɪt/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
