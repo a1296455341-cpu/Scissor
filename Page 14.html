@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Split Flange", phonetic:"/splɪt flændʒ/", cn:"对开法兰", desc:"可拆分结构法兰", words:[
+    { w:"Split", cn:"分体", phonetic:"/splɪt/" },
+    { w:"Flange", cn:"法兰", phonetic:"/flændʒ/" }
+  ]},
+  { text:"Closed-loop Piston Pump", phonetic:"/kloʊzd luːp ˈpɪstən pʌmp/", cn:"闭式柱塞泵", desc:"闭式回路液压泵", words:[
+    { w:"Closed-loop", cn:"闭式回路", phonetic:"/kloʊzd luːp/" },
+    { w:"Piston", cn:"柱塞", phonetic:"/ˈpɪstən/" },
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" }
+  ]},
+  { text:"High-pressure Filter", phonetic:"/haɪ ˈprɛʃər ˈfɪltər/", cn:"高压过滤器", desc:"用于高压系统过滤", words:[
+    { w:"High-pressure", cn:"高压", phonetic:"/haɪ ˈprɛʃər/" },
+    { w:"Filter", cn:"过滤器", phonetic:"/ˈfɪltər/" }
+  ]},
+  { text:"Lifting Plate", phonetic:"/ˈlɪftɪŋ pleɪt/", cn:"吊装板", desc:"用于吊装支撑", words:[
+    { w:"Lifting", cn:"吊装", phonetic:"/ˈlɪftɪŋ/" },
+    { w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+  ]},
+  { text:"Cycloidal Motor", phonetic:"/ˌsaɪklɔɪdəl ˈmoʊtər/", cn:"摆线马达", desc:"摆线结构液压马达", words:[
+    { w:"Cycloidal", cn:"摆线", phonetic:"/ˌsaɪklɔɪdəl/" },
+    { w:"Motor", cn:"马达", phonetic:"/ˈmoʊtər/" }
+  ]},
+  { text:"Electric Hydraulic Pump", phonetic:"/ɪˈlɛktrɪk haɪˈdrɔːlɪk pʌmp/", cn:"电动液压泵", desc:"电驱动液压泵", words:[
+    { w:"Electric", cn:"电动", phonetic:"/ɪˈlɛktrɪk/" },
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" }
+  ]},
+  { text:"Electrical System", phonetic:"/ɪˈlɛktrɪkəl ˈsɪstəm/", cn:"电气系统", desc:"整机电气控制系统", words:[
+    { w:"Electrical", cn:"电气", phonetic:"/ɪˈlɛktrɪkəl/" },
+    { w:"System", cn:"系统", phonetic:"/ˈsɪstəm/" }
+  ]},
+  { text:"Joystick", phonetic:"/ˈdʒɔɪstɪk/", cn:"手柄", desc:"操作控制手柄" },
+  { text:"PCU-PCB Plate Fixing Screw", phonetic:"/ˌpiːsiːˈjuː ˌpiːsiːˈbiː pleɪt ˈfɪksɪŋ skruː/", cn:"PCU-PCB板固定螺钉", desc:"用于固定PCB板", words:[
+    { w:"Plate", cn:"板", phonetic:"/pleɪt/" },
+    { w:"Fixing", cn:"固定", phonetic:"/ˈfɪksɪŋ/" },
+    { w:"Screw", cn:"螺钉", phonetic:"/skruː/" }
+  ]},
+  { text:"SIBAS CEF Female Pin", phonetic:"/ˈsaɪbæs siː iː ɛf ˈfiːmeɪl pɪn/", cn:"西霸士CEF母插针", desc:"连接器母端插针", words:[
+    { w:"Female", cn:"母", phonetic:"/ˈfiːmeɪl/" },
+    { w:"Pin", cn:"插针", phonetic:"/pɪn/" }
+  ]},
+  { text:"PCU Connector", phonetic:"/ˌpiːsiːˈjuː kəˈnɛktər/", cn:"PCU接插件接头", desc:"PCU连接接口", words:[
+    { w:"Connector", cn:"接头", phonetic:"/kəˈnɛktər/" }
+  ]},
+  { text:"PCU Joystick Washer", phonetic:"/ˌpiːsiːˈjuː ˈdʒɔɪstɪk ˈwɑːʃər/", cn:"PCU手柄垫片", desc:"手柄安装垫片", words:[
+    { w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪstɪk/" },
+    { w:"Washer", cn:"垫片", phonetic:"/ˈwɑːʃər/" }
+  ]},
+  { text:"PCBA", phonetic:"/ˌpiːsiːbiːˈeɪ/", cn:"PCBA", desc:"印刷电路板组件" },
+  { text:"PCU Box Cover", phonetic:"/ˌpiːsiːˈjuː bɑːks ˈkʌvər/", cn:"PCU盒盖", desc:"PCU外壳盖", words:[
+    { w:"Box", cn:"盒体", phonetic:"/bɑːks/" },
+    { w:"Cover", cn:"盖", phonetic:"/ˈkʌvər/" }
+  ]},
+  { text:"PCU Joystick Bolt", phonetic:"/ˌpiːsiːˈjuː ˈdʒɔɪstɪk boʊlt/", cn:"PCU手柄螺栓", desc:"手柄固定螺栓", words:[
+    { w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪstɪk/" },
+    { w:"Bolt", cn:"螺栓", phonetic:"/boʊlt/" }
+  ]},
+  { text:"Joystick Overlay", phonetic:"/ˈdʒɔɪstɪk ˈoʊvərleɪ/", cn:"手柄贴膜", desc:"表面保护膜", words:[
+    { w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪstɪk/" },
+    { w:"Overlay", cn:"贴膜", phonetic:"/ˈoʊvərleɪ/" }
+  ]},
+  { text:"PCU Buzzer", phonetic:"/ˌpiːsiːˈjuː ˈbʌzər/", cn:"PCU蜂鸣器", desc:"声音报警装置", words:[
+    { w:"Buzzer", cn:"蜂鸣器", phonetic:"/ˈbʌzər/" }
+  ]},
+  { text:"Joystick Silicone Boot", phonetic:"/ˈdʒɔɪstɪk ˌsɪlɪˈkoʊn buːt/", cn:"手柄硅胶套", desc:"防护橡胶套", words:[
+    { w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪstɪk/" },
+    { w:"Silicone", cn:"硅胶", phonetic:"/ˌsɪlɪˈkoʊn/" },
+    { w:"Boot", cn:"套", phonetic:"/buːt/" }
+  ]},
+  { text:"PCU Connector Housing", phonetic:"/ˌpiːsiːˈjuː kəˈnɛktər ˈhaʊzɪŋ/", cn:"PCU接插件壳体", desc:"连接器外壳", words:[
+    { w:"Connector", cn:"接头", phonetic:"/kəˈnɛktər/" },
+    { w:"Housing", cn:"壳体", phonetic:"/ˈhaʊzɪŋ/" }
+  ]},
+  { text:"TE 5-Pin Heavy-duty Connector Assembly", phonetic:"/tiː faɪv pɪn ˈhɛvi duːti kəˈnɛktər əˈsɛmbli/", cn:"TE五芯重载连接器总成", desc:"多芯重载连接器", words:[
+    { w:"5-Pin", cn:"五芯", phonetic:"/faɪv pɪn/" },
+    { w:"Heavy-duty", cn:"重载", phonetic:"/ˈhɛvi duːti/" },
+    { w:"Connector", cn:"连接器", phonetic:"/kəˈnɛktər/" }
+  ]},
+  { text:"SIBAS HQ-005 Connector Housing", phonetic:"/ˈsaɪbæs eɪtʃ kjuː zɪroʊ zɪroʊ faɪv kəˈnɛktər ˈhaʊzɪŋ/", cn:"西霸士HQ-005连接器外壳", desc:"连接器壳体", words:[
+    { w:"Connector", cn:"连接器", phonetic:"/kəˈnɛktər/" },
+    { w:"Housing", cn:"外壳", phonetic:"/ˈhaʊzɪŋ/" }
+  ]},
+  { text:"SIBAS HQ-005 Male Insert", phonetic:"/ˈsaɪbæs eɪtʃ kjuː zɪroʊ zɪroʊ faɪv meɪl ˈɪnsɜːrt/", cn:"西霸士HQ-005公头插芯", desc:"公头插芯部件", words:[
+    { w:"Male", cn:"公头", phonetic:"/meɪl/" },
+    { w:"Insert", cn:"插芯", phonetic:"/ˈɪnsɜːrt/" }
+  ]},
+  { text:"SIBAS CEF Male Pin", phonetic:"/ˈsaɪbæs siː iː ɛf meɪl pɪn/", cn:"西霸士CEM公插针", desc:"连接器公插针", words:[
+    { w:"Male", cn:"公", phonetic:"/meɪl/" },
+    { w:"Pin", cn:"插针", phonetic:"/pɪn/" }
+  ]},
+  { text:"Joystick Emergency Stop Switch", phonetic:"/ˈdʒɔɪstɪk ɪˈmɜːrdʒənsi stɑːp swɪtʃ/", cn:"手柄急停开关", desc:"紧急停止装置", words:[
+    { w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪstɪk/" },
+    { w:"Emergency", cn:"急停", phonetic:"/ɪˈmɜːrdʒənsi/" },
+    { w:"Stop", cn:"停止", phonetic:"/stɑːp/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+  ]},
+  { text:"PCU Box", phonetic:"/ˌpiːsiːˈjuː bɑːks/", cn:"PCU盒体", desc:"PCU外壳主体", words:[
+    { w:"Box", cn:"盒体", phonetic:"/bɑːks/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
