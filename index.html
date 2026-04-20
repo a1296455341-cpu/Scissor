@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirect</title>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    const map = {
+      "1": "/Page1.html",
+      "2": "/Page2.html",
+      "3": "/Page3.html"
+    };
+
+    console.log("id:", id);
+
+    if (map[id]) {
+      window.location.replace(map[id]);
+    } else {
+      document.body.innerHTML = "No match for id: " + id;
+    }
+  </script>
+</head>
+<body>
+  Loading...
+</body>
+</html>
