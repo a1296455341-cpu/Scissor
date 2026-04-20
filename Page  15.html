@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"PCU Button Cap", phonetic:"/ˌpiːsiːˈjuː ˈbʌtn kæp/", cn:"PCU按键帽", desc:"用于按键保护与操作面", words:[
+    { w:"Button", cn:"按键", phonetic:"/ˈbʌtn/" },
+    { w:"Cap", cn:"帽", phonetic:"/kæp/" }
+  ]},
+  { text:"Joystick Direction Label", phonetic:"/ˈdʒɔɪstɪk dəˈrɛkʃən ˈleɪbəl/", cn:"手柄方向贴膜", desc:"方向标识贴膜", words:[
+    { w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪstɪk/" },
+    { w:"Direction", cn:"方向", phonetic:"/dəˈrɛkʃən/" },
+    { w:"Label", cn:"标识", phonetic:"/ˈleɪbəl/" }
+  ]},
+  { text:"PCU Joystick Nut", phonetic:"/ˌpiːsiːˈjuː ˈdʒɔɪstɪk nʌt/", cn:"PCU手柄螺母", desc:"用于固定手柄结构", words:[
+    { w:"Joystick", cn:"手柄", phonetic:"/ˈdʒɔɪstɪk/" },
+    { w:"Nut", cn:"螺母", phonetic:"/nʌt/" }
+  ]},
+  { text:"Cable Gland", phonetic:"/ˈkeɪbəl ɡlænd/", cn:"电缆接头", desc:"电缆密封固定件", words:[
+    { w:"Cable", cn:"电缆", phonetic:"/ˈkeɪbəl/" },
+    { w:"Gland", cn:"密封接头", phonetic:"/ɡlænd/" }
+  ]},
+  { text:"Coiled Cable", phonetic:"/kɔɪld ˈkeɪbəl/", cn:"弹簧线束", desc:"可伸缩螺旋线缆", words:[
+    { w:"Coiled", cn:"螺旋", phonetic:"/kɔɪld/" },
+    { w:"Cable", cn:"线缆", phonetic:"/ˈkeɪbəl/" }
+  ]},
+  { text:"Ground Control Panel", phonetic:"/ɡraʊnd kənˈtroʊl ˈpænəl/", cn:"下控面板", desc:"地面控制操作面板", words:[
+    { w:"Ground", cn:"地面", phonetic:"/ɡraʊnd/" },
+    { w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+    { w:"Panel", cn:"面板", phonetic:"/ˈpænəl/" }
+  ]},
+  { text:"Key Switch", phonetic:"/kiː swɪtʃ/", cn:"钥匙开关", desc:"钥匙控制电源开关", words:[
+    { w:"Key", cn:"钥匙", phonetic:"/kiː/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+  ]},
+  { text:"Emergency Stop Switch", phonetic:"/ɪˈmɜːrdʒənsi stɑːp swɪtʃ/", cn:"急停开关", desc:"紧急停止装置", words:[
+    { w:"Emergency", cn:"急停", phonetic:"/ɪˈmɜːrdʒənsi/" },
+    { w:"Stop", cn:"停止", phonetic:"/stɑːp/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+  ]},
+  { text:"14-pin Rectangular Connector", phonetic:"/ˈfɔːrˈtiːn pɪn ˌrɛkˈtæŋɡjələr kəˈnɛktər/", cn:"14芯矩形插头", desc:"多针矩形连接器", words:[
+    { w:"Rectangular", cn:"矩形", phonetic:"/ˌrɛkˈtæŋɡjələr/" },
+    { w:"Connector", cn:"插头", phonetic:"/kəˈnɛktər/" }
+  ]},
+  { text:"Indicator Light", phonetic:"/ˈɪndɪˌkeɪtər laɪt/", cn:"指示灯", desc:"状态指示灯", words:[
+    { w:"Indicator", cn:"指示", phonetic:"/ˈɪndɪˌkeɪtər/" },
+    { w:"Light", cn:"灯", phonetic:"/laɪt/" }
+  ]},
+  { text:"Key", phonetic:"/kiː/", cn:"钥匙", desc:"机械或电控钥匙" },
+  { text:"Ground Control Panel Overlay", phonetic:"/ɡraʊnd kənˈtroʊl ˈpænəl ˈoʊvərleɪ/", cn:"下控面板贴膜", desc:"面板操作贴膜", words:[
+    { w:"Panel", cn:"面板", phonetic:"/ˈpænəl/" },
+    { w:"Overlay", cn:"贴膜", phonetic:"/ˈoʊvərleɪ/" }
+  ]},
+  { text:"Self-resetting Fuse", phonetic:"/ˌsɛlf rɪˈsɛtɪŋ fjuːz/", cn:"自复位保险", desc:"自动恢复保险装置", words:[
+    { w:"Self-resetting", cn:"自复位", phonetic:"/ˌsɛlf rɪˈsɛtɪŋ/" },
+    { w:"Fuse", cn:"保险", phonetic:"/fjuːz/" }
+  ]},
+  { text:"Intermediate Relay", phonetic:"/ˌɪntərˈmiːdiət rɪˈleɪ/", cn:"中间继电器", desc:"控制信号中继", words:[
+    { w:"Intermediate", cn:"中间", phonetic:"/ˌɪntərˈmiːdiət/" },
+    { w:"Relay", cn:"继电器", phonetic:"/rɪˈleɪ/" }
+  ]},
+  { text:"Grounding Strap", phonetic:"/ˈɡraʊndɪŋ stræp/", cn:"静电带", desc:"防静电接地装置", words:[
+    { w:"Grounding", cn:"接地", phonetic:"/ˈɡraʊndɪŋ/" },
+    { w:"Strap", cn:"带", phonetic:"/stræp/" }
+  ]},
+  { text:"Limit Switch Protective Cover", phonetic:"/ˈlɪmɪt swɪtʃ prəˈtɛktɪv ˈkʌvər/", cn:"限位开关护罩", desc:"保护限位开关", words:[
+    { w:"Limit", cn:"限位", phonetic:"/ˈlɪmɪt/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" },
+    { w:"Protective", cn:"防护", phonetic:"/prəˈtɛktɪv/" },
+    { w:"Cover", cn:"罩", phonetic:"/ˈkʌvər/" }
+  ]},
+  { text:"Main Fuse to Main Power Switch", phonetic:"/meɪn fjuːz tuː meɪn ˈpaʊər swɪtʃ/", cn:"主保险至总电源开关", desc:"主电源供电路径", words:[
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Fuse", cn:"保险", phonetic:"/fjuːz/" },
+    { w:"Power", cn:"电源", phonetic:"/ˈpaʊər/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+  ]},
+  { text:"Linkage Cylinder Harness", phonetic:"/ˈlɪŋkɪdʒ ˈsɪlɪndər ˈhɑːrnɪs/", cn:"叉架油缸线束", desc:"油缸控制线束", words:[
+    { w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+    { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+  ]},
+  { text:"Push Button Switch", phonetic:"/pʊʃ ˈbʌtn swɪtʃ/", cn:"按键开关", desc:"按压式控制开关", words:[
+    { w:"Push", cn:"按压", phonetic:"/pʊʃ/" },
+    { w:"Button", cn:"按键", phonetic:"/ˈbʌtn/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+  ]},
+  { text:"Pressure Sensor", phonetic:"/ˈprɛʃər ˈsɛnsər/", cn:"压力传感器", desc:"检测压力信号", words:[
+    { w:"Pressure", cn:"压力", phonetic:"/ˈprɛʃər/" },
+    { w:"Sensor", cn:"传感器", phonetic:"/ˈsɛnsər/" }
+  ]},
+  { text:"Contactor to Motor Controller B+", phonetic:"/kənˈtæktər tuː ˈmoʊtər kənˈtroʊlər biː plʌs/", cn:"接触器至电机控制器B+", desc:"电源连接线路", words:[
+    { w:"Contactor", cn:"接触器", phonetic:"/kənˈtæktər/" },
+    { w:"Motor", cn:"电机", phonetic:"/ˈmoʊtər/" },
+    { w:"Controller", cn:"控制器", phonetic:"/kənˈtroʊlər/" }
+  ]},
+  { text:"Battery Positive to Main Fuse", phonetic:"/ˈbætəri ˈpɑːzətɪv tuː meɪn fjuːz/", cn:"电池正极至主保险", desc:"主电源供电路径", words:[
+    { w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+    { w:"Positive", cn:"正极", phonetic:"/ˈpɑːzətɪv/" },
+    { w:"Fuse", cn:"保险", phonetic:"/fjuːz/" }
+  ]},
+  { text:"Main Harness", phonetic:"/meɪn ˈhɑːrnɪs/", cn:"主机线束", desc:"整机主线束", words:[
+    { w:"Main", cn:"主", phonetic:"/meɪn/" },
+    { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+  ]},
+  { text:"DC Contactor", phonetic:"/ˌdiːˈsiː kənˈtæktər/", cn:"直流接触器", desc:"直流电路控制开关", words:[
+    { w:"DC", cn:"直流", phonetic:"/ˌdiːˈsiː/" },
+    { w:"Contactor", cn:"接触器", phonetic:"/kənˈtæktər/" }
+  ]},
+  { text:"ECU Protective Board", phonetic:"/ˌiːsiːˈjuː prəˈtɛktɪv bɔːrd/", cn:"ECU防护板", desc:"电子控制单元保护板", words:[
+    { w:"ECU", cn:"控制单元", phonetic:"/ˌiːsiːˈjuː/" },
+    { w:"Protective", cn:"防护", phonetic:"/prəˈtɛktɪv/" },
+    { w:"Board", cn:"板", phonetic:"/bɔːrd/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
