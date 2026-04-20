@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Cylinder Gland", phonetic:"/ˈsɪlɪndər ɡlænd/", cn:"压盖", desc:"用于密封油缸端部", words:[
+    { w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/" },
+    { w:"Gland", cn:"压盖", phonetic:"/ɡlænd/" }
+  ]},
+  { text:"Spacer Sleeve", phonetic:"/ˈspeɪsər sliːv/", cn:"隔套", desc:"用于间隔定位", words:[
+    { w:"Spacer", cn:"间隔件", phonetic:"/ˈspeɪsər/" },
+    { w:"Sleeve", cn:"套", phonetic:"/sliːv/" }
+  ]},
+  { text:"Piston Lock Nut", phonetic:"/ˈpɪstən lɑːk nʌt/", cn:"活塞背母", desc:"用于固定活塞", words:[
+    { w:"Piston", cn:"活塞", phonetic:"/ˈpɪstən/" },
+    { w:"Lock", cn:"锁紧", phonetic:"/lɑːk/" },
+    { w:"Nut", cn:"螺母", phonetic:"/nʌt/" }
+  ]},
+  { text:"Hex Socket Set Screw with Cup Point", phonetic:"/hɛks ˈsɑːkɪt sɛt skruː wɪð kʌp pɔɪnt/", cn:"螺钉-内六角凹端紧定", desc:"用于紧固定位", words:[
+    { w:"Hex", cn:"六角", phonetic:"/hɛks/" },
+    { w:"Socket", cn:"内六角", phonetic:"/ˈsɑːkɪt/" },
+    { w:"Set Screw", cn:"紧定螺钉", phonetic:"/sɛt skruː/" },
+    { w:"Cup Point", cn:"凹端", phonetic:"/kʌp pɔɪnt/" }
+  ]},
+  { text:"Cushion Sleeve", phonetic:"/ˈkʊʃən sliːv/", cn:"缓冲套", desc:"用于缓冲减震", words:[
+    { w:"Cushion", cn:"缓冲", phonetic:"/ˈkʊʃən/" },
+    { w:"Sleeve", cn:"套", phonetic:"/sliːv/" }
+  ]},
+  { text:"Retaining Ring", phonetic:"/rɪˈteɪnɪŋ rɪŋ/", cn:"挡环", desc:"用于轴或孔内定位", words:[
+    { w:"Retaining", cn:"固定", phonetic:"/rɪˈteɪnɪŋ/" },
+    { w:"Ring", cn:"环", phonetic:"/rɪŋ/" }
+  ]},
+  { text:"Washer", phonetic:"/ˈwɑːʃər/", cn:"垫圈", desc:"用于分散压力" },
+  { text:"Check Valve", phonetic:"/tʃɛk ˈvælv/", cn:"单向阀", desc:"只允许单向流动", words:[
+    { w:"Check", cn:"止回", phonetic:"/tʃɛk/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Plug", phonetic:"/plʌɡ/", cn:"螺堵", desc:"用于封堵接口" },
+  { text:"Telescopic Balance Valve Assembly", phonetic:"/ˌtɛləˈskɑːpɪk ˈbæləns ˈvælv əˈsɛmbli/", cn:"伸缩平衡阀总成", desc:"用于伸缩系统平衡控制", words:[
+    { w:"Telescopic", cn:"伸缩", phonetic:"/ˌtɛləˈskɑːpɪk/" },
+    { w:"Balance", cn:"平衡", phonetic:"/ˈbæləns/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Hose Assembly", phonetic:"/hoʊs əˈsɛmbli/", cn:"胶管总成", desc:"软管组件", words:[
+    { w:"Hose", cn:"软管", phonetic:"/hoʊs/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Bulkhead Fitting", phonetic:"/ˈbʌlkˌhɛd ˈfɪtɪŋ/", cn:"隔板式接头", desc:"用于穿板连接", words:[
+    { w:"Bulkhead", cn:"隔板", phonetic:"/ˈbʌlkˌhɛd/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Straight Fitting", phonetic:"/streɪt ˈfɪtɪŋ/", cn:"直通接头", desc:"直线连接管路", words:[
+    { w:"Straight", cn:"直通", phonetic:"/streɪt/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Hose", phonetic:"/hoʊs/", cn:"胶管", desc:"柔性输送管" },
+  { text:"Steel Pipe Assembly", phonetic:"/stiːl paɪp əˈsɛmbli/", cn:"钢管总成", desc:"钢制管路组件", words:[
+    { w:"Steel", cn:"钢", phonetic:"/stiːl/" },
+    { w:"Pipe", cn:"管", phonetic:"/paɪp/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Luffing Balance Valve Assembly", phonetic:"/ˈlʌfɪŋ ˈbæləns ˈvælv əˈsɛmbli/", cn:"变幅平衡阀总成", desc:"用于变幅系统", words:[
+    { w:"Luffing", cn:"变幅", phonetic:"/ˈlʌfɪŋ/" },
+    { w:"Balance", cn:"平衡", phonetic:"/ˈbæləns/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Balance Valve Assembly", phonetic:"/ˈbæləns ˈvælv əˈsɛmbli/", cn:"平衡阀总成", desc:"控制负载平衡", words:[
+    { w:"Balance", cn:"平衡", phonetic:"/ˈbæləns/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Straight Bulkhead Fitting", phonetic:"/streɪt ˈbʌlkˌhɛd ˈfɪtɪŋ/", cn:"直通隔板式接头", desc:"直通穿板连接", words:[
+    { w:"Straight", cn:"直通", phonetic:"/streɪt/" },
+    { w:"Bulkhead", cn:"隔板", phonetic:"/ˈbʌlkˌhɛd/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"End Straight Fitting", phonetic:"/ɛnd streɪt ˈfɪtɪŋ/", cn:"端直通接头", desc:"端部直通接头", words:[
+    { w:"End", cn:"端部", phonetic:"/ɛnd/" },
+    { w:"Straight", cn:"直通", phonetic:"/streɪt/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Platform Valve Group", phonetic:"/ˈplætfɔːrm ˈvælv ɡruːp/", cn:"平台阀组总成", desc:"平台控制阀组", words:[
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætfɔːrm/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" },
+    { w:"Group", cn:"组", phonetic:"/ɡruːp/" }
+  ]},
+  { text:"Balance Valve", phonetic:"/ˈbæləns ˈvælv/", cn:"平衡阀", desc:"控制负载平衡", words:[
+    { w:"Balance", cn:"平衡", phonetic:"/ˈbæləns/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Luffing Valve", phonetic:"/ˈlʌfɪŋ ˈvælv/", cn:"变幅阀组", desc:"控制变幅动作", words:[
+    { w:"Luffing", cn:"变幅", phonetic:"/ˈlʌfɪŋ/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Relief Valve", phonetic:"/rɪˈliːf ˈvælv/", cn:"溢流阀", desc:"防止系统过压", words:[
+    { w:"Relief", cn:"泄压", phonetic:"/rɪˈliːf/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Valve", phonetic:"/ˈvælv/", cn:"阀体", desc:"控制流体的部件" },
+  { text:"Pressure Compensating Valve", phonetic:"/ˈprɛʃər ˈkɑːmpənˌseɪtɪŋ ˈvælv/", cn:"压力补偿阀", desc:"用于稳定压力", words:[
+    { w:"Pressure", cn:"压力", phonetic:"/ˈprɛʃər/" },
+    { w:"Compensating", cn:"补偿", phonetic:"/ˈkɑːmpənˌseɪtɪŋ/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
