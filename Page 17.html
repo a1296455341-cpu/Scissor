@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Battery Pack Assembly", phonetic:"/ˈbætəri pæk əˈsɛmbli/", cn:"电池包部装", desc:"电池包组合部件", words:[
+    { w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+    { w:"Pack", cn:"包", phonetic:"/pæk/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Power Battery Assembly", phonetic:"/ˈpaʊər ˈbætəri əˈsɛmbli/", cn:"动力电池总成", desc:"动力电池系统总成", words:[
+    { w:"Power", cn:"动力", phonetic:"/ˈpaʊər/" },
+    { w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Pothole Linkage Plate", phonetic:"/ˈpɑːtˌhoʊl ˈlɪŋkɪdʒ pleɪt/", cn:"坑洞板连杆", desc:"连接运动机构板件", words:[
+    { w:"Pothole", cn:"坑洞", phonetic:"/ˈpɑːtˌhoʊl/" },
+    { w:"Linkage", cn:"连杆", phonetic:"/ˈlɪŋkɪdʒ/" },
+    { w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+  ]},
+  { text:"Pothole Location Shaft", phonetic:"/ˈpɑːtˌhoʊl loʊˈkeɪʃən ʃæft/", cn:"坑洼定位轴", desc:"定位传动轴", words:[
+    { w:"Pothole", cn:"坑洞", phonetic:"/ˈpɑːtˌhoʊl/" },
+    { w:"Location", cn:"定位", phonetic:"/loʊˈkeɪʃən/" },
+    { w:"Shaft", cn:"轴", phonetic:"/ʃæft/" }
+  ]},
+  { text:"Pothole Bellcrank", phonetic:"/ˈpɑːtˌhoʊl ˈbɛlˌkræŋk/", cn:"旋转连杆", desc:"转向连杆机构", words:[
+    { w:"Bellcrank", cn:"摇臂", phonetic:"/ˈbɛlˌkræŋk/" }
+  ]},
+  { text:"Pothole Guide Weldment", phonetic:"/ˈpɑːtˌhoʊl ɡaɪd ˈwɛldmənt/", cn:"压轴导向筒焊件", desc:"焊接导向结构", words:[
+    { w:"Guide", cn:"导向", phonetic:"/ɡaɪd/" },
+    { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+  { text:"Flange Bushing", phonetic:"/flændʒ ˈbʊʃɪŋ/", cn:"法兰轴套", desc:"带法兰结构轴套", words:[
+    { w:"Flange", cn:"法兰", phonetic:"/flændʒ/" },
+    { w:"Bushing", cn:"轴套", phonetic:"/ˈbʊʃɪŋ/" }
+  ]},
+  { text:"Pothole Pusher Assembly", phonetic:"/ˈpɑːtˌhoʊl ˈpʊʃər əˈsɛmbli/", cn:"压轴总成", desc:"推动机构总成", words:[
+    { w:"Pusher", cn:"推杆", phonetic:"/ˈpʊʃər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Pothole Pusher", phonetic:"/ˈpɑːtˌhoʊl ˈpʊʃər/", cn:"压轴", desc:"推动执行件" },
+  { text:"Pothole Pusher Sleeve Weldment", phonetic:"/ˈpɑːtˌhoʊl ˈpʊʃər sliːv ˈwɛldmənt/", cn:"压轴筒焊合", desc:"套筒焊接结构", words:[
+    { w:"Sleeve", cn:"套筒", phonetic:"/sliːv/" },
+    { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+  { text:"Cam Follower", phonetic:"/kæm ˈfɑːloʊər/", cn:"压轮", desc:"凸轮随动件", words:[
+    { w:"Cam", cn:"凸轮", phonetic:"/kæm/" },
+    { w:"Follower", cn:"随动件", phonetic:"/ˈfɑːloʊər/" }
+  ]},
+  { text:"Left Pothole Guard", phonetic:"/lɛft ˈpɑːtˌhoʊl ɡɑːrd/", cn:"左坑洞板", desc:"左侧防护板", words:[
+    { w:"Left", cn:"左", phonetic:"/lɛft/" },
+    { w:"Guard", cn:"护板", phonetic:"/ɡɑːrd/" }
+  ]},
+  { text:"Pothole Guard", phonetic:"/ˈpɑːtˌhoʊl ɡɑːrd/", cn:"坑洞板", desc:"防护板结构" },
+  { text:"Right Pothole Guard", phonetic:"/raɪt ˈpɑːtˌhoʊl ɡɑːrd/", cn:"右坑洞板", desc:"右侧防护板", words:[
+    { w:"Right", cn:"右", phonetic:"/raɪt/" },
+    { w:"Guard", cn:"护板", phonetic:"/ɡɑːrd/" }
+  ]},
+  { text:"Long Bushing", phonetic:"/lɔːŋ ˈbʊʃɪŋ/", cn:"长轴套", desc:"长型轴承套", words:[
+    { w:"Long", cn:"长", phonetic:"/lɔːŋ/" },
+    { w:"Bushing", cn:"轴套", phonetic:"/ˈbʊʃɪŋ/" }
+  ]},
+  { text:"Left Guardrail Weldment", phonetic:"/lɛft ˈɡɑːrdˌreɪl ˈwɛldmənt/", cn:"左护栏焊合", desc:"左侧护栏焊接结构", words:[
+    { w:"Guardrail", cn:"护栏", phonetic:"/ˈɡɑːrdˌreɪl/" },
+    { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+  { text:"Right Guardrail Weldment", phonetic:"/raɪt ˈɡɑːrdˌreɪl ˈwɛldmənt/", cn:"右护栏焊合", desc:"右侧护栏焊接结构", words:[
+    { w:"Guardrail", cn:"护栏", phonetic:"/ˈɡɑːrdˌreɪl/" },
+    { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+  { text:"Chassis Hose Assembly", phonetic:"/ˈtʃæsɪs hoʊz əˈsɛmbli/", cn:"下车配管总成", desc:"底盘液压管路", words:[
+    { w:"Chassis", cn:"底盘", phonetic:"/ˈtʃæsɪs/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊz/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Travel Hydraulic Hose Assembly", phonetic:"/ˈtrævəl haɪˈdrɔːlɪk hoʊz əˈsɛmbli/", cn:"行走配管总成", desc:"行走液压管路", words:[
+    { w:"Travel", cn:"行走", phonetic:"/ˈtrævəl/" },
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊz/" }
+  ]},
+  { text:"Hose Clamp Mounting Plate", phonetic:"/hoʊz klæmp ˈmaʊntɪŋ pleɪt/", cn:"管夹固定角板", desc:"管路固定支架", words:[
+    { w:"Hose", cn:"软管", phonetic:"/hoʊz/" },
+    { w:"Clamp", cn:"夹", phonetic:"/klæmp/" },
+    { w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+  ]},
+  { text:"Hose Fitting", phonetic:"/hoʊz ˈfɪtɪŋ/", cn:"胶管接头", desc:"液压管接头", words:[
+    { w:"Hose", cn:"胶管", phonetic:"/hoʊz/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Chassis Hose Clamp", phonetic:"/ˈtʃæsɪs hoʊz klæmp/", cn:"底盘管夹", desc:"底盘管路固定夹", words:[
+    { w:"Chassis", cn:"底盘", phonetic:"/ˈtʃæsɪs/" },
+    { w:"Clamp", cn:"管夹", phonetic:"/klæmp/" }
+  ]},
+  { text:"Single Hose Clamp", phonetic:"/ˈsɪŋɡəl hoʊz klæmp/", cn:"单管夹", desc:"单管固定夹", words:[
+    { w:"Single", cn:"单", phonetic:"/ˈsɪŋɡəl/" },
+    { w:"Clamp", cn:"夹", phonetic:"/klæmp/" }
+  ]},
+  { text:"Brake Hose Assembly", phonetic:"/breɪk hoʊz əˈsɛmbli/", cn:"制动配管总成", desc:"制动系统管路", words:[
+    { w:"Brake", cn:"制动", phonetic:"/breɪk/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊz/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Manual Hydraulic Pump", phonetic:"/ˈmænjuəl haɪˈdrɔːlɪk pʌmp/", cn:"手动液压泵", desc:"手动驱动液压泵", words:[
+    { w:"Manual", cn:"手动", phonetic:"/ˈmænjuəl/" },
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
