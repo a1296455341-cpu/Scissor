@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Plug", phonetic:"/plʌɡ/", cn:"堵头", desc:"用于封堵接口" },
+  { text:"Damper", phonetic:"/ˈdæmpər/", cn:"阻尼", desc:"用于减震或阻尼控制" },
+  { text:"O-ring", phonetic:"/ˈoʊ rɪŋ/", cn:"O型圈", desc:"用于密封" },
+  { text:"Solenoid Valve", phonetic:"/ˈsoʊləˌnɔɪd ˈvælv/", cn:"电磁阀", desc:"电控开关阀", words:[
+    { w:"Solenoid", cn:"电磁", phonetic:"/ˈsoʊləˌnɔɪd/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"90° Union Fitting", phonetic:"/ˈnaɪnti dɪˈɡriː ˈjuːniən ˈfɪtɪŋ/", cn:"直角组合接头", desc:"90度连接接头", words:[
+    { w:"Union", cn:"组合", phonetic:"/ˈjuːniən/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Platform Console Valve Assembly", phonetic:"/ˈplætfɔːrm ˈkɑːnsoʊl ˈvælv əˈsɛmbli/", cn:"平台栏阀组", desc:"平台控制阀组", words:[
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætfɔːrm/" },
+    { w:"Console", cn:"控制台", phonetic:"/ˈkɑːnsoʊl/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Pressure Test Port", phonetic:"/ˈprɛʃər tɛst pɔːrt/", cn:"测压接头", desc:"用于压力检测", words:[
+    { w:"Pressure", cn:"压力", phonetic:"/ˈprɛʃər/" },
+    { w:"Test", cn:"测试", phonetic:"/tɛst/" },
+    { w:"Port", cn:"接口", phonetic:"/pɔːrt/" }
+  ]},
+  { text:"Directional Valve Housing", phonetic:"/dəˈrɛkʃənl ˈvælv ˈhaʊzɪŋ/", cn:"多路阀罩壳", desc:"阀体外壳", words:[
+    { w:"Directional", cn:"多路", phonetic:"/dəˈrɛkʃənl/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" },
+    { w:"Housing", cn:"壳体", phonetic:"/ˈhaʊzɪŋ/" }
+  ]},
+  { text:"Spool Valve", phonetic:"/spuːl ˈvælv/", cn:"梭阀", desc:"滑阀结构阀", words:[
+    { w:"Spool", cn:"滑阀芯", phonetic:"/spuːl/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Flow Control Valve", phonetic:"/floʊ kənˈtroʊl ˈvælv/", cn:"流量控制阀", desc:"控制流量大小", words:[
+    { w:"Flow", cn:"流量", phonetic:"/floʊ/" },
+    { w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Motor Assembly", phonetic:"/ˈmoʊtər əˈsɛmbli/", cn:"马达装配", desc:"动力装置组件", words:[
+    { w:"Motor", cn:"马达", phonetic:"/ˈmoʊtər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Flow Divider/Combiner Valve Assembly", phonetic:"/floʊ dɪˈvaɪdər kəmˈbaɪnər ˈvælv əˈsɛmbli/", cn:"分流集流阀装配", desc:"分流与合流控制", words:[
+    { w:"Flow", cn:"流量", phonetic:"/floʊ/" },
+    { w:"Divider", cn:"分流", phonetic:"/dɪˈvaɪdər/" },
+    { w:"Combiner", cn:"集流", phonetic:"/kəmˈbaɪnər/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Swing Center Assembly", phonetic:"/swɪŋ ˈsɛntər əˈsɛmbli/", cn:"中回装配", desc:"回转中心组件", words:[
+    { w:"Swing", cn:"回转", phonetic:"/swɪŋ/" },
+    { w:"Center", cn:"中心", phonetic:"/ˈsɛntər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Steering Valve Assembly", phonetic:"/ˈstɪrɪŋ ˈvælv əˈsɛmbli/", cn:"转向阀组装配", desc:"控制转向系统", words:[
+    { w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Outrigger Balance Valve", phonetic:"/ˈaʊtˌrɪɡər ˈbæləns ˈvælv/", cn:"扩桥平衡阀安装", desc:"用于支腿平衡", words:[
+    { w:"Outrigger", cn:"支腿", phonetic:"/ˈaʊtˌrɪɡər/" },
+    { w:"Balance", cn:"平衡", phonetic:"/ˈbæləns/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Axial Piston Motor", phonetic:"/ˈæksiəl ˈpɪstən ˈmoʊtər/", cn:"轴向柱塞马达", desc:"液压驱动马达", words:[
+    { w:"Axial", cn:"轴向", phonetic:"/ˈæksiəl/" },
+    { w:"Piston", cn:"柱塞", phonetic:"/ˈpɪstən/" },
+    { w:"Motor", cn:"马达", phonetic:"/ˈmoʊtər/" }
+  ]},
+  { text:"Balance Valve Fitting", phonetic:"/ˈbæləns ˈvælv ˈfɪtɪŋ/", cn:"平衡阀接头", desc:"连接平衡阀", words:[
+    { w:"Balance", cn:"平衡", phonetic:"/ˈbæləns/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"O-ring", phonetic:"/ˈoʊ rɪŋ/", cn:"O形圈", desc:"用于密封" },
+  { text:"Flow Divider/Combiner Valve", phonetic:"/floʊ dɪˈvaɪdər kəmˈbaɪnər ˈvælv/", cn:"分流集流阀", desc:"控制分流与合流", words:[
+    { w:"Flow", cn:"流量", phonetic:"/floʊ/" },
+    { w:"Divider", cn:"分流", phonetic:"/dɪˈvaɪdər/" },
+    { w:"Combiner", cn:"集流", phonetic:"/kəmˈbaɪnər/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Flush Valve", phonetic:"/flʌʃ ˈvælv/", cn:"冲洗阀", desc:"用于冲洗系统", words:[
+    { w:"Flush", cn:"冲洗", phonetic:"/flʌʃ/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Rotary Joint", phonetic:"/ˈroʊtəri dʒɔɪnt/", cn:"回转接头", desc:"用于旋转连接", words:[
+    { w:"Rotary", cn:"回转", phonetic:"/ˈroʊtəri/" },
+    { w:"Joint", cn:"接头", phonetic:"/dʒɔɪnt/" }
+  ]},
+  { text:"Three-way Union Fitting", phonetic:"/ˈθriː weɪ ˈjuːniən ˈfɪtɪŋ/", cn:"三通组合接头", desc:"三向连接接头", words:[
+    { w:"Three-way", cn:"三通", phonetic:"/ˈθriː weɪ/" },
+    { w:"Union", cn:"组合", phonetic:"/ˈjuːniən/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Hose Fitting", phonetic:"/hoʊs ˈfɪtɪŋ/", cn:"管接头", desc:"用于连接软管", words:[
+    { w:"Hose", cn:"软管", phonetic:"/hoʊs/" },
+    { w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/" }
+  ]},
+  { text:"Flow Divider Valve", phonetic:"/floʊ dɪˈvaɪdər ˈvælv/", cn:"分流阀", desc:"分配流量", words:[
+    { w:"Flow", cn:"流量", phonetic:"/floʊ/" },
+    { w:"Divider", cn:"分流", phonetic:"/dɪˈvaɪdər/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]},
+  { text:"Pilot-operated Check Valve", phonetic:"/ˈpaɪlət ˈɑːpəreɪtɪd tʃɛk ˈvælv/", cn:"液控单向阀", desc:"带控制的单向阀", words:[
+    { w:"Pilot-operated", cn:"液控", phonetic:"/ˈpaɪlət ˈɑːpəreɪtɪd/" },
+    { w:"Check", cn:"单向", phonetic:"/tʃɛk/" },
+    { w:"Valve", cn:"阀", phonetic:"/ˈvælv/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
